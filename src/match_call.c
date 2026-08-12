@@ -249,7 +249,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 2,
 	    .rematchOfferedFlag = FLAG_ARNIE_OFFERED_REMATCH,
-		.rematchCheckFlags = {FLAG_VISITED_BLACKTHORN_CITY, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
+		.rematchCheckFlags = {FLAG_LANDMARK_LAKE_OF_RAGE, FLAG_VISITED_BLACKTHORN_CITY, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = 0,
 	    .genericStartIndex = 11,
 	    .genericTextsAmount = 5,
@@ -424,7 +424,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 10,
 	    .rematchOfferedFlag = FLAG_TULLY_OFFERED_REMATCH,
-		.rematchCheckFlags = {FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
+		.rematchCheckFlags = {FLAG_TRAINER_MAHOGANY_EXECUTIVE_F, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
 	    .giftFlag = FLAG_CALL_TULLY_GIFT,
 	    .genericStartIndex = 145,
 	    .genericTextsAmount = 5,
@@ -489,7 +489,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .rematchText = {Matchcall_Tiffany_Rematch, STRS_BATTLE_REQUEST},
 	    .outbreakText = 0,
 	    .remindGiftText = {Matchcall_Tiffany_Remind_Gift, STRS_GIFT_MSG},
-	    .remindRematchText = 0,
+	    .remindRematchText = {Matchcall_Tiffany_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Tiffany_Hangup, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_TUESDAY, TIME_DAY},
@@ -549,7 +549,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 3,
 	    .rematchOfferedFlag = FLAG_JACK_OFFERED_REMATCH,
-		.rematchCheckFlags = {FLAG_VISITED_OLIVINE_CITY, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
+		.rematchCheckFlags = {FLAG_VISITED_OLIVINE_CITY, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = 0,
 	    .genericStartIndex = 81,
 	    .genericTextsAmount = 16,
@@ -638,8 +638,8 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .giftText = 0,
 	    .rematchText = {Matchcall_Beth_Rematch, STRS_BATTLE_REQUEST},
 	    .outbreakText = 0,
-	    .remindGiftText = {Matchcall_Beth_Remind_Gift, STRS_GIFT_MSG},
-	    .remindRematchText = 0,
+	    .remindGiftText = 0,
+	    .remindRematchText = {Matchcall_Beth_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Beth_Hangup, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_FRIDAY, TIME_DAY},
@@ -674,7 +674,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
         .unused = 3,
         .battleFrontierRecordStreakTextIndex = 12,
 	    .rematchOfferedFlag = FLAG_LIZ_OFFERED_REMATCH,
-		.rematchCheckFlags = {FLAG_VISITED_ECRUTEAK_CITY, FLAG_VISITED_MAHOGANY_TOWN, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION},
+		.rematchCheckFlags = {FLAG_VISITED_ECRUTEAK_CITY, FLAG_TRAINER_MAHOGANY_EXECUTIVE_F, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION},
 	    .giftFlag = 0,
 	    .genericStartIndex = 107,
 	    .genericTextsAmount = 16,
@@ -699,7 +699,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 12,
 	    .rematchOfferedFlag = FLAG_BRENT_OFFERED_REMATCH,
-		.rematchCheckFlags = {FLAG_VISITED_MAHOGANY_TOWN, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
+		.rematchCheckFlags = {FLAG_TRAINER_MAHOGANY_EXECUTIVE_F, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
 	    .giftFlag = 0,
 	    .genericStartIndex = 25,
 	    .genericTextsAmount = 15,
@@ -1906,7 +1906,7 @@ int GetTrainerMatchCallId(int trainerId)
 
 static const struct MatchCallText *GetGenericMatchCallText(int matchCallId, u8 *str)
 {
-	u32 randomNumber = Random() % (gMatchCallTrainers[matchCallId].genericTextsAmount - 1);
+	u32 randomNumber = Random() % (gMatchCallTrainers[matchCallId].genericTextsAmount);
 
 	return &sMatchCallGenericTexts[gMatchCallTrainers[matchCallId].genericStartIndex + randomNumber];
 }
