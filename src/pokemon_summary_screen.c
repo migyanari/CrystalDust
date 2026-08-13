@@ -1266,7 +1266,11 @@ static bool8 DecompressGraphics(void)
         sMonSummaryScreen->switchCounter++;
         break;
     case 9:
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+        LoadPalette(gFireRedMenuElements2_Pal, 0x1D0, 0x20);
+#else
         LoadCompressedPalette(gMoveTypes_Pal, 0x1D0, 0x60);
+#endif
         sMonSummaryScreen->switchCounter = 0;
         return TRUE;
     }

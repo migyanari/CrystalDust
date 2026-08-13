@@ -1150,7 +1150,11 @@ const u16 gExpBarLowHealthBar_Pal[] = INCBIN_U16("graphics/summary_screen/exp_lo
 const u32 gShinyIcon_Gfx[] = INCBIN_U32("graphics/summary_screen/shiny_icon.4bpp.lz");
 const u16 gShinyIcon_Pal[] = INCBIN_U16("graphics/summary_screen/shiny_icon.gbapal");
 
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+const u32 gMoveTypes_Gfx[] = INCBIN_U32("graphics/types/move_types_es.4bpp.lz");
+#else
 const u32 gMoveTypes_Gfx[] = INCBIN_U32("graphics/types/move_types.4bpp.lz");
+#endif
 const u32 gMoveTypes_Pal[] = INCBIN_U32("graphics/types/move_types.gbapal.lz");
 const u32 gSummaryMoveSelect_Gfx[] = INCBIN_U32("graphics/summary_screen/move_select.4bpp.lz");
 const u32 gSummaryMoveSelect_Pal[] = INCBIN_U32("graphics/summary_screen/move_select.gbapal.lz");

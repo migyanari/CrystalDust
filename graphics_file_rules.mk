@@ -278,6 +278,9 @@ $(INTERFACEGFXDIR)/party_menu_bg.4bpp: %.4bpp: %.png
 $(TYPESGFXDIR)/move_types.4bpp: $(types:%=$(TYPESGFXDIR)/%.4bpp) $(contest_types:%=$(TYPESGFXDIR)/contest_%.4bpp)
 	@cat $^ >$@
 
+$(TYPESGFXDIR)/move_types_es.4bpp: $(INTERFACEGFXDIR)/menu_info_es.4bpp $(TYPESGFXDIR)/move_types.4bpp
+	python3 tools/extract_type_icons.py $(INTERFACEGFXDIR)/menu_info_es.4bpp $(TYPESGFXDIR)/move_types.4bpp $@
+
 $(INTERFACEGFXDIR)/bag_screen.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 53
 

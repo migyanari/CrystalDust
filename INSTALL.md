@@ -82,7 +82,7 @@ Some tips before proceeding:
 4. Certain packages are required to build CrystalDust. Install these packages by running the following command:
 
     ```bash
-    sudo apt install build-essential binutils-arm-none-eabi git libpng-dev
+    sudo apt install build-essential binutils-arm-none-eabi git libpng-dev python3
     ```
     <details>
         <summary><i>Note...</i></summary>
@@ -328,7 +328,7 @@ Open Terminal and enter the following commands, depending on which distro you're
 ### Debian/Ubuntu-based distributions
 Run the following command to install the necessary packages:
 ```bash
-sudo apt install build-essential binutils-arm-none-eabi git libpng-dev
+sudo apt install build-essential binutils-arm-none-eabi git libpng-dev python3
 ```
 Then proceed to [Choosing where to store CrystalDust (Linux)](#choosing-where-to-store-crystaldust-linux).
 <details>
@@ -453,6 +453,20 @@ To build **CrystalDust.gba** with your changes:
 ```bash
 make modern
 ```
+
+### Language builds
+
+CrystalDust supports English and Spanish builds. Specify the language as an extra make goal (the `modern` target still selects the modern toolchain):
+
+```bash
+make -j$(nproc) modern english   # CrystalDust.gba (BPEE)
+make -j$(nproc) modern spanish   # CrystalDust_es.gba (BPES)
+```
+
+If no language goal is given, the build defaults to English.
+
+The Spanish build generates `graphics/types/move_types_es.4bpp` at build time via `tools/extract_type_icons.py`, which requires **Python 3** (`python3` on your PATH). On Debian/Ubuntu and WSL this is usually already available.
+
 **NOTE:** this project requires the `arm-none-eabi-gcc` compiler included with devkitARM. If devkitARM (a.k.a. gba-dev) has already been installed as part of the platform-specific instructions, this should run with no errors.
 Otherwise, follow the instructions below to install devkitARM.
 <details>

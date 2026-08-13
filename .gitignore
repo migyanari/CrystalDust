@@ -33,6 +33,8 @@ porymap.project.cfg
 .vscode/
 *.a
 .fuse_hidden*
+__pycache__/
+*.py[cod]
 src/*.s
 alphas/
 scripts.inc
