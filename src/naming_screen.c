@@ -2556,6 +2556,15 @@ static const u8* const sNamingScreenKeyboardText[KBPAGE_COUNT][KBROW_COUNT] =
 
 static const struct SpriteSheet sSpriteSheets[] =
 {
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+    {gNamingScreenBackButton_Gfx,               0x1E0,  GFXTAG_BACK_BUTTON},
+    {gNamingScreenOKButton_Gfx,                 0x1E0,  GFXTAG_OK_BUTTON},
+    {gNamingScreenRWindow_Gfx,                  0x280,  GFXTAG_PAGE_SWAP_FRAME},
+    {gNamingScreenPageButton_Gfx + 0x20,        0x100,  GFXTAG_PAGE_SWAP_BUTTON},
+    {gNamingScreenPageSwapUpper_Gfx,            0x060,  GFXTAG_PAGE_SWAP_UPPER},
+    {gNamingScreenPageSwapLower_Gfx,            0x060,  GFXTAG_PAGE_SWAP_LOWER},
+    {gNamingScreenPageSwapOthers_Gfx,           0x060,  GFXTAG_PAGE_SWAP_OTHERS},
+#else
     {gNamingScreenRWindow_Gfx + 0x280,          0x1E0,  GFXTAG_BACK_BUTTON},
     {gNamingScreenRWindow_Gfx + 0x460,          0x1E0,  GFXTAG_OK_BUTTON},
     {gNamingScreenRWindow_Gfx,                  0x280,  GFXTAG_PAGE_SWAP_FRAME},
@@ -2563,6 +2572,7 @@ static const struct SpriteSheet sSpriteSheets[] =
     {gNamingScreenROptions_Gfx,                 0x060,  GFXTAG_PAGE_SWAP_UPPER},
     {gNamingScreenROptions_Gfx + 0xA0,          0x060,  GFXTAG_PAGE_SWAP_LOWER},
     {gNamingScreenROptions_Gfx + 0x140,         0x060,  GFXTAG_PAGE_SWAP_OTHERS},
+#endif
     {gNamingScreenCursor_Gfx,                   0x080,  GFXTAG_CURSOR},
     {gNamingScreenCursor_Gfx + 0xA0,            0x080,  GFXTAG_CURSOR_SQUISHED},
     {gNamingScreenCursor_Gfx + 0x140,           0x080,  GFXTAG_CURSOR_FILLED},

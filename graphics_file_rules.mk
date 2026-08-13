@@ -550,3 +550,7 @@ $(MISCGFXDIR)/birch_help.4bpp: $(MISCGFXDIR)/birch_bag.4bpp $(MISCGFXDIR)/birch_
 
 $(INTROGFXDIR)/intro2.4bpp: $(INTROGFXDIR)/intro2_bg3.4bpp $(INTROGFXDIR)/intro2_bg2.4bpp $(INTROGFXDIR)/intro2_bg1.4bpp
 	@cat $^ >$@
+
+# menu_info EN palette exceeds CrystalDust gbagfx 4bpp limit; 4bpp checked in (pret gbagfx)
+$(INTERFACEGFXDIR)/menu_info.4bpp: $(INTERFACEGFXDIR)/menu_info.png
+	@test -s $@ || (echo "Missing $(INTERFACEGFXDIR)/menu_info.4bpp; generate with pret/pokefirered gbagfx" && exit 1)

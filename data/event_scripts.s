@@ -784,7 +784,11 @@ Common_EventScript_FindItem::
 	.include "data/scripts/test_signpost.inc"
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
+.if GAME_LANGUAGE == LANGUAGE_SPANISH
+	.include "data/text/spanish/oak_speech.inc"
+.else
 	.include "data/text/oak_speech.inc"
+.endif
 
 	.include "data/maps/GoldenrodCity_DeptStore_3F/scripts.inc"
 	.include "data/maps/GoldenrodCity_DeptStore_4F/scripts.inc"

@@ -5,8 +5,13 @@
 
 ALIGNED(4)
 const u8 gText_ExpandedPlaceholder_Empty[] = _("");
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+const u8 gText_ExpandedPlaceholder_Kun[] = _("o");
+const u8 gText_ExpandedPlaceholder_Chan[] = _("a");
+#else
 const u8 gText_ExpandedPlaceholder_Kun[] = _("");
 const u8 gText_ExpandedPlaceholder_Chan[] = _("");
+#endif
 const u8 gText_ExpandedPlaceholder_Sapphire[] = _("SAPPHIRE");
 const u8 gText_ExpandedPlaceholder_Ruby[] = _("RUBY");
 const u8 gText_ExpandedPlaceholder_Emerald[] = _("EMERALD");
@@ -1283,9 +1288,15 @@ const u8 gText_EmptySpace2[] = _(" "); // Unused
 const u8 gText_DynColor2Male[] = _("{COLOR DYNAMIC_COLOR2}♂");
 const u8 gText_DynColor1Female[] = _("{COLOR DYNAMIC_COLOR1}♀");
 const u8 gText_DynColor2[] = _("{COLOR DYNAMIC_COLOR2}");
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+const u8 gText_Upper[] = _("MAYÚS");
+const u8 gText_Lower[] = _("minús");
+const u8 gText_Others[] = _("otros");
+#else
 const u8 gText_Upper[] = _("UPPER");
 const u8 gText_Lower[] = _("lower");
 const u8 gText_Others[] = _("OTHERS");
+#endif
 const u8 gText_Symbols[] = _("SYMBOLS");
 const u8 gText_Register2[] = _("REGISTER");
 const u8 gText_Exit2[] = _("EXIT");

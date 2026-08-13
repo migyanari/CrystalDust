@@ -1298,7 +1298,11 @@ const u32 gPokedexAreaScreenAreaUnknown_Gfx[] = INCBIN_U32("graphics/pokedex/are
 const u16 gFireRedMenuElements1_Pal[] = INCBIN_U16("graphics/interface_fr/menu1.gbapal");
 const u16 gFireRedMenuElements2_Pal[] = INCBIN_U16("graphics/interface_fr/menu2.gbapal");
 const u16 gFireRedMenuElements3_Pal[] = INCBIN_U16("graphics/interface_fr/menu3.gbapal");
-const u8 gFireRedMenuElements_Gfx[] = INCBIN_U8("graphics/interface_fr/menu.4bpp"); //the types are reused for item menu
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+const u8 gFireRedMenuElements_Gfx[] = INCBIN_U8("graphics/interface/menu_info_es.4bpp");
+#else
+const u8 gFireRedMenuElements_Gfx[] = INCBIN_U8("graphics/interface/menu_info.4bpp");
+#endif // GAME_LANGUAGE
 
 const u8 gBagMenuHMIcon_Gfx[] = INCBIN_U8("graphics/item_menu/hm.4bpp");
 
@@ -1438,6 +1442,13 @@ const u16 gNamingScreenMenu_Pal[] = INCBIN_U16("graphics/naming_screen/menu.gbap
 const u32 gNamingScreenMenu_Gfx[] = INCBIN_U32("graphics/naming_screen/menu.4bpp.lz");
 const u8 gNamingScreenRWindow_Gfx[] = INCBIN_U8("graphics/naming_screen/rwindow.4bpp");
 const u8 gNamingScreenROptions_Gfx[] = INCBIN_U8("graphics/naming_screen/roptions.4bpp");
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+const u8 gNamingScreenBackButton_Gfx[] = INCBIN_U8("graphics/naming_screen/back_button_es.4bpp");
+const u8 gNamingScreenOKButton_Gfx[] = INCBIN_U8("graphics/naming_screen/ok_button_es.4bpp");
+const u8 gNamingScreenPageSwapUpper_Gfx[] = INCBIN_U8("graphics/naming_screen/page_swap_upper_es.4bpp");
+const u8 gNamingScreenPageSwapLower_Gfx[] = INCBIN_U8("graphics/naming_screen/page_swap_lower_es.4bpp");
+const u8 gNamingScreenPageSwapOthers_Gfx[] = INCBIN_U8("graphics/naming_screen/page_swap_others_es.4bpp");
+#endif
 const u8 gNamingScreenCursor_Gfx[] = INCBIN_U8("graphics/naming_screen/cursor.4bpp");
 const u8 gNamingScreenPageButton_Gfx[] = INCBIN_U8("graphics/naming_screen/page_button.4bpp");
 const u8 gNamingScreenInputArrow_Gfx[] = INCBIN_U8("graphics/naming_screen/input_arrow.4bpp");

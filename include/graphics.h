@@ -4261,6 +4261,13 @@ extern const u8 gNamingScreenKeyboardSymbols_Tilemap[];
 extern const u8 gNamingScreenRWindow_Gfx[];
 extern const u8 gNamingScreenPageButton_Gfx[];
 extern const u8 gNamingScreenROptions_Gfx[];
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+extern const u8 gNamingScreenBackButton_Gfx[];
+extern const u8 gNamingScreenOKButton_Gfx[];
+extern const u8 gNamingScreenPageSwapUpper_Gfx[];
+extern const u8 gNamingScreenPageSwapLower_Gfx[];
+extern const u8 gNamingScreenPageSwapOthers_Gfx[];
+#endif
 extern const u8 gNamingScreenCursor_Gfx[];
 extern const u8 gNamingScreenInputArrow_Gfx[];
 extern const u8 gNamingScreenUnderscore_Gfx[];

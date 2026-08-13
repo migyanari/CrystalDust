@@ -826,7 +826,11 @@ static void Task_WaitToDoCrystalDustLogo(u8);
 static void Task_DoCrystalDustLogo(u8);
 static void Task_IntroFadeToTitle(u8);
 
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+#define COLOSSEUM_GAME_CODE 0x73366347 // "Gc6s" in ASCII
+#else
 #define COLOSSEUM_GAME_CODE 0x65366347 // "Gc6e" in ASCII
+#endif
 
 static void VBlankCB_Intro(void)
 {

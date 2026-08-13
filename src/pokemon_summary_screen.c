@@ -3095,7 +3095,9 @@ static void SetMoveTypeIcons(void)
         if (summary->moves[i] != MOVE_NONE)
             SetTypeSpritePosAndPal(gBattleMoves[summary->moves[i]].type, 123, i * 28 + 19, SPRITE_ARR_ID_TYPE + 2 + i);
         else
+        {
             SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 2 + i, TRUE);
+        }
     }
 }
 

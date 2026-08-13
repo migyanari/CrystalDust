@@ -1,9 +1,8 @@
-TOOLCHAIN := $(DEVKITARM)
-COMPARE ?= 0
+include config.mk
 
-ifeq (compare,$(MAKECMDGOALS))
-  COMPARE := 1
-endif
+.DEFAULT_GOAL := all
+
+TOOLCHAIN := $(DEVKITARM)
 
 # don't use dkP's base_tools anymore
 # because the redefinition of $(CC) conflicts
@@ -37,20 +36,8 @@ EXE :=
 endif
 
 TITLE       := POKEMON EMER
-GAME_CODE   := BPEE
 MAKER_CODE  := 01
 REVISION    := 0
-MODERN      ?= 0
-DEBUG		?= 0
-RELEASE_ID  ?= 0
-
-ifeq (modern,$(MAKECMDGOALS))
-  MODERN := 1
-endif
-
-ifeq (debug,$(MAKECMDGOALS))
-  DEBUG := 1
-endif
 
 # use arm-none-eabi-cpp for macOS
 # as macOS's default compiler is clang
@@ -69,15 +56,11 @@ else
   CPP := $(PREFIX)cpp
 endif
 
-ROM_NAME := CrystalDust_legacy.gba
 ELF_NAME := $(ROM_NAME:.gba=.elf)
 MAP_NAME := $(ROM_NAME:.gba=.map)
-OBJ_DIR_NAME := build/emerald
 
-MODERN_ROM_NAME := CrystalDust.gba
 MODERN_ELF_NAME := $(MODERN_ROM_NAME:.gba=.elf)
 MODERN_MAP_NAME := $(MODERN_ROM_NAME:.gba=.map)
-MODERN_OBJ_DIR_NAME := build/modern
 
 SHELL := /bin/bash -o pipefail
 
@@ -104,7 +87,7 @@ SONG_BUILDDIR = $(OBJ_DIR)/$(SONG_SUBDIR)
 MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 GBS_BUILDDIR = $(OBJ_DIR)/$(GBS_SUBDIR)
 
-ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=$(MODERN)
+ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=$(MODERN) --defsym $(GAME_LANGUAGE)=1
 
 ifeq ($(MODERN),0)
 CC1             := tools/agbcc/bin/agbcc$(EXE)
@@ -122,7 +105,7 @@ LIBPATH := -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libgcc.a)
 LIB := $(LIBPATH) -lc -lnosys -lgcc -L../../libagbsyscall -lagbsyscall
 endif
 
-CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DDEBUG=$(DEBUG) -DMODERN=$(MODERN) -DRELEASE_ID=$(RELEASE_ID)
+CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DDEBUG=$(DEBUG) -DMODERN=$(MODERN) -DRELEASE_ID=$(RELEASE_ID) -D$(GAME_LANGUAGE)
 ifneq ($(MODERN),1)
 CPPFLAGS += -I tools/agbcc/include -I tools/agbcc -nostdinc -undef
 endif
@@ -160,7 +143,7 @@ MAKEFLAGS += --no-print-directory
 # Secondary expansion is required for dependency variables in object rules.
 .SECONDEXPANSION:
 
-.PHONY: all rom clean compare tidy tools mostlyclean clean-tools $(TOOLDIRS) berry_fix libagbsyscall modern tidymodern tidynonmodern
+.PHONY: all rom clean compare tidy tools mostlyclean clean-tools $(TOOLDIRS) berry_fix libagbsyscall modern english spanish es tidymodern tidynonmodern
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
 
@@ -227,6 +210,10 @@ AUTO_GEN_TARGETS :=
 
 all: rom
 
+# Language goals — config.mk reads MAKECMDGOALS; must not spawn sub-make
+english: ;
+spanish es: ;
+
 tools: $(TOOLDIRS)
 
 syms: $(SYM)
@@ -263,12 +250,16 @@ mostlyclean: tidynonmodern tidymodern
 tidy: tidynonmodern tidymodern
 
 tidynonmodern:
-	rm -f $(ROM_NAME) $(ELF_NAME) $(MAP_NAME)
-	rm -rf $(OBJ_DIR_NAME)
+	rm -f CrystalDust_legacy.gba CrystalDust_legacy_es.gba
+	rm -f CrystalDust_legacy.elf CrystalDust_legacy_es.elf
+	rm -f CrystalDust_legacy.map CrystalDust_legacy_es.map
+	rm -rf build/emerald build/emerald_es
 
 tidymodern:
-	rm -f $(MODERN_ROM_NAME) $(MODERN_ELF_NAME) $(MODERN_MAP_NAME)
-	rm -rf $(MODERN_OBJ_DIR_NAME)
+	rm -f CrystalDust.gba CrystalDust_es.gba
+	rm -f CrystalDust.elf CrystalDust_es.elf
+	rm -f CrystalDust.map CrystalDust_es.map
+	rm -rf build/modern build/modern_es
 	
 ifneq ($(MODERN),0)
 $(C_BUILDDIR)/berry_crush.o: override CFLAGS += -Wno-address-of-packed-member
@@ -399,11 +390,11 @@ endif
 
 ifeq ($(NODEP),1)
 $(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.s
-	$(PREPROC) $< charmap.txt | $(CPP) -I include - | $(AS) $(ASFLAGS) -o $@
+	$(PREPROC) $< charmap.txt | $(CPP) $(CPPFLAGS) - | $(AS) $(ASFLAGS) -o $@
 else
 define SRC_ASM_DATA_DEP
 $1: $2 $$(shell $(SCANINC) -I include -I "" $2)
-	$$(PREPROC) $$< charmap.txt | $$(CPP) -I include - | $$(AS) $$(ASFLAGS) -o $$@
+	$$(PREPROC) $$< charmap.txt | $$(CPP) $$(CPPFLAGS) - | $$(AS) $$(ASFLAGS) -o $$@
 endef
 $(foreach src, $(C_ASM_SRCS), $(eval $(call SRC_ASM_DATA_DEP,$(patsubst $(C_SUBDIR)/%.s,$(C_BUILDDIR)/%.o, $(src)),$(src))))
 endif
@@ -421,7 +412,7 @@ endif
 
 ifeq ($(NODEP),1)
 $(DATA_ASM_BUILDDIR)/%.o: $(DATA_ASM_SUBDIR)/%.s
-	$(PREPROC) $< charmap.txt | $(CPP) -I include - | $(AS) $(ASFLAGS) -o $@
+	$(PREPROC) $< charmap.txt | $(CPP) $(CPPFLAGS) - | $(AS) $(ASFLAGS) -o $@
 else
 $(foreach src, $(REGULAR_DATA_ASM_SRCS), $(eval $(call SRC_ASM_DATA_DEP,$(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o, $(src)),$(src))))
 endif
