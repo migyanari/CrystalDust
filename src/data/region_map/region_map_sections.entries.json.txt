@@ -1,0 +1,20 @@
+{{ doNotModifyHeader }}
+#ifndef GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
+#define GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
+
+#include "mapsec_to_met_location.h"
+#include "region_map_entry_strings.h"
+
+const struct RegionMapLocation gRegionMapEntries[] = {
+## for map_section in map_sections
+    [{{ map_section.id }}]              = { {{ map_section.x }}, {{ map_section.y }}, {{ map_section.width }}, {{ map_section.height }}, sMapName_{{ map_section.symbol }} },
+## endfor
+};
+
+const u8 *const gRegionMapNames_Johto[] = {
+## for johto_met_location in johto_met_locations
+    [{{ johto_met_location.id }}]           = sMapName_{{ johto_met_location.symbol }},
+## endfor
+};
+
+#endif //GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H

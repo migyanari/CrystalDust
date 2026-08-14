@@ -2,6 +2,7 @@
 
 #include "jsonproc.h"
 
+#include <cctype>
 #include <map>
 
 #include <string>
@@ -94,6 +95,21 @@ int main(int argc, char *argv[])
     // single argument is a json object
     env.add_callback("isEmpty", 1, [](Arguments& args) {
         return args.at(0)->empty();
+    });
+
+    env.add_callback("isEmptyString", 1, [](Arguments& args) {
+        return args.at(0)->get<string>().empty();
+    });
+
+    env.add_callback("cleanString", 1, [](Arguments& args) {
+        string str = args.at(0)->get<string>();
+        for (unsigned int i = 0; i < str.length(); i++) {
+            if ((i == 0 && isdigit(str[i]))
+             || !isalnum(str[i])) {
+                str[i] = '_';
+            }
+        }
+        return str;
     });
 
     try

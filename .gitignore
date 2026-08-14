@@ -44,5 +44,8 @@ src/data/items.h
 include/constants/map_groups.h
 data/scripts/move_tutors.inc
 src/data/wild_encounters.h
+src/data/region_map/region_map_entries.h
+src/data/region_map/region_map_entry_strings.h
 berry_fix/ld_script.sed
 berry_fix/payload/ld_script.sed
+dev-tools/

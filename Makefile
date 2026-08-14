@@ -127,7 +127,7 @@ XORENCRYPT := tools/xorencrypt/xorencrypt$(EXE)
 
 PERL := perl
 
-TOOLDIRS := $(filter-out tools/agbcc tools/binutils tools/poryscript,$(wildcard tools/*))
+TOOLDIRS := $(filter-out tools/agbcc tools/binutils tools/poryscript,$(patsubst %/,%,$(wildcard tools/*/)))
 TOOLBASE = $(TOOLDIRS:tools/%=%)
 TOOLS = $(foreach tool,$(TOOLBASE),tools/$(tool)/$(tool)$(EXE))
 
@@ -143,7 +143,7 @@ MAKEFLAGS += --no-print-directory
 # Secondary expansion is required for dependency variables in object rules.
 .SECONDEXPANSION:
 
-.PHONY: all rom clean compare tidy tools mostlyclean clean-tools $(TOOLDIRS) berry_fix libagbsyscall modern english spanish es tidymodern tidynonmodern
+.PHONY: all rom clean compare tidy tools mostlyclean clean-tools $(TOOLDIRS) berry_fix libagbsyscall modern english spanish es tidymodern tidynonmodern generated
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
 
@@ -151,7 +151,7 @@ infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst 
 # Disable dependency scanning for clean/tidy/tools
 # Use a separate minimal makefile for speed
 # Since we don't need to reload most of this makefile
-ifeq (,$(filter-out all rom compare modern berry_fix libagbsyscall syms,$(MAKECMDGOALS)))
+ifeq (,$(filter-out all rom compare modern berry_fix libagbsyscall syms english spanish es debug,$(MAKECMDGOALS)))
 $(call infoshell, $(MAKE) -f make_tools.mk)
 else
 NODEP ?= 1
@@ -160,13 +160,20 @@ endif
 # check if we need to scan dependencies based on the rule
 ifeq (,$(MAKECMDGOALS))
   SCAN_DEPS ?= 1
+  SETUP_PREREQS ?= 1
 else
+  SETUP_PREREQS ?= 1
   # clean, tidy, tools, mostlyclean, clean-tools, $(TOOLDIRS), tidymodern, tidynonmodern don't even build the ROM
   # berry_fix and libagbsyscall do their own thing
-  ifeq (,$(filter-out clean tidy tools mostlyclean clean-tools $(TOOLDIRS) tidymodern tidynonmodern berry_fix libagbsyscall,$(MAKECMDGOALS)))
+  ifeq (,$(filter-out clean tidy tools mostlyclean clean-tools $(TOOLDIRS) tidymodern tidynonmodern berry_fix libagbsyscall generated,$(MAKECMDGOALS)))
     SCAN_DEPS ?= 0
+    SETUP_PREREQS := 0
   else
-    SCAN_DEPS ?= 1
+    ifeq (,$(filter-out clean tidy tools mostlyclean clean-tools $(TOOLDIRS) tidymodern tidynonmodern berry_fix libagbsyscall,$(MAKECMDGOALS)))
+      SCAN_DEPS ?= 0
+    else
+      SCAN_DEPS ?= 1
+    endif
   endif
 endif
 
@@ -270,6 +277,16 @@ include map_data_rules.mk
 include spritesheet_rules.mk
 include json_data_rules.mk
 include songs.mk
+
+.PHONY: generated
+generated: $(AUTO_GEN_TARGETS)
+	@:
+
+ifeq ($(SETUP_PREREQS),1)
+ifeq ($(SCAN_DEPS),1)
+$(foreach line, $(shell $(MAKE) generated 2>&1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
+endif
+endif
 
 %.s: ;
 %.png: ;
