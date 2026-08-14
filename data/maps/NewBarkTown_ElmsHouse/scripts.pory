@@ -2,7 +2,7 @@ mapscripts NewBarkTown_ElmsHouse_MapScripts{}
 
 script NewBarkTown_ElmsHouse_EventScript_ElmsWife{
 
-		msgbox(NewBarkTown_ElmsHouse_Text_ElmsWife_HiMyHusbandS, MSGBOX_NPC)
+	msgbox(NewBarkTown_ElmsHouse_Text_ElmsWife_Busy, MSGBOX_NPC)
 
 	end
 
@@ -10,7 +10,7 @@ script NewBarkTown_ElmsHouse_EventScript_ElmsWife{
 
 script NewBarkTown_ElmsHouse_EventScript_ElmsSon{
 
-		msgbox(NewBarkTown_ElmsHouse_Text_ElmsSon_WhenIGrowUp, MSGBOX_NPC)
+	msgbox(NewBarkTown_ElmsHouse_Text_ElmsSon_FutureProfessor, MSGBOX_NPC)
 
 	end
 
@@ -18,7 +18,7 @@ script NewBarkTown_ElmsHouse_EventScript_ElmsSon{
 
 script NewBarkTown_ElmsHouse_EventScript_ResearchPaper{
 
-		msgbox(NewBarkTown_ElmsHouse_Text_ResearchPaper_PokemonWhereDoThey, MSGBOX_SIGN)
+	msgbox(NewBarkTown_ElmsHouse_Text_ResearchPaper_ElmResearch, MSGBOX_SIGN)
 
 	end
 
@@ -28,21 +28,21 @@ script NewBarkTown_ElmsHouse_EventScript_ResearchPaper{
 // Texts
 // ---------------------------------------------------------------------------
 
-text NewBarkTown_ElmsHouse_Text_ElmsWife_HiMyHusbandS {
+text NewBarkTown_ElmsHouse_Text_ElmsWife_Busy {
 	poryswitch(LANGUAGE) {
 		SPANISH: "Hola, {PLAYER}. Mi marido está\nsiempre tan ocupado… Espero que\lesté bien.\pCuando se mete en sus investigaciones\nsobre {POKEMON}, hasta se olvida\pde comer."
 		_: "Hi, {PLAYER}! My husband's always\nso busy--I hope he's okay.\pWhen he's caught up in his {POKEMON}\nresearch, he even forgets to eat."
 	}
 }
 
-text NewBarkTown_ElmsHouse_Text_ElmsSon_WhenIGrowUp {
+text NewBarkTown_ElmsHouse_Text_ElmsSon_FutureProfessor {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¡Cuando sea mayor, voy a ayudar\na mi papá!\p¡Voy a ser un gran PROFESOR\n{POKEMON}!"
 		_: "When I grow up, I'm going to\nhelp my dad!\pI'm going to be a great {POKEMON}\nPROFESSOR!"
 	}
 }
 
-text NewBarkTown_ElmsHouse_Text_ResearchPaper_PokemonWhereDoThey {
+text NewBarkTown_ElmsHouse_Text_ResearchPaper_ElmResearch {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿{POKEMON}? ¿De dónde vienen?\n¿Adónde van?\p¿Por qué nadie ha presenciado\nel nacimiento de un {POKEMON}?\p¡Quiero saberlo! ¡Dedicaré mi vida\nal estudio de los {POKEMON}!\p…\pForma parte de los informes de\ninvestigación del PROF. ELM."
 		_: "{POKEMON}. Where do they come from?\nWhere are they going?\pWhy has no one ever witnessed a\n{POKEMON}'s birth?\pI want to know! I will dedicate my\nlife to the study of {POKEMON}!\p…\pIt's a part of PROF. ELM's research\npapers."

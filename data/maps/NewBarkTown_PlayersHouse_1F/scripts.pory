@@ -35,26 +35,26 @@ script NewBarkTown_PlayersHouse_1F_MomEncounter {
     applymovement(OBJ_EVT_MOM, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer)
     waitmovement(0)
     delay(20)
-                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_MOMOhP)
+    msgbox(NewBarkTown_PlayersHouse_1F_Text_MomEncounter_GivesPokegear)
     textcolor(MSG_COLOR_PREV)
     playfanfare(MUS_OBTAIN_ITEM)
-                message(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ReceivedThePOKEGEAR)
+    message(NewBarkTown_PlayersHouse_1F_Text_MomEncounter_ReceivedPokegear)
     waitfanfare
     setflag(FLAG_SYS_POKEGEAR_GET)
     setflag(FLAG_PHONE_CARD_MOM)
     textcolor(MSG_COLOR_RED)
-                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_PokemonGEAROrJust)
+    msgbox(NewBarkTown_PlayersHouse_1F_Text_MomEncounter_PokegearNameChoice)
     call(NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek)
     call(NewBarkTown_PlayersHouse_1F_MomDaylightSaving)
-                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ComeHomeToAdjust, MSGBOX_YESNO)
+    msgbox(NewBarkTown_PlayersHouse_1F_Text_MomEncounter_AdjustClockPrompt, MSGBOX_YESNO)
 
     if (var(VAR_RESULT) == NO)
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ILlReadThe)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomEncounter_OpenManual)
     }
     else
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_DonTYouJust)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomEncounter_SetClockYourself)
     }
 
     closemessage
@@ -68,7 +68,7 @@ script NewBarkTown_PlayersHouse_1F_MomEncounter {
 }
 
 script NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek {
-                message(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek_WhatDayIsIt)
+    message(NewBarkTown_PlayersHouse_1F_Text_MomWhatDayOfWeek_Prompt)
     waitmessage
     setvar(VAR_0x8004, SCROLL_MULTI_DAY_OF_WEEK)
     setvar(VAR_0x8005, 0)
@@ -76,7 +76,7 @@ script NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek {
     waitstate
     copyvar(VAR_0x8004, VAR_RESULT)
     special(CopyDayOfWeekStringToVar1)
-                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek_STR_VAR_1IsIt, MSGBOX_YESNO)
+    msgbox(NewBarkTown_PlayersHouse_1F_Text_MomWhatDayOfWeek_ConfirmDay, MSGBOX_YESNO)
     if (var(VAR_RESULT) == NO)
     {
         goto(NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek)
@@ -85,20 +85,20 @@ script NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek {
 }
 
 script NewBarkTown_PlayersHouse_1F_MomDaylightSaving {
-                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_IsItDaylightSaving, MSGBOX_YESNO)
+    msgbox(NewBarkTown_PlayersHouse_1F_Text_MomDaylightSaving_Prompt, MSGBOX_YESNO)
     special(WriteCurrentTimeStringToStrVar1)
 
     if (var(VAR_RESULT) == NO)
     {
         copyvar(VAR_0x8004, VAR_RESULT)
         special(SetInitialDSTMode)
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_STR_VAR_1IsThatCorrect, MSGBOX_YESNO)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomDaylightSaving_ConfirmTime, MSGBOX_YESNO)
     }
     else
     {
         copyvar(VAR_0x8004, VAR_RESULT)
         special(SetInitialDSTMode)
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_STR_VAR_1DSTIsThat, MSGBOX_YESNO)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomDaylightSaving_ConfirmDst, MSGBOX_YESNO)
     }
     
     if (var(VAR_RESULT) == NO)
@@ -125,11 +125,11 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
     faceplayer
     if (flag(FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM))
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMDoItI)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_AfterTheft)
     }
     elif (flag(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST))
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMHiWelcomeHome, MSGBOX_YESNO)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_WelcomeHomeHeal, MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
             goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBank)
@@ -146,11 +146,11 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
                 }
                 else
                 {
-                                                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_IsDaylightSavingTime, MSGBOX_YESNO)
+                    msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_DstPrompt, MSGBOX_YESNO)
                     if (var(VAR_RESULT) == YES)
                     {
                         special(SwitchDSTMode)
-                                                                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_IPutTheClock)
+                        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_DstSetBack)
                     }
                 }
             }
@@ -162,43 +162,43 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
                 }
                 else
                 {
-                                                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_DoYouWantTo, MSGBOX_YESNO)
+                    msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_SetClockPrompt, MSGBOX_YESNO)
                     if (var(VAR_RESULT) == YES)
                     {
                         special(SwitchDSTMode)
-                                                                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_ISetTheClock)
+                        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_ClockSet)
                     }
                 }
             }
         }
-        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomJustDoWhatYouCan)
     }
     elif (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
     {
         setflag(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST)
         setflag(FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM)
         setvar(VAR_ROUTE31_STATE, 1)
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMWowThatS, MSGBOX_YESNO)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_HealOffer, MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
             setflag(FLAG_SYS_MOM_BANKING_ENABLED)
-                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_OkayILlTake)
+            msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_HealDone)
         }
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_BeCarefulPPokemon)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_BeforeEgg)
     }
     elif (flag(FLAG_SYS_POKEMON_GET))
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMSoWhatWas)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_AfterEggStolen)
     }
     else
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMPROFELMIs)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomTalk_AfterEggGiven)
     }
     release
 }
 
 script NewBarkTown_PlayersHouse_1F_EventScript_MomBank {
-                message(NewBarkTown_PlayersHouse_1F_Text_MomBank_WhatDoYouWant)
+    message(NewBarkTown_PlayersHouse_1F_Text_MomBank_Menu)
     waitmessage
     multichoice(0, 0, MULTI_MOM_BANK, FALSE)
     switch (var(VAR_RESULT))
@@ -210,19 +210,19 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBank {
         // deposit
         call(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
     case 2:
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBank_DoYouWantTo, MSGBOX_YESNO)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBank_SavePrompt, MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
             setflag(FLAG_SYS_MOM_BANKING_ENABLED)
-                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBank_OkayILlSave)
+            msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBank_Saved)
         }
         else
         {
             clearflag(FLAG_SYS_MOM_BANKING_ENABLED)
-            msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+            msgbox(NewBarkTown_PlayersHouse_1F_Text_MomJustDoWhatYouCan)
         }
     default:
-        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomJustDoWhatYouCan)
     }
     release
 }
@@ -237,17 +237,17 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw {
         // withdraw success
         playse(SE_SHOP)
         waitse
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_DonTGiveUp)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_DontGiveUp)
     case 1:
         // not enough in bank
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_YouHavenTSaved)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_NothingSaved)
         goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw)
     case 2:
         // too much in wallet
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_YouCanTTake)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_CantTake)
         goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw)
     default:
-        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomJustDoWhatYouCan)
     }
 }
 
@@ -261,25 +261,25 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit {
         // deposit success
         playse(SE_SHOP)
         waitse
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YourMoneySSafe)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_Saved)
     case 1:
         // not enough in wallet
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YouDonTHave)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_NoMoney)
         goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
     case 2:
         // too much in bank
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YouCanTSave)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_CantSave)
         goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
     default:
-        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomJustDoWhatYouCan)
     }
 }
 
 script NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet {
-                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_DoYouWantTo, MSGBOX_YESNO)
+    msgbox(NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_ReturnPrompt, MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES)
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_IThinkILost)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_LostBooklet)
     }
 }
 
@@ -289,17 +289,17 @@ script NewBarkTown_PlayersHouse_1F_NeighborTalk {
     gettime
     if (var(VAR_0x8002) == TIME_MORNING)
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_GoodMorningIM, MSGBOX_CONTINUE)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_NeighborTalk_GoodMorning, MSGBOX_CONTINUE)
     }
     elif (var(VAR_0x8002) == TIME_DAY)
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_HelloIMVisiting, MSGBOX_CONTINUE)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_NeighborTalk_Hello, MSGBOX_CONTINUE)
     }
     elif (var(VAR_0x8002) == TIME_NIGHT)
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_GoodEveningIM, MSGBOX_CONTINUE)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_NeighborTalk_GoodEvening, MSGBOX_CONTINUE)
     }
-                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_HaveYouHeardP)
+    msgbox(NewBarkTown_PlayersHouse_1F_Text_NeighborTalk_DaughterElm)
     closemessage
     applymovement(VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestRight)
     waitmovement(0)
@@ -307,7 +307,7 @@ script NewBarkTown_PlayersHouse_1F_NeighborTalk {
 }
 
 script NewBarkTown_PlayersHouse_1F_TV {
-                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_TV_ThereSAMovie, MSGBOX_SIGN)
+    msgbox(NewBarkTown_PlayersHouse_1F_Text_TV_MovieOutsiders, MSGBOX_SIGN)
 }
 
 script NewBarkTown_PlayersHouse_1F_Stove {
@@ -315,35 +315,35 @@ script NewBarkTown_PlayersHouse_1F_Stove {
     random(1000)
     if (var(VAR_RESULT) == 0)
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Stove_AADEPTARRANGINGFOR)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_Stove_VolcanoAd)
     }
     else
     {
-                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Stove_ItSMomS)
+        msgbox(NewBarkTown_PlayersHouse_1F_Text_Stove_VolcanoBurger)
     }
     release
 }
 
 script NewBarkTown_PlayersHouse_1F_Sink {
-                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Sink_TheSinkIsSpotless, MSGBOX_SIGN)
+    msgbox(NewBarkTown_PlayersHouse_1F_Text_Sink_Spotless, MSGBOX_SIGN)
 }
 
 script NewBarkTown_PlayersHouse_1F_Fridge {
-                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Fridge_LetSSeeWhat, MSGBOX_SIGN)
+    msgbox(NewBarkTown_PlayersHouse_1F_Text_Fridge_Contents, MSGBOX_SIGN)
 }
 
 // ---------------------------------------------------------------------------
 // Texts
 // ---------------------------------------------------------------------------
 
-text NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan {
+text NewBarkTown_PlayersHouse_1F_Text_MomJustDoWhatYouCan {
     poryswitch(LANGUAGE) {
         SPANISH: "Haz lo que puedas."
         _: "Just do what you can."
     }
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_MOMOhP {
+text NewBarkTown_PlayersHouse_1F_Text_MomEncounter_GivesPokegear {
 	poryswitch(LANGUAGE) {
 		SPANISH: "MAMÁ: ¡Ah, {PLAYER}…!\pNuestro vecino, el PROF. ELM,\nte estaba buscando.\pDijo que quería que le hicieras\nun favor.\p¡Ah! ¡Casi se me olvidaba!\nYa han traído tu {POKE}GEAR\ldel taller.\l¡Aquí tienes!"
 		_: "MOM: Oh, {PLAYER}…!\p"
@@ -357,14 +357,14 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_M
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ReceivedThePOKEGEAR {
+text NewBarkTown_PlayersHouse_1F_Text_MomEncounter_ReceivedPokegear {
 	poryswitch(LANGUAGE) {
 		SPANISH: "{PLAYER} recibió el {POKE}GEAR."
 		_: "{PLAYER} received the {POKE}GEAR."
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_PokemonGEAROrJust {
+text NewBarkTown_PlayersHouse_1F_Text_MomEncounter_PokegearNameChoice {
 	poryswitch(LANGUAGE) {
 		SPANISH: "El {POKEMON} GEAR, o simplemente\n{POKE}GEAR.\nEs básico para ser un buen ENTRENADOR.\p¡Ah! Falta el día de la semana.\n¡No olvides ponerlo!"
 		_: "{POKEMON} GEAR, or just {POKE}GEAR.\n"
@@ -375,7 +375,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_P
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ComeHomeToAdjust {
+text NewBarkTown_PlayersHouse_1F_Text_MomEncounter_AdjustClockPrompt {
 	poryswitch(LANGUAGE) {
 		SPANISH: "Vuelve a casa para cambiar de hora\nel reloj.\pPor cierto… ¿Sabes cómo usar\nel TELÉFONO?"
 		_: "Come home to adjust your clock for\n"
@@ -385,7 +385,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_C
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ILlReadThe {
+text NewBarkTown_PlayersHouse_1F_Text_MomEncounter_OpenManual {
 	poryswitch(LANGUAGE) {
 		SPANISH: "Te leeré las instrucciones.\pEnciende el {POKE}GEAR y elige\nel TELÉFONO.\pLos números están en la memoria.\nElige el nombre que quieras.\p¿No te parece estupendo?"
 		_: "I'll read the instructions.\p"
@@ -397,7 +397,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_I
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_DonTYouJust {
+text NewBarkTown_PlayersHouse_1F_Text_MomEncounter_SetClockYourself {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿Recuerdas que hay que encender el\n{POKE}GEAR y elegir el TELÉFONO?\pLos números están en la memoria.\nElige el nombre que quieras.\p¿No te parece estupendo?"
 		_: "Don't you just turn the {POKE}GEAR on\n"
@@ -408,42 +408,42 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_D
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek_WhatDayIsIt {
+text NewBarkTown_PlayersHouse_1F_Text_MomWhatDayOfWeek_Prompt {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿Qué día es hoy?"
 		_: "What day is it?"
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek_STR_VAR_1IsIt {
+text NewBarkTown_PlayersHouse_1F_Text_MomWhatDayOfWeek_ConfirmDay {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿{STR_VAR_1}, verdad?"
 		_: "{STR_VAR_1}, is it?"
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_IsItDaylightSaving {
+text NewBarkTown_PlayersHouse_1F_Text_MomDaylightSaving_Prompt {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿Es horario de verano ahora?"
 		_: "Is it Daylight Saving Time now?"
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_STR_VAR_1IsThatCorrect {
+text NewBarkTown_PlayersHouse_1F_Text_MomDaylightSaving_ConfirmTime {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿{STR_VAR_1}, es correcto?"
 		_: "{STR_VAR_1}, is that correct?"
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_STR_VAR_1DSTIsThat {
+text NewBarkTown_PlayersHouse_1F_Text_MomDaylightSaving_ConfirmDst {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿{STR_VAR_1} (horario de verano), es correcto?"
 		_: "{STR_VAR_1} DST, is that correct?"
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMDoItI {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_AfterTheft {
 	poryswitch(LANGUAGE) {
 		SPANISH: "MAMÁ: ¡{PLAYER}, hazlo!\n¡Te apoyo con todo mi corazón!"
 		_: "MOM: {PLAYER}, do it!\n"
@@ -451,7 +451,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMDoI
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMHiWelcomeHome {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_WelcomeHomeHeal {
 	poryswitch(LANGUAGE) {
 		SPANISH: "MAMÁ: ¡Hola! ¡Bienvenid{KUN} a casa!\nVeo que lo estás intentando mucho.\pHe mantenido tu habitación ordenada…\n¿O es por tu dinero?"
 		_: "MOM: Hi! Welcome home!\n"
@@ -461,21 +461,21 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMHiW
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_IsDaylightSavingTime {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_DstPrompt {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿Ha terminado el horario de verano?"
 		_: "Is Daylight Saving Time over?"
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_IPutTheClock {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_DstSetBack {
 	poryswitch(LANGUAGE) {
 		SPANISH: "He atrasado el reloj una hora."
 		_: "I put the clock back one hour."
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_DoYouWantTo {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_SetClockPrompt {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿Quieres cambiar al horario\nde verano?"
 		_: "Do you want to switch to Daylight\n"
@@ -483,14 +483,14 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_DoYouW
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_ISetTheClock {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_ClockSet {
 	poryswitch(LANGUAGE) {
 		SPANISH: "He adelantado el reloj una hora."
 		_: "I set the clock forward by one hour."
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMWowThatS {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_HealOffer {
 	poryswitch(LANGUAGE) {
 		SPANISH: "MAMÁ: Vaya, ¡qué {POKEMON} tan mono!\n¿De dónde lo has sacado?\p…\pAsí que te vas de aventuras…\p¡Está bien! Yo también te ayudaré.\nPero, ¿qué puedo hacer por ti?\p¡Ya lo sé!\n¡Guardaré dinero para ti!\pEn un viaje tan largo, el dinero\nes muy importante.\p¿Quieres que te guarde el dinero?"
 		_: "MOM: Wow, that's a cute {POKEMON}.\n"
@@ -507,7 +507,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMWow
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_OkayILlTake {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_HealDone {
 	poryswitch(LANGUAGE) {
 		SPANISH: "Vale, me encargo de tu dinero.\n………………"
 		_: "Okay, I'll take care of your money.\n"
@@ -515,7 +515,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_OkayIL
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_BeCarefulPPokemon {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_BeforeEgg {
 	poryswitch(LANGUAGE) {
 		SPANISH: "Ten cuidado.\pLos {POKEMON} son tus amigos.\nTenéis que trabajar en equipo.\p¡Ahora, adelante!"
 		_: "Be careful.\p"
@@ -525,7 +525,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_BeCare
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMSoWhatWas {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_AfterEggStolen {
 	poryswitch(LANGUAGE) {
 		SPANISH: "MAMÁ: Entonces, ¿cuál era el encargo\ndel PROF. ELM?\p…\nParece muy difícil.\pDeberías sentirte orgullos{KUN}\nde que la gente confíe en ti."
 		_: "MOM: So, what was PROF. ELM's\n"
@@ -537,7 +537,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMSoW
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMPROFELMIs {
+text NewBarkTown_PlayersHouse_1F_Text_MomTalk_AfterEggGiven {
 	poryswitch(LANGUAGE) {
 		SPANISH: "MAMÁ: El PROF. ELM te está esperando.\n¡Date prisa!"
 		_: "MOM: PROF. ELM is waiting for you.\n"
@@ -545,21 +545,21 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMPRO
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomBank_WhatDoYouWant {
+text NewBarkTown_PlayersHouse_1F_Text_MomBank_Menu {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿Qué quieres hacer?"
 		_: "What do you want to do?"
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomBank_DoYouWantTo {
+text NewBarkTown_PlayersHouse_1F_Text_MomBank_SavePrompt {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿Quieres que te guarde dinero?"
 		_: "Do you want to save some money?"
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomBank_OkayILlSave {
+text NewBarkTown_PlayersHouse_1F_Text_MomBank_Saved {
 	poryswitch(LANGUAGE) {
 		SPANISH: "Vale, guardaré tu dinero.\n¡Confía en mí!\p¡{PLAYER}, no te rindas!"
 		_: "Okay, I'll save your money.\n"
@@ -568,28 +568,28 @@ text NewBarkTown_PlayersHouse_1F_Text_MomBank_OkayILlSave {
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_DonTGiveUp {
+text NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_DontGiveUp {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¡{PLAYER}, no te rindas!"
 		_: "{PLAYER}, don't give up!"
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_YouHavenTSaved {
+text NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_NothingSaved {
 	poryswitch(LANGUAGE) {
 		SPANISH: "No has ahorrado tanto."
 		_: "You haven't saved that much."
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_YouCanTTake {
+text NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_CantTake {
 	poryswitch(LANGUAGE) {
 		SPANISH: "No puedes retirar tanto."
 		_: "You can't take that much."
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YourMoneySSafe {
+text NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_Saved {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¡Tu dinero está a salvo aquí!\n¡Adelante!"
 		_: "Your money's safe here!\n"
@@ -597,21 +597,21 @@ text NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YourMoneySSafe {
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YouDonTHave {
+text NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_NoMoney {
 	poryswitch(LANGUAGE) {
 		SPANISH: "No tienes tanto."
 		_: "You don't have that much."
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YouCanTSave {
+text NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_CantSave {
 	poryswitch(LANGUAGE) {
 		SPANISH: "No puedes ahorrar tanto."
 		_: "You can't save that much."
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_DoYouWantTo {
+text NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_ReturnPrompt {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¿Quieres ajustar el reloj para el\nhorario de verano?"
 		_: "Do you want to adjust your clock for\n"
@@ -619,7 +619,7 @@ text NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_DoYouWantTo {
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_IThinkILost {
+text NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_LostBooklet {
 	poryswitch(LANGUAGE) {
 		SPANISH: "Creo que he perdido el manual\nde instrucciones del {POKE}GEAR…\pTengo que ir a buscarlo.\nVuelve dentro de un rato."
 		_: "I think I lost the instruction\n"
@@ -629,7 +629,7 @@ text NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_IThinkILost {
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_GoodMorningIM {
+text NewBarkTown_PlayersHouse_1F_Text_NeighborTalk_GoodMorning {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¡Buenos días, {PLAYER}!\n¡Estoy de visita!\p"
 		_: "Good morning, {PLAYER}!\n"
@@ -637,7 +637,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_G
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_HelloIMVisiting {
+text NewBarkTown_PlayersHouse_1F_Text_NeighborTalk_Hello {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¡Hola, {PLAYER}!\n¡Estoy de visita!\p"
 		_: "Hello, {PLAYER}!\n"
@@ -645,7 +645,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_H
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_GoodEveningIM {
+text NewBarkTown_PlayersHouse_1F_Text_NeighborTalk_GoodEvening {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¡Buenas tardes, {PLAYER}!\n¡Estoy de visita!\p"
 		_: "Good evening, {PLAYER}!\n"
@@ -653,7 +653,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_G
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_HaveYouHeardP {
+text NewBarkTown_PlayersHouse_1F_Text_NeighborTalk_DaughterElm {
 	poryswitch(LANGUAGE) {
 		SPANISH: "{PLAYER}, ¿has oído?\pMi hija está empeñada en ser\nayudante del PROF. ELM.\l¡Le encantan los {POKEMON}!"
 		_: "{PLAYER}, have you heard?\p"
@@ -663,7 +663,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_H
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_TV_ThereSAMovie {
+text NewBarkTown_PlayersHouse_1F_Text_TV_MovieOutsiders {
 	poryswitch(LANGUAGE) {
 		SPANISH: "Hay una película en TV.\n"
                    "Dos chicos montan en un tren bajo\l"
@@ -676,7 +676,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_TV_ThereSAMovi
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Stove_AADEPTARRANGINGFOR {
+text NewBarkTown_PlayersHouse_1F_Text_Stove_VolcanoAd {
 	poryswitch(LANGUAGE) {
 		SPANISH: "UN ANUNCIO PUBLICITARIO PARA MAMÁ\nVOLCANO BAKEMEAT."
 		_: "A ADEPT ARRANGING FOR MOTHER\n"
@@ -684,7 +684,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Stove_AADEPTAR
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Stove_ItSMomS {
+text NewBarkTown_PlayersHouse_1F_Text_Stove_VolcanoBurger {
 	poryswitch(LANGUAGE) {
 		SPANISH: "¡La especialidad de mi madre!\n¡HAMBURGUESA VOLCÁN CANELA!"
 		_: "It's Mom's specialty, the\n"
@@ -692,7 +692,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Stove_ItSMomS 
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Sink_TheSinkIsSpotless {
+text NewBarkTown_PlayersHouse_1F_Text_Sink_Spotless {
 	poryswitch(LANGUAGE) {
 		SPANISH: "El fregadero está impecable.\nA mamá le gusta mantenerlo limpio."
 		_: "The sink is spotless.\n"
@@ -700,7 +700,7 @@ text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Sink_TheSinkIs
 	}
 }
 
-text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Fridge_LetSSeeWhat {
+text NewBarkTown_PlayersHouse_1F_Text_Fridge_Contents {
 	poryswitch(LANGUAGE) {
 		SPANISH: "Veamos qué hay en la nevera…\p¡AGUA FRESCA y una sabrosa\nLIMONADA!"
 		_: "Let's see what's in the fridge…\p"
