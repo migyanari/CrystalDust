@@ -1,11 +1,17 @@
 mapscripts NewBarkTown_NeighborsHouse_MapScripts{}
 
 script NewBarkTown_NeighborsHouse_EventScript_Girl{
-	msgbox("PIKACHU is an evolved {POKEMON}. I\nwas amazed by PROF. ELM's findings.\pHe's so famous for his research on\n{POKEMON} evolution.\p…sigh…\pI wish I could be a researcher like\nhim…", MSGBOX_NPC)
+	poryswitch(LANGUAGE) {
+		SPANISH: msgbox("PIKACHU es un {POKEMON} evolucionado.\nEl descubrimiento del PROF. ELM me\ldeja impresionada.\pEs muy famoso por su investigación\nsobre la evolución {POKEMON}.\pAh…\pOjalá fuera una investigadora\ncomo él…", MSGBOX_NPC)
+		_: msgbox("PIKACHU is an evolved {POKEMON}. I\nwas amazed by PROF. ELM's findings.\pHe's so famous for his research on\n{POKEMON} evolution.\p…sigh…\pI wish I could be a researcher like\nhim…", MSGBOX_NPC)
+	}
 	end
 }
 
 script NewBarkTown_NeighborsHouse_EventScript_Woman{
-	msgbox("{PLAYER}, have you heard?\pMy daughter is adamant about\nbecoming PROF. ELM's assistant.\lShe really loves {POKEMON}!\pBut then, so do I!", MSGBOX_NPC)
+	poryswitch(LANGUAGE) {
+		SPANISH: msgbox("{PLAYER}, ¿has oído?\pMi hija está empeñada en ser\nayudante del PROF. ELM.\l¡Le encantan los {POKEMON}!\p¡A mí también!", MSGBOX_NPC)
+		_: msgbox("{PLAYER}, have you heard?\pMy daughter is adamant about\nbecoming PROF. ELM's assistant.\lShe really loves {POKEMON}!\pBut then, so do I!", MSGBOX_NPC)
+	}
 	end
 }

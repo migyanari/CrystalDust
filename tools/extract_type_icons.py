@@ -1,5 +1,44 @@
 #!/usr/bin/env python3
-"""Extract Spanish type icons from menu_info_es.4bpp into move_types_es.4bpp."""
+"""Build-time conversion of Spanish type icons for the Pokémon summary screen.
+
+Origin
+------
+Spanish type labels already exist in ``graphics/interface/menu_info_es.4bpp``
+(from pokefirered). That sheet is loaded as ``gFireRedMenuElements_Gfx`` in
+builds with ``GAME_LANGUAGE == LANGUAGE_SPANISH`` and drawn elsewhere (Union
+Room, TM case, etc.) via ``BlitMenuInfoIcon`` in ``src/menu.c``.
+
+The summary screen does not use ``BlitMenuInfoIcon``. It renders types as OAM
+sprites from ``gMoveTypes_Gfx`` (``graphics/types/move_types.4bpp``), which
+only contains English labels in the default asset pipeline.
+
+Why we convert
+--------------
+For Spanish ROMs we need ``move_types_es.4bpp`` in the same layout as the
+English ``move_types.4bpp`` so ``pokemon_summary_screen.c`` can keep using
+sprites unchanged. Copying PNG crops or linear blits from ``menu_info_es`` fails
+because:
+
+- ``menu_info_es.4bpp`` is stored as GBA 4bpp tiles, not a flat bitmap.
+- Summary sprites expect 32x16 tile-encoded slots (``tools/gbagfx`` format).
+- Summary OBJ palette for ES comes from ``gFireRedMenuElements2_Pal``, not
+  ``move_types.gbapal``.
+
+How we convert
+--------------
+1. For each of the 18 Pokémon types, read a 32x12 region from
+   ``menu_info_es.4bpp`` using the same tile addressing as
+   ``BlitBitmapRect4Bit`` + the ``sMenuInfoIcons`` offsets in ``src/menu.c``
+   (``BlitMenuInfoIcon`` passes ``gfx + offset * 32`` with ``srcWidth`` 128).
+2. Pad to a 32x16 linear bitmap with ``ICON_Y_OFFSET`` (2 px) so vertical
+   alignment matches the English ``move_types.4bpp`` slots.
+3. Encode that bitmap as GBA 8x8 sprite tiles (same order as ``gbagfx``).
+4. Concatenate the 18 slots, then append the five English contest category
+   icons unchanged from ``move_types.4bpp`` (not localized yet).
+
+Invoked from ``graphics_file_rules.mk`` when building Spanish graphics. Output
+is compressed to ``move_types_es.4bpp.lz`` and included from ``src/graphics.c``.
+"""
 
 from __future__ import annotations
 

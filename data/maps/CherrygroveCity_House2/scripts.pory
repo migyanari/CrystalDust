@@ -2,14 +2,28 @@ mapscripts CherrygroveCity_House2_MapScripts{}
 
 script CherrygroveCity_House1_EventScript_Boy{
 	lock
-	msgbox("{POKEMON} gain experience in battle\nand change their form.")
+	msgbox(CherrygroveCity_House2_Text_Boy)
 	release
 	end
 }
 
 script CherrygroveCity_House1_EventScript_Girl{
 	lock
-	msgbox("{POKEMON} change?\nI would be shocked if one did that!")
+	msgbox(CherrygroveCity_House2_Text_Girl)
 	release
 	end
+}
+
+text CherrygroveCity_House2_Text_Boy {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Luchando, los {POKEMON} ganan\nexperiencia y se transforman."
+		_: "{POKEMON} gain experience in battle\nand change their form."
+	}
+}
+
+text CherrygroveCity_House2_Text_Girl {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Se transforman?\n¡Alucinaría si lo viera!"
+		_: "{POKEMON} change?\nI would be shocked if one did that!"
+	}
 }

@@ -1,41 +1,41 @@
 gText_SetClock_WokeMeUp::
 	.string "………………………………………………\n"
 	.string "………………………………………………\p"
-	.string "Zzz… ¿Eh? ¿Qu…?\n"
-	.string "¡Me has despertado!\p"
-	.string "¿Podrías mirar el reloj por mí?$"
+	.string "¡Zzz…! ¿Qué…?\n"
+	.string "¡Me despertaste!\p"
+	.string "¿Te importaría decirme la hora?$"
 
 gText_Oak_Welcome:: @ 82C897B
-	.string "¡Hola! Perdona la espera.\p"
-	.string "¡Bienvenido al mundo de {POKEMON}!\p"
+	.string "¡Hola! ¡Perdona por la espera!\p"
+	.string "¡Estás en el mundo de los {POKEMON}!\p"
 	.string "Me llamo OAK.\p"
-	.string "La gente me conoce cariñosamente\n"
-	.string "como el PROFESOR {POKEMON}.\p"
+	.string "¡Pero la gente me llama\n"
+	.string "PROFESOR {POKEMON}!\p"
 	.string "$"
 
 gText_Oak_Pokemon::
-	.string "Este mundo…$"
+	.string "¡Este mundo está…$"
 
 gText_Oak_Pokemon2::
-	.string "…está habitado por criaturas\n"
-	.string "llamadas {POKEMON}.\p"
+	.string "habitado por criaturas\n"
+	.string "llamadas {POKEMON}!\p"
 	.string "$"
 
 gText_Oak_MainSpeech::
-	.string "Los humanos y los {POKEMON} viven\n"
-	.string "juntos apoyándose unos a otros.\p"
+	.string "La gente y los {POKEMON} conviven\n"
+	.string "apoyándose unos a otros.\p"
 	.string "Algunos juegan con los {POKEMON},\n"
 	.string "otros luchan con ellos.\p"
 	.string "$"
 
 gText_Oak_MainSpeech2::
-	.string "Pero, a pesar de ello, aún no\n"
-	.string "sabemos todo sobre los {POKEMON}.\p"
-	.string "Siguen existiendo muchos misterios\n"
+	.string "Pero aún hay muchas cosas que\n"
+	.string "no sabemos.\p"
+	.string "Quedan muchos misterios\n"
 	.string "por resolver.\p"
-	.string "Por eso estudio los {POKEMON} como\n"
-	.string "profesión cada día.\p"
-	.string "Bueno, basta de mí.\n"
+	.string "Por eso estudio a diario\n"
+	.string "a los {POKEMON}.\p"
+	.string "Bueno, suficiente sobre mí.\n"
 	.string "Cuéntame un poco sobre ti.\p"
 	.string "$"
 
@@ -54,10 +54,10 @@ gText_Oak_SoItsPlayer::
 
 gText_Oak_AreYouReady::
 	.string "{PLAYER}, ¿estás preparad{KUN}?\p"
-	.string "Tu propia aventura {POKEMON} está\n"
+	.string "Tu propia leyenda {POKEMON} está\n"
 	.string "a punto de comenzar.\p"
-	.string "Te esperan momentos divertidos y\n"
-	.string "retos difíciles.\p"
-	.string "¡Un mundo de sueños y aventuras\n"
-	.string "con {POKEMON} te aguarda! ¡Vamos!\p"
-	.string "¡Hasta luego!$"
+	.string "Te divertirás y te enfrentarás\n"
+	.string "a duros desafíos.\p"
+	.string "¡Te espera un mundo de sueños y\n"
+	.string "aventuras con {POKEMON}! ¡Vamos!\p"
+	.string "¡Nos vemos!$"

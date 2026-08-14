@@ -1,11 +1,25 @@
 mapscripts Route29_Gatehouse_MapScripts{}
 
 script Route29_Gatehouse_EventScript_Officer{
-	msgbox("You can't climb ledges.\pBut you can jump down from them\nto take a shortcut.", MSGBOX_NPC)
+	msgbox(Route29_Gatehouse_Text_Officer, MSGBOX_NPC)
 	end
 }
 
 script Route29_Gatehouse_EventScript_Youngster{
-	msgbox("Different kinds of {POKEMON} appear\npast here.\pIf you want to catch them all, you\nhave to look everywhere.$", MSGBOX_NPC)
+	msgbox(Route29_Gatehouse_Text_Youngster, MSGBOX_NPC)
 	end
+}
+
+text Route29_Gatehouse_Text_Officer {
+	poryswitch(LANGUAGE) {
+		SPANISH: "No puedes cruzar salientes.\pPero puedes saltar por encima de\nellos para atajar."
+		_: "You can't climb ledges.\pBut you can jump down from them\nto take a shortcut."
+	}
+}
+
+text Route29_Gatehouse_Text_Youngster {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Más adelante aparecen muchos tipos\nde {POKEMON}.\pSi quieres hacerte con todos, tendrás\nque buscar por todas partes."
+		_: "Different kinds of {POKEMON} appear\npast here.\pIf you want to catch them all, you\nhave to look everywhere."
+	}
 }

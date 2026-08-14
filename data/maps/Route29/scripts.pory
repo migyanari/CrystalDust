@@ -8,6 +8,10 @@ mapscripts Route29_MapScripts{
 	}
 }
 
+// ---------------------------------------------------------------------------
+// Scripts
+// ---------------------------------------------------------------------------
+
 script Route29_EventScript_Tuscany {
 	lock
 	faceplayer
@@ -18,12 +22,12 @@ script Route29_EventScript_Tuscany {
 		{
 			if (!flag(FLAG_MET_TUSCANY_OF_TUESDAY))
 			{
-				msgbox("TUSCANY: I do believe that this\nis the first time we've met?\pPlease allow me to introduce\nmyself.\pI am TUSCANY of TUESDAY.\pBy way of introduction, please\naccept this gift, a SILK SCARF.")
+				msgbox(Route29_Text_Tuscany_FirstMeeting)
 				setflag(FLAG_MET_TUSCANY_OF_TUESDAY)
 			}
 			else
 			{
-				msgbox("TUSCANY: By way of introduction,\nplease accept this gift, a\lSILK SCARF.")
+				msgbox(Route29_Text_Tuscany_GiftIntro)
 			}
 			giveitem(ITEM_SILK_SCARF)
 			if (!var(VAR_RESULT))
@@ -31,32 +35,32 @@ script Route29_EventScript_Tuscany {
 				goto(Common_EventScript_ShowBagIsFull)
 			}
 			setflag(FLAG_RECEIVED_SILK_SCARF_FROM_TUSCANY)
-			msgbox("TUSCANY: Wouldn't you agree that\nit is most adorable?\pIt strengthens NORMAL-type moves.\nI am certain it will be of use.")
+			msgbox(Route29_Text_Tuscany_AfterGift)
 		}
 		else
 		{
-			msgbox("TUSCANY: Today is not TUESDAY.\nThat is unfortunate…")
+			msgbox(Route29_Text_Tuscany_NotTuesday)
 		}
 	}
 	else
 	{
-		msgbox("TUSCANY: Have you met MONICA,\nmy older sister?\lOr my younger brother, WESLEY?\pI am the second of seven children.")
+		msgbox(Route29_Text_Tuscany_AlreadyReceived)
 	}
 	release
 }
 
 script Route29_EventScript_Youngster{
-	msgbox("Yo.\nHow are your {POKEMON}?\pIf they're weak and not ready for\nbattle, keep out of the grass.", MSGBOX_NPC)
+	msgbox(Route29_Text_Youngster, MSGBOX_NPC)
 	end
 }
 
 script Route29_EventScript_LedgeGirl{
-	msgbox("See those ledges?\nIt's scary to jump off them.\pBut you can go to NEW BARK without\nwalking through the grass.", MSGBOX_NPC)
+	msgbox(Route29_Text_LedgeGirl, MSGBOX_NPC)
 	end
 }
 
 script Route29_EventScript_FatMan{
-	msgbox("I wanted to take a break, so I\nsaved to record my progress.", MSGBOX_NPC)
+	msgbox(Route29_Text_FatMan, MSGBOX_NPC)
 	end
 }
 
@@ -66,19 +70,19 @@ script Route29_EventScript_WaitingMan{
 	gettime
 	if(var(VAR_0x8002) == TIME_NIGHT)
 	{
-		bufferstring(0, " in the morning.")
+		bufferstring(0, Route29_Text_WaitingMan_MorningSuffix)
 	}
 	else
 	{
-		bufferstring(0, " at night.")
+		bufferstring(0, Route29_Text_WaitingMan_NightSuffix)
 	}
-	msgbox("I'm waiting for {POKEMON} that appear\nonly{STR_VAR_1}")
+	msgbox(Route29_Text_WaitingMan)
 	release
 	end
 }
 
 script Route29_EventScript_DirectionSign{
-	msgbox("ROUTE 29\nCHERRYGROVE CITY - NEW BARK TOWN", MSGBOX_SIGN)
+	msgbox(Route29_Text_DirectionSign, MSGBOX_SIGN)
 	end
 }
 
@@ -87,11 +91,11 @@ script Route29_EventScript_Dude{
 	faceplayer
 	if(flag(FLAG_LEARNED_TO_CATCH_POKEMON) || !flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
 	{
-		msgbox("{POKEMON} hide in the grass.\nWho knows when they'll pop out…")
+		msgbox(Route29_Text_Dude_PokemonInGrass)
 		release
 		end
 	}
-	msgbox("Huh? You want me to show you how\nto catch {POKEMON}?", MSGBOX_YESNO)
+	msgbox(Route29_Text_Dude_OfferTutorial, MSGBOX_YESNO)
 	if(!var(VAR_RESULT))
 	{
 		msgbox(Route29_Text_Dude_CatchingTutRejected)
@@ -106,10 +110,6 @@ script Route29_EventScript_Dude{
 	setflag(FLAG_LEARNED_TO_CATCH_POKEMON)
 	release
 	end
-}text(local) Route29_Text_Dude_CatchingTutRejected{
-	"Oh.\nFine, then.\pAnyway, if you want to catch\n{POKEMON}, you have to walk a lot."
-}text(local) Route29_Text_Dude_CatchingOutro{
-	"That's how you do it.\pIf you weaken them first, {POKEMON}\nare easier to catch."
 }
 
 script Route29_EventScript_CatchingTutorialTriggers{
@@ -136,7 +136,7 @@ script Route29_EventScript_CatchingTutorialTriggers{
 	textcolor(MSG_COLOR_BLUE)
 	setflag(FLAG_DUDE_TALKED_TO_YOU)
 	setvar(VAR_ROUTE29_STATE, 2)
-	msgbox("I've seen you a couple times.\nHow many {POKEMON} have you caught?\pWould you like me to show you how\nto catch {POKEMON}?", MSGBOX_YESNO)
+	msgbox(Route29_Text_Dude_TriggerOffer, MSGBOX_YESNO)
 	if(!var(VAR_RESULT))
 	{
 		msgbox(Route29_Text_Dude_CatchingTutRejected)
@@ -183,7 +183,136 @@ script Route29_EventScript_CatchingTutorialTriggers{
 	setflag(FLAG_LEARNED_TO_CATCH_POKEMON)
 	releaseall
 	end
-}movement(local) Route29_Movement_DudeToPlayerTop{
+}
+
+// ---------------------------------------------------------------------------
+// Texts
+// ---------------------------------------------------------------------------
+
+text Route29_Text_Tuscany_FirstMeeting {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MARTA: Creo que es la primera vez\nque nos vemos, ¿verdad?\pPermíteme presentarme.\pSoy MARTA, la del MARTES.\pComo muestra de bienvenida, acepta\neste regalo: un LAZO ROSA."
+		_: "TUSCANY: I do believe that this\nis the first time we've met?\pPlease allow me to introduce\nmyself.\pI am TUSCANY of TUESDAY.\pBy way of introduction, please\naccept this gift, a SILK SCARF."
+	}
+}
+
+text Route29_Text_Tuscany_GiftIntro {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MARTA: Como muestra de bienvenida,\nacepta este regalo: un\lLAZO ROSA."
+		_: "TUSCANY: By way of introduction,\nplease accept this gift, a\lSILK SCARF."
+	}
+}
+
+text Route29_Text_Tuscany_AfterGift {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MARTA: ¿No te parece adorable?\pPotencia los movimientos de tipo\nNORMAL. Seguro que te será útil."
+		_: "TUSCANY: Wouldn't you agree that\nit is most adorable?\pIt strengthens NORMAL-type moves.\nI am certain it will be of use."
+	}
+}
+
+text Route29_Text_Tuscany_NotTuesday {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MARTA: Hoy no es MARTES.\nQué lástima…"
+		_: "TUSCANY: Today is not TUESDAY.\nThat is unfortunate…"
+	}
+}
+
+text Route29_Text_Tuscany_AlreadyReceived {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MARTA: ¿Conoces a LUNA,\nmi hermana mayor?\l¿O a mi hermano pequeño, MIGUEL?\pSoy la segunda de siete hermanos."
+		_: "TUSCANY: Have you met MONICA,\nmy older sister?\lOr my younger brother, WESLEY?\pI am the second of seven children."
+	}
+}
+
+text Route29_Text_Youngster {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Cómo están tus {POKEMON}?\nSi están débiles y no pueden luchar,\lno entres en la hierba."
+		_: "Yo.\nHow are your {POKEMON}?\pIf they're weak and not ready for\nbattle, keep out of the grass."
+	}
+}
+
+text Route29_Text_LedgeGirl {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Ves esos setos?\nDa miedo saltarlos.\pPero puedes ir a PUEBLO PRIMAVERA\nsin pasar por la hierba."
+		_: "See those ledges?\nIt's scary to jump off them.\pBut you can go to NEW BARK without\nwalking through the grass."
+	}
+}
+
+text Route29_Text_FatMan {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Quería descansar un poco, así que\nguardé la partida."
+		_: "I wanted to take a break, so I\nsaved to record my progress."
+	}
+}
+
+text Route29_Text_WaitingMan_MorningSuffix {
+	poryswitch(LANGUAGE) {
+		SPANISH: " por la mañana."
+		_: " in the morning."
+	}
+}
+
+text Route29_Text_WaitingMan_NightSuffix {
+	poryswitch(LANGUAGE) {
+		SPANISH: " por la noche."
+		_: " at night."
+	}
+}
+
+text Route29_Text_WaitingMan {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Estoy esperando a los {POKEMON} que\naparecen sólo{STR_VAR_1}"
+		_: "I'm waiting for {POKEMON} that appear\nonly{STR_VAR_1}"
+	}
+}
+
+text Route29_Text_DirectionSign {
+	poryswitch(LANGUAGE) {
+		SPANISH: "RUTA 29\nCIUDAD CEREZO - PUEBLO PRIMAVERA"
+		_: "ROUTE 29\nCHERRYGROVE CITY - NEW BARK TOWN"
+	}
+}
+
+text Route29_Text_Dude_PokemonInGrass {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Los {POKEMON} se esconden en la hierba.\nNadie sabe cuándo salen…"
+		_: "{POKEMON} hide in the grass.\nWho knows when they'll pop out…"
+	}
+}
+
+text Route29_Text_Dude_OfferTutorial {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Eh? ¿Quieres que te enseñe\na capturar {POKEMON}?"
+		_: "Huh? You want me to show you how\nto catch {POKEMON}?"
+	}
+}
+
+text Route29_Text_Dude_TriggerOffer {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Te he visto varias veces.\n¿Cuántos {POKEMON} has capturado?\p¿Quieres que te enseñe\na capturar {POKEMON}?"
+		_: "I've seen you a couple times.\nHow many {POKEMON} have you caught?\pWould you like me to show you how\nto catch {POKEMON}?"
+	}
+}
+
+text Route29_Text_Dude_CatchingTutRejected {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Oh.\nVale, entonces.\pDe todos modos, si quieres capturar\n{POKEMON}, tendrás que andar mucho."
+		_: "Oh.\nFine, then.\pAnyway, if you want to catch\n{POKEMON}, you have to walk a lot."
+	}
+}
+
+text Route29_Text_Dude_CatchingOutro {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Así se hace.\pSi los debilitas antes, los {POKEMON}\nserán más fáciles de capturar."
+		_: "That's how you do it.\pIf you weaken them first, {POKEMON}\nare easier to catch."
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Movements
+// ---------------------------------------------------------------------------
+
+movement(local) Route29_Movement_DudeToPlayerTop{
 	walk_up * 5
 	walk_right * 2
 }movement(local) Route29_Movement_DudeToPlayerMiddleTop{

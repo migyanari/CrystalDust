@@ -1,11 +1,25 @@
 mapscripts CherrygroveCity_House1_MapScripts{}
 
 script CherrygroveCity_House1_EventScript_Pokefan{
-	msgbox("You're trying to see how good you\nare as a {POKEMON} TRAINER?\pYou better visit the {POKEMON} GYMS\nall over JOHTO and collect BADGES.", MSGBOX_NPC)
+	msgbox(CherrygroveCity_House1_Text_Pokefan, MSGBOX_NPC)
 	end
 }
 
 script CherrygroveCity_House1_EventScript_Child{
-	msgbox("When I get older, I'm going to be\na GYM LEADER!\pI make my {POKEMON} battle with my\nfriend's to make them tougher!", MSGBOX_NPC)
+	msgbox(CherrygroveCity_House1_Text_Child, MSGBOX_NPC)
 	end
+}
+
+text CherrygroveCity_House1_Text_Pokefan {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Quieres saber si vales o no con\nlos {POKEMON}?\pPues vete a los GIMNASIOS {POKEMON}\nde JOHTO y gana muchas MEDALLAS."
+		_: "You're trying to see how good you\nare as a {POKEMON} TRAINER?\pYou better visit the {POKEMON} GYMS\nall over JOHTO and collect BADGES."
+	}
+}
+
+text CherrygroveCity_House1_Text_Child {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Cuando sea mayor, voy a ser un\nLÍDER de GIMNASIO!\p¡Hago luchar a mis {POKEMON} contra\nlos de mi amigo para fortalecerlos!"
+		_: "When I get older, I'm going to be\na GYM LEADER!\pI make my {POKEMON} battle with my\nfriend's to make them tougher!"
+	}
 }

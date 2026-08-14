@@ -15,21 +15,49 @@ script CherrygroveCity_PokemonCenter_1F_EventScript_Nurse{
 }
 
 script CherrygroveCity_PokemonCenter_1F_EventScript_FatMan{
-	msgbox("It's great! I can store any number\nof {POKEMON}, and it's all free.", MSGBOX_NPC)
+	msgbox(CherrygroveCity_PokemonCenter_1F_Text_FatMan, MSGBOX_NPC)
 	end
 }
 
 script CherrygroveCity_PokemonCenter_1F_EventScript_Gentleman{
-	msgbox("That PC in the corner is free for\nany TRAINER to use.", MSGBOX_NPC)
+	msgbox(CherrygroveCity_PokemonCenter_1F_Text_Gentleman, MSGBOX_NPC)
 	end
 }
 
 script CherrygroveCity_PokemonCenter_1F_EventScript_Teacher{
     if(flag(FLAG_ADVENTURE_STARTED))
     {
-        msgbox("The {POKEMON} WIRELESS CLUB upstairs\nwas just built.\pI traded {POKEMON} there already!", MSGBOX_NPC)
+        msgbox(CherrygroveCity_PokemonCenter_1F_Text_Teacher_AfterAdventure, MSGBOX_NPC)
         end
     }
-	msgbox("The {POKEMON} WIRELESS CLUB upstairs\nwas just built.\pBut they're still finishing it up.", MSGBOX_NPC)
+	msgbox(CherrygroveCity_PokemonCenter_1F_Text_Teacher_BeforeAdventure, MSGBOX_NPC)
 	end
+}
+
+text CherrygroveCity_PokemonCenter_1F_Text_FatMan {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Es genial! Puedo guardar a todos\nlos {POKEMON} que quiera, ¡y gratis!"
+		_: "It's great! I can store any number\nof {POKEMON}, and it's all free."
+	}
+}
+
+text CherrygroveCity_PokemonCenter_1F_Text_Gentleman {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Ese PC puede ser usado por todo\nENTRENADOR."
+		_: "That PC in the corner is free for\nany TRAINER to use."
+	}
+}
+
+text CherrygroveCity_PokemonCenter_1F_Text_Teacher_BeforeAdventure {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Acaban de construir un centro de\ncomunicación inalámbrica aquí arriba.\pPero todavía lo están terminando."
+		_: "The {POKEMON} WIRELESS CLUB upstairs\nwas just built.\pBut they're still finishing it up."
+	}
+}
+
+text CherrygroveCity_PokemonCenter_1F_Text_Teacher_AfterAdventure {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Acaban de construir un centro de\ncomunicación inalámbrica aquí arriba.\p¡Ya he intercambiado {POKEMON} en él!"
+		_: "The {POKEMON} WIRELESS CLUB upstairs\nwas just built.\pI traded {POKEMON} there already!"
+	}
 }

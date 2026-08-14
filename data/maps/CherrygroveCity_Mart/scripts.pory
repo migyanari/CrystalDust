@@ -3,15 +3,15 @@ mapscripts CherrygroveCity_Mart_MapScripts{}
 script CherrygroveCity_Mart_EventScript_BallGuy{
     if(flag(FLAG_ADVENTURE_STARTED))
     {
-        msgbox("{POKE} BALLS are in stock!\nNow I can catch {POKEMON}!", MSGBOX_NPC)
+        msgbox(CherrygroveCity_Mart_Text_BallGuy_InStock, MSGBOX_NPC)
         end
     }
-	msgbox("They're fresh out of {POKE} BALLS!\nWhen will they get more of them?", MSGBOX_NPC)
+	msgbox(CherrygroveCity_Mart_Text_BallGuy_OutOfStock, MSGBOX_NPC)
 	end
 }
 
 script CherrygroveCity_Mart_EventScript_Youngster{
-	msgbox("When I was walking in the grass,\na BUG {POKEMON} popped out and\lpoisoned my {POKEMON}!\pI tried to keep going, but then my\n{POKEMON} fainted.\pYou should always keep an ANTIDOTE\nwith you, just in case.", MSGBOX_NPC)
+	msgbox(CherrygroveCity_Mart_Text_Youngster, MSGBOX_NPC)
 	end
 }
 
@@ -31,6 +31,27 @@ script CherrygroveCity_Mart_EventScript_Clerk{
 	msgbox(gText_PleaseComeAgain)
 	release
 	end
+}
+
+text CherrygroveCity_Mart_Text_BallGuy_OutOfStock {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Se han quedado sin {POKE} BALLS!\n¿Cuándo conseguirán más?"
+		_: "They're fresh out of {POKE} BALLS!\nWhen will they get more of them?"
+	}
+}
+
+text CherrygroveCity_Mart_Text_BallGuy_InStock {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Ya hay {POKE} BALLS en stock!\n¡Ahora puedo capturar {POKEMON}!"
+		_: "{POKE} BALLS are in stock!\nNow I can catch {POKEMON}!"
+	}
+}
+
+text CherrygroveCity_Mart_Text_Youngster {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Cuando iba por la hierba, un {POKEMON}\nbicho envenenó a mis {POKEMON}.\pYo seguí andando, pero mi {POKEMON}\nse debilitó.\pDeberías llevar un ANTÍDOTO\ncontigo."
+		_: "When I was walking in the grass,\na BUG {POKEMON} popped out and\lpoisoned my {POKEMON}!\pI tried to keep going, but then my\n{POKEMON} fainted.\pYou should always keep an ANTIDOTE\nwith you, just in case."
+	}
 }
 
 raw `

@@ -1,17 +1,18 @@
 mapscripts Route30_MapScripts {}
 
+// ---------------------------------------------------------------------------
+// Scripts
+// ---------------------------------------------------------------------------
+
 script Route30_EventScript_Directions {
-    msgbox("ROUTE 30\nVIOLET CITY - CHERRYGROVE CITY", MSGBOX_SIGN)
+    msgbox(Route30_Text_DirectionsSign, MSGBOX_SIGN)
     end
 }
 
 script Route30_EventScript_MrPokemonsHouseAhead {
     bufferstring(0, Route30_Text_MrPokemonsHouse)
-    msgbox("{STR_VAR_1}\nSTRAIGHT AHEAD!", MSGBOX_SIGN)
+    msgbox(Route30_Text_MrPokemonsHouseAhead, MSGBOX_SIGN)
     end
-}
-text(local) Route30_Text_MrPokemonsHouse {
-    "MR. {POKEMON}'S HOUSE"
 }
 
 script Route30_EventScript_MrPokemonsHouse {
@@ -21,12 +22,12 @@ script Route30_EventScript_MrPokemonsHouse {
 }
 
 script Route30_EventScript_TrainerTips {
-    msgbox("There's no stealing of other\npeople's {POKEMON}!\p{POKE} BALLS are to be thrown only\nat wild {POKEMON}!", MSGBOX_SIGN)
+    msgbox(Route30_Text_TrainerTips, MSGBOX_SIGN)
     end
 }
 
 script Route30_EventScript_NotATrainerGirl {
-    msgbox("I'm not a TRAINER.\pBut if you look one in the eyes,\nprepare to battle.", MSGBOX_NPC)
+    msgbox(Route30_Text_NotATrainerGirl, MSGBOX_NPC)
     end
 }
 
@@ -34,10 +35,10 @@ script Route30_EventScript_DirectionsBoy {
     lock
     faceplayer
     if (flag(FLAG_ADVENTURE_STARTED)) {
-        msgbox("Everyone's having fun battling!\nYou should too!", MSGBOX_NPC)
+        msgbox(Route30_Text_DirectionsBoy_AdventureStarted, MSGBOX_NPC)
         end
     }
-    msgbox("MR. {POKEMON}'s house?\nIt's a bit farther ahead.", MSGBOX_NPC)
+    msgbox(Route30_Text_DirectionsBoy_Default, MSGBOX_NPC)
     end
 }
 
@@ -46,7 +47,7 @@ script Route30_EventScript_BattlingYoungster {
     waitse
     playbgm(MUS_VS_JOHTO_TRAINER, 0)
     bufferspeciesname(0, SPECIES_RATTATA)
-    msgbox("Go, {STR_VAR_1}!\nUse TACKLE!")
+    msgbox(Route30_Text_BattlingYoungster_SendRattata)
     closemessage
     delay(15)
     applymovement(7, Route30_Movement_RattataTackle)
@@ -54,7 +55,7 @@ script Route30_EventScript_BattlingYoungster {
     playse(SE_M_COMET_PUNCH)
     waitmovement(0)
     faceplayer
-    msgbox("What? This is a big battle!\nLeave me alone!")
+    msgbox(Route30_Text_BattlingYoungster_Interrupt, MSGBOX_DEFAULT)
     closemessage
     turnobject(VAR_LAST_TALKED, 2)
     delay(10)
@@ -67,6 +68,7 @@ script Route30_EventScript_BattlingYoungster {
     release
     end
 }
+
 movement(local) Route30_Movement_RattataTackle {
     lock_facing_direction
     set_fixed_priority
@@ -77,6 +79,7 @@ movement(local) Route30_Movement_RattataTackle {
     clear_fixed_priority
     enable_jump_landing_ground_effect
 }
+
 movement(local) Route30_Movement_PidgeyTackle {
     lock_facing_direction
     set_fixed_priority
@@ -89,51 +92,197 @@ movement(local) Route30_Movement_PidgeyTackle {
 }
 
 script Route30_EventScript_Trainer_Joey {
-    trainerbattle_single(TRAINER_JOEY_1, "I just lost, so I'm trying to find\nmore {POKEMON}.\pWait! You look weak!\nCome on, let's battle!", Route30_Text_Trainer_JoeyLost)
+    trainerbattle_single(TRAINER_JOEY_1, Route30_Text_Joey_Intro, Route30_Text_Joey_Defeat)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
-    if(var(VAR_RESULT) == TRUE)
-    {
-        trainerbattle_rematch(TRAINER_JOEY_1, "I've been waiting!\nLet's battle now!", Route30_Text_Trainer_JoeyLost)
+    if (var(VAR_RESULT) == TRUE) {
+        trainerbattle_rematch(TRAINER_JOEY_1, Route30_Text_Joey_RematchIntro, Route30_Text_Joey_Defeat)
     }
-    if (!flag(FLAG_PHONE_CARD_YOUNGSTER_JOEY))
-    {
-        if (!flag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER))
-        {
-            msgbox("Do I have to have more {POKEMON}\nin order to battle better?\pNo! I'm sticking with this one no\nmatter what!\pListen, can I get your phone number?\nI'll ring you for some battles.\pI'm a rookie too, so I think it'd\nbe a good motivator.", MSGBOX_YESNO) 
+    if (!flag(FLAG_PHONE_CARD_YOUNGSTER_JOEY)) {
+        if (!flag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER)) {
+            msgbox(Route30_Text_Joey_AskPhoneFirst, MSGBOX_YESNO)
             setflag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER)
+        } else {
+            msgbox(Route30_Text_Joey_AskPhoneAgain, MSGBOX_YESNO)
         }
-        else
-        {
-            msgbox("Can I get your phone number?\nI don't want to lose against you!\lWe have to battle again, OK?", MSGBOX_YESNO)
-        }
-        if (var (VAR_RESULT) == YES)
-        {
-            registerphonecontact(FLAG_PHONE_CARD_YOUNGSTER_JOEY) 
-            msgbox(Route30_Text_Trainer_JoeyAfterRegistered, MSGBOX_AUTOCLOSE)
-        }
-        else
-        {
-            msgbox("Oh, all right… But I won't lose\nto you again!", MSGBOX_AUTOCLOSE)
+        if (var(VAR_RESULT) == YES) {
+            registerphonecontact(FLAG_PHONE_CARD_YOUNGSTER_JOEY)
+            msgbox(Route30_Text_Joey_AfterRegistered, MSGBOX_AUTOCLOSE)
+        } else {
+            msgbox(Route30_Text_Joey_DeclinePhone, MSGBOX_AUTOCLOSE)
         }
         end
     }
-    msgbox(Route30_Text_Trainer_JoeyAfterRegistered, MSGBOX_DEFAULT)
+    msgbox(Route30_Text_Joey_AfterRegistered, MSGBOX_DEFAULT)
     release
     end
-}text(local) Route30_Text_Trainer_JoeyAfterRegistered{
-    "I'll ring you whenever I get\nthe urge to battle!"
-}text(local) Route30_Text_Trainer_JoeyLost{
-    "Ack! I lost again!\nDoggone it!"
 }
 
 script Route30_EventScript_Trainer_Mikey {
-    trainerbattle_single(TRAINER_MIKEY, "You're a {POKEMON} TRAINER, right?\nThen you have to battle!", "That's strange.\nI won before.")
-    msgbox("Becoming a good TRAINER is really\ntough to do.\pI'm going to battle other people\nto get better.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_MIKEY, Route30_Text_Mikey_Intro, Route30_Text_Mikey_Defeat)
+    msgbox(Route30_Text_Mikey_AfterBattle, MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route30_EventScript_Trainer_Don {
-    trainerbattle_single(TRAINER_DON, "Instead of a BUG {POKEMON},\nI found a TRAINER!", "Argh!\nYou're too strong!")
-    msgbox("I ran out of {POKE} BALLS while I was\ncatching {POKEMON}.\pI should've bought some more…", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_DON, Route30_Text_Don_Intro, Route30_Text_Don_Defeat)
+    msgbox(Route30_Text_Don_AfterBattle, MSGBOX_AUTOCLOSE)
     end
+}
+
+// ---------------------------------------------------------------------------
+// Texts
+// ---------------------------------------------------------------------------
+
+text Route30_Text_DirectionsSign {
+    poryswitch(LANGUAGE) {
+        SPANISH: "RUTA 30\nCIUDAD MALVA - CIUDAD CEREZO"
+        _: "ROUTE 30\nVIOLET CITY - CHERRYGROVE CITY"
+    }
+}
+
+text Route30_Text_MrPokemonsHouse {
+    poryswitch(LANGUAGE) {
+        SPANISH: "CASA DEL SR. {POKEMON}"
+        _: "MR. {POKEMON}'S HOUSE"
+    }
+}
+
+text Route30_Text_MrPokemonsHouseAhead {
+    poryswitch(LANGUAGE) {
+        SPANISH: "{STR_VAR_1}\n¡TODO RECTO!"
+        _: "{STR_VAR_1}\nSTRAIGHT AHEAD!"
+    }
+}
+
+text Route30_Text_TrainerTips {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡No robes los {POKEMON} de otros!\p¡Las {POKE} BALLS sólo se lanzan\ncontra {POKEMON} salvajes!"
+        _: "There's no stealing of other\npeople's {POKEMON}!\p{POKE} BALLS are to be thrown only\nat wild {POKEMON}!"
+    }
+}
+
+text Route30_Text_NotATrainerGirl {
+    poryswitch(LANGUAGE) {
+        SPANISH: "No soy una Entrenadora.\pPero si miras a uno a los ojos,\nprepárate para luchar."
+        _: "I'm not a TRAINER.\pBut if you look one in the eyes,\nprepare to battle."
+    }
+}
+
+text Route30_Text_DirectionsBoy_AdventureStarted {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Todo el mundo combate con alegría!\n¡Tú también deberías!"
+        _: "Everyone's having fun battling!\nYou should too!"
+    }
+}
+
+text Route30_Text_DirectionsBoy_Default {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¿La casa del Sr. {POKEMON}?\nEstá un poco más adelante."
+        _: "MR. {POKEMON}'s house?\nIt's a bit farther ahead."
+    }
+}
+
+text Route30_Text_BattlingYoungster_SendRattata {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Ve, {STR_VAR_1}!\n¡PLACAJE!"
+        _: "Go, {STR_VAR_1}!\nUse TACKLE!"
+    }
+}
+
+text Route30_Text_BattlingYoungster_Interrupt {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¿Qué? ¡Este es un combate importante!\n¡Déjame en paz!"
+        _: "What? This is a big battle!\nLeave me alone!"
+    }
+}
+
+text Route30_Text_Joey_Intro {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Perdí, así que estoy buscando\nmás {POKEMON}.\p¡Espera! ¡Pareces débil!\n¡Venga, luchemos!"
+        _: "I just lost, so I'm trying to find\nmore {POKEMON}.\pWait! You look weak!\nCome on, let's battle!"
+    }
+}
+
+text Route30_Text_Joey_Defeat {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Argh! ¡He perdido de nuevo!"
+        _: "Ack! I lost again!\nDoggone it!"
+    }
+}
+
+text Route30_Text_Joey_RematchIntro {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Te esperaba!\n¡A luchar!"
+        _: "I've been waiting!\nLet's battle now!"
+    }
+}
+
+text Route30_Text_Joey_AskPhoneFirst {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¿Debo tener más {POKEMON} para\npoder luchar mejor?\p¡No! ¡Continuaré sólo con éste,\npase lo que pase!\pDime, ¿me das tu número de\nteléfono? Te llamaré para luchar.\pYo también soy novato, así que\nserá una buena motivación."
+        _: "Do I have to have more {POKEMON}\nin order to battle better?\pNo! I'm sticking with this one no\nmatter what!\pListen, can I get your phone number?\nI'll ring you for some battles.\pI'm a rookie too, so I think it'd\nbe a good motivator."
+    }
+}
+
+text Route30_Text_Joey_AskPhoneAgain {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¿Me das tu número de teléfono?\n¡No quiero volver a perder!\l¡Luchemos otra vez, vale?"
+        _: "Can I get your phone number?\nI don't want to lose against you!\lWe have to battle again, OK?"
+    }
+}
+
+text Route30_Text_Joey_AfterRegistered {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Te llamaré siempre que quiera\nluchar!"
+        _: "I'll ring you whenever I get\nthe urge to battle!"
+    }
+}
+
+text Route30_Text_Joey_DeclinePhone {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Oh, bueno, como quieras.\n¡Pero no volveré a perder contra ti!\l¿Entendido?"
+        _: "Oh, all right… But I won't lose\nto you again!"
+    }
+}
+
+text Route30_Text_Mikey_Intro {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Entrenas {POKEMON}, ¿verdad?\n¡Pues entonces luchemos!"
+        _: "You're a {POKEMON} TRAINER, right?\nThen you have to battle!"
+    }
+}
+
+text Route30_Text_Mikey_Defeat {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Qué extraño!\n¡Creí que ganaría!"
+        _: "That's strange.\nI won before."
+    }
+}
+
+text Route30_Text_Mikey_AfterBattle {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Es muy duro llegar a ser un buen\nEntrenador.\p¡Venga! ¡Tengo que luchar contra\nmás gente para mejorar!"
+        _: "Becoming a good TRAINER is really\ntough to do.\pI'm going to battle other people\nto get better."
+    }
+}
+
+text Route30_Text_Don_Intro {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡En lugar de un {POKEMON} bicho,\nhe encontrado a alguien que los\lentrena!"
+        _: "Instead of a BUG {POKEMON},\nI found a TRAINER!"
+    }
+}
+
+text Route30_Text_Don_Defeat {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Arg!\n¡Eres muy fuerte!"
+        _: "Argh!\nYou're too strong!"
+    }
+}
+
+text Route30_Text_Don_AfterBattle {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Me quedé sin {POKE} BALLS mientras\natrapaba {POKEMON}.\pDebería haber comprado más…"
+        _: "I ran out of {POKE} BALLS while I was\ncatching {POKEMON}.\pI should've bought some more…"
+    }
 }
