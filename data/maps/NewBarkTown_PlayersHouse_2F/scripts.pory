@@ -36,13 +36,6 @@ script NewBarkTown_PlayersHouse_2F_EventScript_TurnOffPlayerPC{
 	end
 }
 
-text Common_Text_LookCloserAtMap{
-	poryswitch(LANGUAGE) {
-		SPANISH: "Es el MAPA."
-		_: "It's the TOWN MAP."
-	}
-}
-
 script NewBarkTown_PlayersHouse_2F_Radio{
     if(flag(FLAG_SYS_POKEDEX_GET))
     {
@@ -54,22 +47,13 @@ script NewBarkTown_PlayersHouse_2F_Radio{
         end
     }
     playbgm(MUS_OAKS_LAB, 0)
-		poryswitch(LANGUAGE) {
-		SPANISH: message("¡Esto fue CHARLA {POKEMON} del PROF. OAK!\n¡Sintonízanos la próxima vez!")
-		_: message("This was PROF. OAK'S {POKEMON} TALK!\nPlease tune in next time!")
-	}
+				message(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_Radio_ThisWasPROFOAK)
 	waitmessage
 	delay(90)
-		poryswitch(LANGUAGE) {
-		SPANISH: message("¡CANAL {POKEMON}!")
-		_: message("{POKEMON} CHANNEL!")
-	}
+				message(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_Radio_PokemonCHANNEL)
 	waitmessage
 	delay(90)
-		poryswitch(LANGUAGE) {
-		SPANISH: message("Soy ROSA, vuestra copresentadora,\n¡me despido!")
-		_: message("This is DJ MARY, your co-host,\nsigning off!")
-	}
+				message(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_Radio_ThisIsDJMARY)
 	waitmessage
 	delay(90)
 	fadedefaultbgm
@@ -79,13 +63,6 @@ script NewBarkTown_PlayersHouse_2F_Radio{
 	delay(90)
 	closemessage
 	end
-}
-
-text(local) NewBarkTown_PlayersHouse_2F_Text_RadioTextDone{
-	poryswitch(LANGUAGE) {
-		SPANISH: "¡{POKEMON}!\nCANAL {POKEMON}…"
-		_: "{POKEMON}!\n{POKEMON} CHANNEL…"
-	}
 }
 
 script NewBarkTown_PlayersHouse_2F_DecorPoster{
@@ -122,10 +99,7 @@ script NewBarkTown_PlayersHouse_2F_DecorPoster{
 			case POSTER_KISS:
 				bufferspeciesname(0, SPECIES_SMOOCHUM)
 		}
-				poryswitch(LANGUAGE) {
-			SPANISH: msgbox("Es un póster de{STR_VAR_2}un adorable {STR_VAR_1}.", MSGBOX_SIGN)
-			_: msgbox("It's a poster of{STR_VAR_2}cute {STR_VAR_1}.", MSGBOX_SIGN)
-		}
+								msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorPoster_ItSAPoster, MSGBOX_SIGN)
 		end
 	}
 }
@@ -136,44 +110,26 @@ script NewBarkTown_PlayersHouse_2F_DecorConsole{
 		switch(var(VAR_ROOM_CONSOLE))
 		{
 			case CONSOLE_NES:
-								poryswitch(LANGUAGE) {
-					SPANISH: msgbox("{PLAYER} jugó con la NES.\p…¡Vale!\n¡Es hora de irse!", MSGBOX_SIGN)
-					_: msgbox("{PLAYER} played with the NES.\p…Okay!\nIt's time to go!", MSGBOX_SIGN)
-				}
+																msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorConsole_PlayedWithTheNES, MSGBOX_SIGN)
 				end
 			case CONSOLE_SNES:
-								poryswitch(LANGUAGE) {
-					SPANISH: msgbox("Es una Super NES.\p¡Los gráficos parecen tan realistas!", MSGBOX_SIGN)
-					_: msgbox("It's a Super NES.\pThe graphics look so lifelike!", MSGBOX_SIGN)
-				}
+																msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorConsole_ItSASuper, MSGBOX_SIGN)
 				end
 			case CONSOLE_N64:
-								poryswitch(LANGUAGE) {
-					SPANISH: msgbox("Es una Nintendo 64.\pHay un Transfer Pak conectado en la\nparte trasera del mando.", MSGBOX_SIGN)
-					_: msgbox("It's a Nintendo 64.\pA Transfer Pak is connected to the\nback of the controller.", MSGBOX_SIGN)
-				}
+																msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorConsole_ItSANintendo, MSGBOX_SIGN)
 				end
 			case CONSOLE_VIRTUALBOY:
-								poryswitch(LANGUAGE) {
-					SPANISH: msgbox("Es una Virtual Boy.\pParece incómoda para jugar.", MSGBOX_SIGN)
-					_: msgbox("It's a Virtual Boy.\pIt looks uncomfortable to play.", MSGBOX_SIGN)
-				}
+																msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorConsole_ItSAVirtual, MSGBOX_SIGN)
 				end
 			case CONSOLE_GAMECUBE:
-								poryswitch(LANGUAGE) {
-					SPANISH: msgbox("Es una Nintendo GameCube.\pHay una Game Boy Advance conectada\ncomo mando.", MSGBOX_SIGN)
-					_: msgbox("It's a Nintendo GameCube.\pA Game Boy Advance is connected to\nserve as the controller.", MSGBOX_SIGN)
-				}
+																msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorConsole_ItSANintendo_2, MSGBOX_SIGN)
 				end
 		}
 	}
 }
 
 script NewBarkTown_PlayersHouse_2F_DecorBigDoll{
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("¡Un muñeco gigante!\nEs suave y achuchable.", MSGBOX_SIGN)
-		_: msgbox("A giant doll!\nIt's fluffy and cuddly.", MSGBOX_SIGN)
-	}
+				msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorBigDoll_AGiantDollIt, MSGBOX_SIGN)
 	end
 }
 
@@ -336,28 +292,19 @@ script NewBarkTown_PlayersHouse_2F_DecorOrnament{
 	if(var(VAR_RESULT) != DOLL_SILVER_TROPHY && var(VAR_RESULT) != DOLL_GOLD_TROPHY && var(VAR_RESULT) < DOLL_SILVER_SHIELD)
 	{	// regular dolls
 		call(NewBarkTown_PlayersHouse_2F_BufferOrnamentString)
-				poryswitch(LANGUAGE) {
-			SPANISH: msgbox("Es un adorable MUÑECO de {STR_VAR_1}.", MSGBOX_SIGN)
-			_: msgbox("It's an adorable {STR_VAR_1} DOLL.", MSGBOX_SIGN)
-		}
+								msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorOrnament_ItSAnAdorable, MSGBOX_SIGN)
 		end
 	}
 	else
 	{
 		if(var(VAR_RESULT) == DOLL_SILVER_TROPHY)
 		{
-						poryswitch(LANGUAGE) {
-				SPANISH: msgbox("Es un TROFEO PLATA de aspecto normal.", MSGBOX_SIGN)
-				_: msgbox("It's a normal-looking SILVER TROPHY.", MSGBOX_SIGN)
-			}
+												msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorOrnament_ItSANormal, MSGBOX_SIGN)
 			end
 		}
 		if(var(VAR_RESULT) == DOLL_GOLD_TROPHY)
 		{
-						poryswitch(LANGUAGE) {
-				SPANISH: msgbox("Es un TROFEO ORO de aspecto precioso.", MSGBOX_SIGN)
-				_: msgbox("It's a gorgeous-looking GOLD TROPHY.", MSGBOX_SIGN)
-			}
+												msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorOrnament_ItSAGorgeous, MSGBOX_SIGN)
 			end
 		}
 		if(var(VAR_RESULT) == DOLL_SILVER_SHIELD)
@@ -370,10 +317,7 @@ script NewBarkTown_PlayersHouse_2F_DecorOrnament{
 			bufferstring(1, "GOLD")
 			bufferstring(0, "100")
 		}
-				poryswitch(LANGUAGE) {
-			SPANISH: msgbox("Un escudo de {STR_VAR_2} que marca\nhaber ganado {STR_VAR_1} veces seguidas en la\lTORRE BATALLA.", MSGBOX_SIGN)
-			_: msgbox("A shield of {STR_VAR_2} that marks\nwinning {STR_VAR_1} times in a row at the\lBATTLE TOWER.", MSGBOX_SIGN)
-		}
+								msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorOrnament_AShieldOfSTR_VAR_2, MSGBOX_SIGN)
 	}
 }
 
@@ -403,10 +347,7 @@ script NewBarkTown_PlayersHouse_2F_DecorCushion{
 			case CUSHION_WATER:
 				bufferstring(0, "WATER")
 		}
-				poryswitch(LANGUAGE) {
-			SPANISH: msgbox("Es un cómodo COJÍN {STR_VAR_1}.", MSGBOX_SIGN)
-			_: msgbox("It's a comfortable {STR_VAR_1} CUSHION.", MSGBOX_SIGN)
-		}
+								msgbox(NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorCushion_ItSAComfortable, MSGBOX_SIGN)
 	}
 }
 
@@ -461,4 +402,127 @@ script NewBarkTown_PlayersHouse_2F_CreateRandomRoom{
 	release
 	warp(MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_2F, 0xFF, 5, 4)
 	end
+}
+
+// ---------------------------------------------------------------------------
+// Texts
+// ---------------------------------------------------------------------------
+
+text Common_Text_LookCloserAtMap{
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es el MAPA."
+		_: "It's the TOWN MAP."
+	}
+}
+
+text(local) NewBarkTown_PlayersHouse_2F_Text_RadioTextDone{
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡{POKEMON}!\nCANAL {POKEMON}…"
+		_: "{POKEMON}!\n{POKEMON} CHANNEL…"
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_Radio_ThisWasPROFOAK {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Esto fue CHARLA {POKEMON} del PROF. OAK!\n¡Sintonízanos la próxima vez!"
+		_: "This was PROF. OAK'S {POKEMON} TALK!\nPlease tune in next time!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_Radio_PokemonCHANNEL {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡CANAL {POKEMON}!"
+		_: "{POKEMON} CHANNEL!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_Radio_ThisIsDJMARY {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Soy ROSA, vuestra copresentadora,\n¡me despido!"
+		_: "This is DJ MARY, your co-host,\nsigning off!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorPoster_ItSAPoster {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es un póster de{STR_VAR_2}un adorable {STR_VAR_1}."
+		_: "It's a poster of{STR_VAR_2}cute {STR_VAR_1}."
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorConsole_PlayedWithTheNES {
+	poryswitch(LANGUAGE) {
+		SPANISH: "{PLAYER} jugó con la NES.\p…¡Vale!\n¡Es hora de irse!"
+		_: "{PLAYER} played with the NES.\p…Okay!\nIt's time to go!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorConsole_ItSASuper {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es una Super NES.\p¡Los gráficos parecen tan realistas!"
+		_: "It's a Super NES.\pThe graphics look so lifelike!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorConsole_ItSANintendo {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es una Nintendo 64.\pHay un Transfer Pak conectado en la\nparte trasera del mando."
+		_: "It's a Nintendo 64.\pA Transfer Pak is connected to the\nback of the controller."
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorConsole_ItSAVirtual {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es una Virtual Boy.\pParece incómoda para jugar."
+		_: "It's a Virtual Boy.\pIt looks uncomfortable to play."
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorConsole_ItSANintendo_2 {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es una Nintendo GameCube.\pHay una Game Boy Advance conectada\ncomo mando."
+		_: "It's a Nintendo GameCube.\pA Game Boy Advance is connected to\nserve as the controller."
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorBigDoll_AGiantDollIt {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Un muñeco gigante!\nEs suave y achuchable."
+		_: "A giant doll!\nIt's fluffy and cuddly."
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorOrnament_ItSAnAdorable {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es un adorable MUÑECO de {STR_VAR_1}."
+		_: "It's an adorable {STR_VAR_1} DOLL."
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorOrnament_ItSANormal {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es un TROFEO PLATA de aspecto normal."
+		_: "It's a normal-looking SILVER TROPHY."
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorOrnament_ItSAGorgeous {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es un TROFEO ORO de aspecto precioso."
+		_: "It's a gorgeous-looking GOLD TROPHY."
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorOrnament_AShieldOfSTR_VAR_2 {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Un escudo de {STR_VAR_2} que marca\nhaber ganado {STR_VAR_1} veces seguidas en la\lTORRE BATALLA."
+		_: "A shield of {STR_VAR_2} that marks\nwinning {STR_VAR_1} times in a row at the\lBATTLE TOWER."
+	}
+}
+
+text NewBarkTown_PlayersHouse_2F_Text_NewBarkTown_PlayersHouse_2F_DecorCushion_ItSAComfortable {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es un cómodo COJÍN {STR_VAR_1}."
+		_: "It's a comfortable {STR_VAR_1} CUSHION."
+	}
 }

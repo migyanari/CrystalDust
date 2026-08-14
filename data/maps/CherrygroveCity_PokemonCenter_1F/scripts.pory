@@ -50,14 +50,14 @@ text CherrygroveCity_PokemonCenter_1F_Text_Gentleman {
 
 text CherrygroveCity_PokemonCenter_1F_Text_Teacher_BeforeAdventure {
 	poryswitch(LANGUAGE) {
-		SPANISH: "Acaban de construir un centro de\ncomunicación inalámbrica aquí arriba.\pPero todavía lo están terminando."
+		SPANISH: "Acaban de construir un centro de\ncomunicación inalámbrica arriba.\pPero todavía lo están terminando."
 		_: "The {POKEMON} WIRELESS CLUB upstairs\nwas just built.\pBut they're still finishing it up."
 	}
 }
 
 text CherrygroveCity_PokemonCenter_1F_Text_Teacher_AfterAdventure {
 	poryswitch(LANGUAGE) {
-		SPANISH: "Acaban de construir un centro de\ncomunicación inalámbrica aquí arriba.\p¡Ya he intercambiado {POKEMON} en él!"
+		SPANISH: "Acaban de construir un centro de\ncomunicación inalámbrica arriba.\p¡Ya he intercambiado {POKEMON} en él!"
 		_: "The {POKEMON} WIRELESS CLUB upstairs\nwas just built.\pI traded {POKEMON} there already!"
 	}
 }

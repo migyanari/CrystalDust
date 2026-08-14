@@ -6,91 +6,58 @@ mapscripts NewBarkTown_MapScripts{
 }
 
 script NewBarkTown_EventScript_FatMan{
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("¡Hola, {PLAYER}! Dicen que el\nPROF. ELM ha descubierto nuevos {POKEMON}.", MSGBOX_NPC)
-		_: msgbox("Yo, {PLAYER}! I hear PROF. ELM\ndiscovered some new {POKEMON}.", MSGBOX_NPC)
-	}
+				msgbox(NewBarkTown_Text_FatMan_YoIHearPROF, MSGBOX_NPC)
 	end
 }
 
 script NewBarkTown_EventScript_Teacher{
     if(flag(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST))
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("Llama a tu mamá con el {POKE}GEAR\npara contarle cómo te va.", MSGBOX_NPC)
-        	_: msgbox("Call your mom on your {POKE}GEAR to\nlet her know how you're doing.", MSGBOX_NPC)
-        }
+                                msgbox(NewBarkTown_Text_Teacher_CallYourMomOn, MSGBOX_NPC)
         end
     }
     if(flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("Hola, {PLAYER}.\n¿Te vas otra vez?\pDeberías avisarle a tu mamá si\nsales del pueblo.", MSGBOX_NPC)
-        	_: msgbox("Hi, {PLAYER}!\nLeaving again?\pYou should tell your mom if you're\nleaving town.", MSGBOX_NPC)
-        }
+                                msgbox(NewBarkTown_Text_Teacher_HiLeavingAgainPYou, MSGBOX_NPC)
         end
     }
     if(flag(FLAG_SYS_POKEMON_GET))
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¡Oh, tu {POKEMON} es adorable!\n¡Ojalá tuviera yo uno!", MSGBOX_NPC)
-        	_: msgbox("Oh! Your {POKEMON} is adorable!\nI wish I had one!", MSGBOX_NPC)
-        }
+                                msgbox(NewBarkTown_Text_Teacher_OhYourPokemonIs, MSGBOX_NPC)
         end
     }
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("¡Uau! ¡Tu {POKE}GEAR es impresionante!\n¿Te la ha dado tu madre?", MSGBOX_NPC)
-		_: msgbox("Wow, your {POKE}GEAR is impressive!\nDid your mom get it for you?", MSGBOX_NPC)
-	}
+				msgbox(NewBarkTown_Text_Teacher_WowYourPOKEGEAR, MSGBOX_NPC)
 	end
 }
 
 script NewBarkTown_EventScript_Slogan{
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("PUEBLO PRIMAVERA\nEl pueblo donde soplan vientos\lde un nuevo amanecer", MSGBOX_SIGN)
-		_: msgbox("NEW BARK TOWN\nThe Town Where the Winds of a\lNew Beginning Blow", MSGBOX_SIGN)
-	}
+				msgbox(NewBarkTown_Text_Slogan_NEWBARKTOWNThe, MSGBOX_SIGN)
 	end
 }
 
 script NewBarkTown_EventScript_ElmLab{
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("LABORATORIO {POKEMON} DE ELM", MSGBOX_SIGN)
-		_: msgbox("ELM {POKEMON} LAB", MSGBOX_SIGN)
-	}
+				msgbox(NewBarkTown_Text_ElmLab_ELMPokemonLAB, MSGBOX_SIGN)
 	end
 }
 
 script NewBarkTown_EventScript_PlayersHouse{
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("Casa de {PLAYER}", MSGBOX_SIGN)
-		_: msgbox("{PLAYER}'s house", MSGBOX_SIGN)
-	}
+				msgbox(NewBarkTown_Text_PlayersHouse_SHOUSE, MSGBOX_SIGN)
 	end
 }
 
 script NewBarkTown_EventScript_ElmsHouse{
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("CASA DEL PROF. ELM", MSGBOX_SIGN)
-		_: msgbox("PROF. ELM'S HOUSE", MSGBOX_SIGN)
-	}
+				msgbox(NewBarkTown_Text_ElmsHouse_PROFELMSHOUSE, MSGBOX_SIGN)
 	end
 }
 
 script NewBarkTown_EventScript_Rival{
 	lockall
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("… … …\pAsí que éste es el famoso\nLABORATORIO {POKEMON} DEL PROF. ELM…")
-		_: msgbox("… … …\pSo this is the famous ELM {POKEMON}\nLAB…")
-	}
+				msgbox(NewBarkTown_Text_Rival_PSo)
 	closemessage
 	delay(20)
 	faceplayer
 	delay(20)
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("…¿Qué estás mirando?")
-		_: msgbox("…What are you staring at?")
-	}
+				msgbox(NewBarkTown_Text_Rival_WhatAreYou)
 	closemessage
 	delay(10)
     if(var(VAR_FACING) == DIR_NORTH)
@@ -152,10 +119,7 @@ script NewBarkTown_EventScript_TeacherTriggers{
 	textcolor(MSG_COLOR_RED)
 	playbgm(MUS_MOMS_THEME, 0)
 	turnobject(2, DIR_WEST)
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("¡Espera, {PLAYER}!")
-		_: msgbox("Wait, {PLAYER}!")
-	}
+				msgbox(NewBarkTown_Text_TeacherTriggers_Wait)
 	closemessage
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
 	waitmovement(0)
@@ -172,10 +136,7 @@ script NewBarkTown_EventScript_TeacherTriggers{
 	        applymovement(2, NewBarkTown_Movement_TeacherToBottomSpot)
     }
     waitmovement(0)
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("¿Qué crees que estás haciendo?")
-		_: msgbox("What do you think you're doing?")
-	}
+				msgbox(NewBarkTown_Text_TeacherTriggers_WhatDoYouThink)
 	closemessage
     switch(var(VAR_TEMP_1))
     {
@@ -190,10 +151,7 @@ script NewBarkTown_EventScript_TeacherTriggers{
 	        applymovement(2, NewBarkTown_Movement_TeacherFromBottomSpot)
     }
     waitmovement(0)
-		poryswitch(LANGUAGE) {
-		SPANISH: msgbox("Es peligroso salir sin un\n{POKEMON}.\pDe camino hacia la siguiente ciudad\nte encontrarás con {POKEMON} salvajes.")
-		_: msgbox("It's dangerous to go out without a\n{POKEMON}!\pWild {POKEMON} jump out of the grass\non the way to the next town.")
-	}
+				msgbox(NewBarkTown_Text_TeacherTriggers_ItSDangerousTo)
 	closemessage
 	savebgm(MUS_DUMMY)
 	fadedefaultbgm
@@ -228,4 +186,106 @@ script NewBarkTown_EventScript_TeacherTriggers{
     walk_up
     walk_right * 6
     face_left
+}
+
+// ---------------------------------------------------------------------------
+// Texts
+// ---------------------------------------------------------------------------
+
+text NewBarkTown_Text_FatMan_YoIHearPROF {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Hola, {PLAYER}! Dicen que el PROF. ELM\nha descubierto nuevos {POKEMON}."
+		_: "Yo, {PLAYER}! I hear PROF. ELM\ndiscovered some new {POKEMON}."
+	}
+}
+
+text NewBarkTown_Text_Teacher_CallYourMomOn {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Llama a tu mamá con el {POKE}GEAR\npara contarle cómo te va."
+		_: "Call your mom on your {POKE}GEAR to\nlet her know how you're doing."
+	}
+}
+
+text NewBarkTown_Text_Teacher_HiLeavingAgainPYou {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Hola, {PLAYER}.\n¿Te vas otra vez?\pDeberías avisarle a tu mamá si\nsales del pueblo."
+		_: "Hi, {PLAYER}!\nLeaving again?\pYou should tell your mom if you're\nleaving town."
+	}
+}
+
+text NewBarkTown_Text_Teacher_OhYourPokemonIs {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Oh, tu {POKEMON} es adorable!\n¡Ojalá tuviera yo uno!"
+		_: "Oh! Your {POKEMON} is adorable!\nI wish I had one!"
+	}
+}
+
+text NewBarkTown_Text_Teacher_WowYourPOKEGEAR {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Uau! ¡Tu {POKE}GEAR es impresionante!\n¿Te la ha dado tu madre?"
+		_: "Wow, your {POKE}GEAR is impressive!\nDid your mom get it for you?"
+	}
+}
+
+text NewBarkTown_Text_Slogan_NEWBARKTOWNThe {
+	poryswitch(LANGUAGE) {
+		SPANISH: "PUEBLO PRIMAVERA\nEl pueblo donde soplan vientos\lde un nuevo amanecer"
+		_: "NEW BARK TOWN\nThe Town Where the Winds of a\lNew Beginning Blow"
+	}
+}
+
+text NewBarkTown_Text_ElmLab_ELMPokemonLAB {
+	poryswitch(LANGUAGE) {
+		SPANISH: "LABORATORIO DE ELM"
+		_: "ELM {POKEMON} LAB"
+	}
+}
+
+text NewBarkTown_Text_PlayersHouse_SHOUSE {
+	poryswitch(LANGUAGE) {
+		SPANISH: "CASA DE {PLAYER}"
+		_: "{PLAYER}'s HOUSE"
+	}
+}
+
+text NewBarkTown_Text_ElmsHouse_PROFELMSHOUSE {
+	poryswitch(LANGUAGE) {
+		SPANISH: "CASA DE ELM"
+		_: "PROF. ELM'S HOUSE"
+	}
+}
+
+text NewBarkTown_Text_Rival_PSo {
+	poryswitch(LANGUAGE) {
+		SPANISH: "… … …\pAsí que éste es el famoso\nLABORATORIO {POKEMON} de ELM…"
+		_: "… … …\pSo this is the famous ELM {POKEMON}\nLAB…"
+	}
+}
+
+text NewBarkTown_Text_Rival_WhatAreYou {
+	poryswitch(LANGUAGE) {
+		SPANISH: "…¿Qué estás mirando?"
+		_: "…What are you staring at?"
+	}
+}
+
+text NewBarkTown_Text_TeacherTriggers_Wait {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Espera, {PLAYER}!"
+		_: "Wait, {PLAYER}!"
+	}
+}
+
+text NewBarkTown_Text_TeacherTriggers_WhatDoYouThink {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Qué crees que estás haciendo?"
+		_: "What do you think you're doing?"
+	}
+}
+
+text NewBarkTown_Text_TeacherTriggers_ItSDangerousTo {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Es peligroso salir sin un\n{POKEMON}.\pDe camino hacia la siguiente ciudad\nte encontrarás con {POKEMON} salvajes."
+		_: "It's dangerous to go out without a\n{POKEMON}!\pWild {POKEMON} jump out of the grass\non the way to the next town."
+	}
 }

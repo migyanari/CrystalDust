@@ -177,7 +177,7 @@ text Route30_Text_DirectionsBoy_AdventureStarted {
 
 text Route30_Text_DirectionsBoy_Default {
     poryswitch(LANGUAGE) {
-        SPANISH: "¿La casa del Sr. {POKEMON}?\nEstá un poco más adelante."
+        SPANISH: "¿La casa del SR. {POKEMON}?\nEstá un poco más adelante."
         _: "MR. {POKEMON}'s house?\nIt's a bit farther ahead."
     }
 }

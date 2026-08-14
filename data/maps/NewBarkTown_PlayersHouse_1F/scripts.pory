@@ -35,67 +35,26 @@ script NewBarkTown_PlayersHouse_1F_MomEncounter {
     applymovement(OBJ_EVT_MOM, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer)
     waitmovement(0)
     delay(20)
-        poryswitch(LANGUAGE) {
-    	SPANISH: msgbox("MAMÁ: ¡Ah, {PLAYER}…!\pNuestro vecino, el PROF. ELM,\nte estaba buscando.\pDijo que quería que le hicieras\nun favor.\p¡Ah! ¡Casi se me olvidaba!\nYa han traído tu {POKE}GEAR\ldel taller.\l¡Aquí tienes!")
-    	_: msgbox("MOM: Oh, {PLAYER}…!\p"
-                   "Our neighbor, PROF. ELM, was just\n"
-                   "looking for you.\p"
-                   "He said he wanted you to do\n"
-                   "something for him.\p"
-                   "Oh, I almost forgot! Your {POKEMON}\n"
-                   "GEAR is back from the repair shop.\l"
-                   "Here you go!")
-    }
+                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_MOMOhP)
     textcolor(MSG_COLOR_PREV)
     playfanfare(MUS_OBTAIN_ITEM)
-        poryswitch(LANGUAGE) {
-    	SPANISH: message("{PLAYER} recibió el {POKE}GEAR.")
-    	_: message("{PLAYER} received the {POKE}GEAR.")
-    }
+                message(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ReceivedThePOKEGEAR)
     waitfanfare
     setflag(FLAG_SYS_POKEGEAR_GET)
     setflag(FLAG_PHONE_CARD_MOM)
     textcolor(MSG_COLOR_RED)
-        poryswitch(LANGUAGE) {
-    	SPANISH: msgbox("El {POKEMON} GEAR, o simplemente\n{POKE}GEAR.\nEs básico para ser un buen ENTRENADOR.\p¡Ah! Falta el día de la semana.\n¡No olvides ponerlo!")
-    	_: msgbox("{POKEMON} GEAR, or just {POKE}GEAR.\n"
-                   "It's essential if you want to be\l"
-                   "a good TRAINER.\p"
-                   "Oh, the day of the week isn't set.\n"
-                   "You mustn't forget that!")
-    }
+                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_PokemonGEAROrJust)
     call(NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek)
     call(NewBarkTown_PlayersHouse_1F_MomDaylightSaving)
-        poryswitch(LANGUAGE) {
-    	SPANISH: msgbox("Vuelve a casa para cambiar de hora\nel reloj.\pPor cierto… ¿Sabes cómo usar\nel TELÉFONO?", MSGBOX_YESNO)
-    	_: msgbox("Come home to adjust your clock for\n"
-                   "Daylight Saving Time.\p"
-                   "By the way, do you know how to\n"
-                   "use the PHONE?", MSGBOX_YESNO)
-    }
+                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ComeHomeToAdjust, MSGBOX_YESNO)
 
     if (var(VAR_RESULT) == NO)
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("Te leeré las instrucciones.\pEnciende el {POKE}GEAR y elige\nel TELÉFONO.\pLos números están en la memoria.\nElige el nombre que quieras.\p¿No te parece estupendo?")
-        	_: msgbox("I'll read the instructions.\p"
-                       "“Turn the {POKE}GEAR on and select\n"
-                       "the PHONE icon by scrolling to it.\p"
-                       "“Phone numbers are stored in memory.\n"
-                       "Just choose who you want to call.”\p"
-                       "Gee, isn't that convenient?")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ILlReadThe)
     }
     else
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¿Recuerdas que hay que encender el\n{POKE}GEAR y elegir el TELÉFONO?\pLos números están en la memoria.\nElige el nombre que quieras.\p¿No te parece estupendo?")
-        	_: msgbox("Don't you just turn the {POKE}GEAR on\n"
-                       "and select the PHONE icon?\p"
-                       "“Phone numbers are stored in memory.\n"
-                       "Just choose who you want to call.”\p"
-                       "Gee, isn't that convenient?")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_DonTYouJust)
     }
 
     closemessage
@@ -109,10 +68,7 @@ script NewBarkTown_PlayersHouse_1F_MomEncounter {
 }
 
 script NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek {
-        poryswitch(LANGUAGE) {
-    	SPANISH: message("¿Qué día es hoy?")
-    	_: message("What day is it?")
-    }
+                message(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek_WhatDayIsIt)
     waitmessage
     setvar(VAR_0x8004, SCROLL_MULTI_DAY_OF_WEEK)
     setvar(VAR_0x8005, 0)
@@ -120,10 +76,7 @@ script NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek {
     waitstate
     copyvar(VAR_0x8004, VAR_RESULT)
     special(CopyDayOfWeekStringToVar1)
-        poryswitch(LANGUAGE) {
-    	SPANISH: msgbox("¿{STR_VAR_1}, verdad?", MSGBOX_YESNO)
-    	_: msgbox("{STR_VAR_1}, is it?", MSGBOX_YESNO)
-    }
+                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek_STR_VAR_1IsIt, MSGBOX_YESNO)
     if (var(VAR_RESULT) == NO)
     {
         goto(NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek)
@@ -132,29 +85,20 @@ script NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek {
 }
 
 script NewBarkTown_PlayersHouse_1F_MomDaylightSaving {
-        poryswitch(LANGUAGE) {
-    	SPANISH: msgbox("¿Es horario de verano ahora?", MSGBOX_YESNO)
-    	_: msgbox("Is it Daylight Saving Time now?", MSGBOX_YESNO)
-    }
+                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_IsItDaylightSaving, MSGBOX_YESNO)
     special(WriteCurrentTimeStringToStrVar1)
 
     if (var(VAR_RESULT) == NO)
     {
         copyvar(VAR_0x8004, VAR_RESULT)
         special(SetInitialDSTMode)
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¿{STR_VAR_1}, es correcto?", MSGBOX_YESNO)
-        	_: msgbox("{STR_VAR_1}, is that correct?", MSGBOX_YESNO)
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_STR_VAR_1IsThatCorrect, MSGBOX_YESNO)
     }
     else
     {
         copyvar(VAR_0x8004, VAR_RESULT)
         special(SetInitialDSTMode)
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¿{STR_VAR_1} (horario de verano), es correcto?", MSGBOX_YESNO)
-        	_: msgbox("{STR_VAR_1} DST, is that correct?", MSGBOX_YESNO)
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_STR_VAR_1DSTIsThat, MSGBOX_YESNO)
     }
     
     if (var(VAR_RESULT) == NO)
@@ -181,21 +125,11 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
     faceplayer
     if (flag(FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM))
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("MAMÁ: ¡{PLAYER}, hazlo!\n¡Te apoyo con todo mi corazón!")
-        	_: msgbox("MOM: {PLAYER}, do it!\n"
-                       "I'm behind you all the way!")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMDoItI)
     }
     elif (flag(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST))
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("MAMÁ: ¡Hola! ¡Bienvenid{KUN} a casa!\nVeo que lo estás intentando mucho.\pHe mantenido tu habitación ordenada…\n¿O es por tu dinero?", MSGBOX_YESNO)
-        	_: msgbox("MOM: Hi! Welcome home!\n"
-                       "You're trying very hard, I see.\p"
-                       "I've kept your room tidy…\n"
-                       "Or is this about your money?", MSGBOX_YESNO)
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMHiWelcomeHome, MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
             goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBank)
@@ -212,17 +146,11 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
                 }
                 else
                 {
-                                        poryswitch(LANGUAGE) {
-                    	SPANISH: msgbox("¿Ha terminado el horario de verano?", MSGBOX_YESNO)
-                    	_: msgbox("Is Daylight Saving Time over?", MSGBOX_YESNO)
-                    }
+                                                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_IsDaylightSavingTime, MSGBOX_YESNO)
                     if (var(VAR_RESULT) == YES)
                     {
                         special(SwitchDSTMode)
-                                                poryswitch(LANGUAGE) {
-                        	SPANISH: msgbox("He atrasado el reloj una hora.")
-                        	_: msgbox("I put the clock back one hour.")
-                        }
+                                                                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_IPutTheClock)
                     }
                 }
             }
@@ -234,18 +162,11 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
                 }
                 else
                 {
-                                        poryswitch(LANGUAGE) {
-                    	SPANISH: msgbox("¿Quieres cambiar al horario\nde verano?", MSGBOX_YESNO)
-                    	_: msgbox("Do you want to switch to Daylight\n"
-                                   "Saving Time?", MSGBOX_YESNO)
-                    }
+                                                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_DoYouWantTo, MSGBOX_YESNO)
                     if (var(VAR_RESULT) == YES)
                     {
                         special(SwitchDSTMode)
-                                                poryswitch(LANGUAGE) {
-                        	SPANISH: msgbox("He adelantado el reloj una hora.")
-                        	_: msgbox("I set the clock forward by one hour.")
-                        }
+                                                                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_ISetTheClock)
                     }
                 }
             }
@@ -257,72 +178,27 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
         setflag(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST)
         setflag(FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM)
         setvar(VAR_ROUTE31_STATE, 1)
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("MAMÁ: Vaya, ¡qué {POKEMON} tan mono!\n¿De dónde lo has sacado?\p…\pAsí que te vas de aventuras…\p¡Está bien! Yo también te ayudaré.\nPero, ¿qué puedo hacer por ti?\p¡Ya lo sé!\n¡Guardaré dinero para ti!\pEn un viaje tan largo, el dinero\nes muy importante.\p¿Quieres que te guarde el dinero?", MSGBOX_YESNO)
-        	_: msgbox("MOM: Wow, that's a cute {POKEMON}.\n"
-                       "Where did you get it?\p"
-                       "…\p"
-                       "So, you're leaving on an adventure…\p"
-                       "Okay! I'll help too.\n"
-                       "But what can I do for you?\p"
-                       "I know!\n"
-                       "I'll save money for you.\p"
-                       "On a long journey, money is very\n"
-                       "important.\p"
-                       "Do you want me to save your money?", MSGBOX_YESNO)
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMWowThatS, MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
             setflag(FLAG_SYS_MOM_BANKING_ENABLED)
-                        poryswitch(LANGUAGE) {
-            	SPANISH: msgbox("Vale, me encargo de tu dinero.\n………………")
-            	_: msgbox("Okay, I'll take care of your money.\n"
-                           "………………")
-            }
+                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_OkayILlTake)
         }
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("Ten cuidado.\pLos {POKEMON} son tus amigos.\nTenéis que trabajar en equipo.\p¡Ahora, adelante!")
-        	_: msgbox("Be careful.\p"
-                       "{POKEMON} are your friends.\n"
-                       "You need to work as a team.\p"
-                       "Now, go on!")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_BeCarefulPPokemon)
     }
     elif (flag(FLAG_SYS_POKEMON_GET))
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("MAMÁ: Entonces, ¿cuál era el encargo\ndel PROF. ELM?\p…\nParece muy difícil.\pDeberías sentirte orgullos{KUN}\nde que la gente confíe en ti.")
-        	_: msgbox("MOM: So, what was PROF. ELM's\n"
-                       "errand?\p"
-                       "…\n"
-                       "That does sound challenging.\p"
-                       "But, you should be proud that\n"
-                       "people rely on you.")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMSoWhatWas)
     }
     else
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("MAMÁ: El PROF. ELM te está esperando.\n¡Date prisa!")
-        	_: msgbox("MOM: PROF. ELM is waiting for you.\n"
-                       "Hurry up, baby!")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMPROFELMIs)
     }
     release
 }
 
-text NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan {
-    poryswitch(LANGUAGE) {
-        SPANISH: "Haz lo que puedas."
-        _: "Just do what you can."
-    }
-}
-
 script NewBarkTown_PlayersHouse_1F_EventScript_MomBank {
-        poryswitch(LANGUAGE) {
-    	SPANISH: message("¿Qué quieres hacer?")
-    	_: message("What do you want to do?")
-    }
+                message(NewBarkTown_PlayersHouse_1F_Text_MomBank_WhatDoYouWant)
     waitmessage
     multichoice(0, 0, MULTI_MOM_BANK, FALSE)
     switch (var(VAR_RESULT))
@@ -334,19 +210,11 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBank {
         // deposit
         call(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
     case 2:
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¿Quieres que te guarde dinero?", MSGBOX_YESNO)
-        	_: msgbox("Do you want to save some money?", MSGBOX_YESNO)
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBank_DoYouWantTo, MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
             setflag(FLAG_SYS_MOM_BANKING_ENABLED)
-                        poryswitch(LANGUAGE) {
-            	SPANISH: msgbox("Vale, guardaré tu dinero.\n¡Confía en mí!\p¡{PLAYER}, no te rindas!")
-            	_: msgbox("Okay, I'll save your money.\n"
-                           "Trust me!\p"
-                           "{PLAYER}, stick with it!")
-            }
+                                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBank_OkayILlSave)
         }
         else
         {
@@ -369,23 +237,14 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw {
         // withdraw success
         playse(SE_SHOP)
         waitse
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¡{PLAYER}, no te rindas!")
-        	_: msgbox("{PLAYER}, don't give up!")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_DonTGiveUp)
     case 1:
         // not enough in bank
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("No has ahorrado tanto.")
-        	_: msgbox("You haven't saved that much.")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_YouHavenTSaved)
         goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw)
     case 2:
         // too much in wallet
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("No puedes retirar tanto.")
-        	_: msgbox("You can't take that much.")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_YouCanTTake)
         goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw)
     default:
         msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
@@ -402,24 +261,14 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit {
         // deposit success
         playse(SE_SHOP)
         waitse
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¡Tu dinero está a salvo aquí!\n¡Adelante!")
-        	_: msgbox("Your money's safe here!\n"
-                        "Get going!")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YourMoneySSafe)
     case 1:
         // not enough in wallet
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("No tienes tanto.")
-        	_: msgbox("You don't have that much.")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YouDonTHave)
         goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
     case 2:
         // too much in bank
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("No puedes ahorrar tanto.")
-        	_: msgbox("You can't save that much.")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YouCanTSave)
         goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
     default:
         msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
@@ -427,20 +276,10 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit {
 }
 
 script NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet {
-        poryswitch(LANGUAGE) {
-    	SPANISH: msgbox("¿Quieres ajustar el reloj para el\nhorario de verano?", MSGBOX_YESNO)
-    	_: msgbox("Do you want to adjust your clock for\n"
-                   "Daylight Saving Time?", MSGBOX_YESNO)
-    }
+                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_DoYouWantTo, MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES)
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("Creo que he perdido el manual\nde instrucciones del {POKE}GEAR…\pTengo que ir a buscarlo.\nVuelve dentro de un rato.")
-        	_: msgbox("I think I lost the instruction\n"
-                       "booklet for the {POKE}GEAR…\p"
-                       "I need to go look for it.\n"
-                       "Come back again in a while.")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_IThinkILost)
     }
 }
 
@@ -450,35 +289,17 @@ script NewBarkTown_PlayersHouse_1F_NeighborTalk {
     gettime
     if (var(VAR_0x8002) == TIME_MORNING)
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¡Buenos días, {PLAYER}!\n¡Estoy de visita!\p", MSGBOX_CONTINUE)
-        	_: msgbox("Good morning, {PLAYER}!\n"
-                       "I'm visiting!\p", MSGBOX_CONTINUE)
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_GoodMorningIM, MSGBOX_CONTINUE)
     }
     elif (var(VAR_0x8002) == TIME_DAY)
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¡Hola, {PLAYER}!\n¡Estoy de visita!\p", MSGBOX_CONTINUE)
-        	_: msgbox("Hello, {PLAYER}!\n"
-                       "I'm visiting!\p", MSGBOX_CONTINUE)
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_HelloIMVisiting, MSGBOX_CONTINUE)
     }
     elif (var(VAR_0x8002) == TIME_NIGHT)
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¡Buenas tardes, {PLAYER}!\n¡Estoy de visita!\p", MSGBOX_CONTINUE)
-        	_: msgbox("Good evening, {PLAYER}!\n"
-                       "I'm visiting!\p", MSGBOX_CONTINUE)
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_GoodEveningIM, MSGBOX_CONTINUE)
     }
-        poryswitch(LANGUAGE) {
-    	SPANISH: msgbox("{PLAYER}, ¿has oído?\pMi hija está empeñada en ser\nayudante del PROF. ELM.\l¡Le encantan los {POKEMON}!")
-    	_: msgbox("{PLAYER}, have you heard?\p"
-                   "My daughter is adamant about\n"
-                   "becoming PROF. ELM's assistant.\l"
-                   "She really loves {POKEMON}!")
-    }
+                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_HaveYouHeardP)
     closemessage
     applymovement(VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestRight)
     waitmovement(0)
@@ -486,13 +307,7 @@ script NewBarkTown_PlayersHouse_1F_NeighborTalk {
 }
 
 script NewBarkTown_PlayersHouse_1F_TV {
-        poryswitch(LANGUAGE) {
-    	SPANISH: msgbox("Están poniendo una peli...\nLas estrellas iluminan el cielo mientras\ldos chicos viajan en un tren…\pBueno, voy a ponerme en marcha.", MSGBOX_SIGN)
-    	_: msgbox("There's a movie on TV.\n"
-                   "Stars dot the sky as two boys\l"
-                   "ride on a train…\p"
-                   "I'd better get rolling too!", MSGBOX_SIGN)
-    }
+                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_TV_ThereSAMovie, MSGBOX_SIGN)
 }
 
 script NewBarkTown_PlayersHouse_1F_Stove {
@@ -500,35 +315,395 @@ script NewBarkTown_PlayersHouse_1F_Stove {
     random(1000)
     if (var(VAR_RESULT) == 0)
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("UN ANUNCIO PUBLICITARIO PARA MAMÁ\nVOLCANO BAKEMEAT.")
-        	_: msgbox("A ADEPT ARRANGING FOR MOTHER\n"
-                       "VOLCANO BAKEMEAT.")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Stove_AADEPTARRANGINGFOR)
     }
     else
     {
-                poryswitch(LANGUAGE) {
-        	SPANISH: msgbox("¡Es la especialidad de mamá,\nla HAMBURGUESA VOLCÁN CANELA!")
-        	_: msgbox("It's Mom's specialty, the\n"
-                       "CINNABAR VOLCANO BURGER!")
-        }
+                                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Stove_ItSMomS)
     }
     release
 }
 
 script NewBarkTown_PlayersHouse_1F_Sink {
-        poryswitch(LANGUAGE) {
-    	SPANISH: msgbox("El fregadero está impecable.\nA mamá le gusta mantenerlo limpio.", MSGBOX_SIGN)
-    	_: msgbox("The sink is spotless.\n"
-                   "Mom likes to keep it clean.", MSGBOX_SIGN)
-    }
+                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Sink_TheSinkIsSpotless, MSGBOX_SIGN)
 }
 
 script NewBarkTown_PlayersHouse_1F_Fridge {
-        poryswitch(LANGUAGE) {
-    	SPANISH: msgbox("Veamos qué hay en la nevera…\p¡AGUA FRESCA y rica LIMONADA!", MSGBOX_SIGN)
-    	_: msgbox("Let's see what's in the fridge…\p"
-                   "FRESH WATER and tasty LEMONADE!", MSGBOX_SIGN)
+                msgbox(NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Fridge_LetSSeeWhat, MSGBOX_SIGN)
+}
+
+// ---------------------------------------------------------------------------
+// Texts
+// ---------------------------------------------------------------------------
+
+text NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Haz lo que puedas."
+        _: "Just do what you can."
     }
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_MOMOhP {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MAMÁ: ¡Ah, {PLAYER}…!\pNuestro vecino, el PROF. ELM,\nte estaba buscando.\pDijo que quería que le hicieras\nun favor.\p¡Ah! ¡Casi se me olvidaba!\nYa han traído tu {POKE}GEAR\ldel taller.\l¡Aquí tienes!"
+		_: "MOM: Oh, {PLAYER}…!\p"
+                   "Our neighbor, PROF. ELM, was just\n"
+                   "looking for you.\p"
+                   "He said he wanted you to do\n"
+                   "something for him.\p"
+                   "Oh, I almost forgot! Your {POKEMON}\n"
+                   "GEAR is back from the repair shop.\l"
+                   "Here you go!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ReceivedThePOKEGEAR {
+	poryswitch(LANGUAGE) {
+		SPANISH: "{PLAYER} recibió el {POKE}GEAR."
+		_: "{PLAYER} received the {POKE}GEAR."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_PokemonGEAROrJust {
+	poryswitch(LANGUAGE) {
+		SPANISH: "El {POKEMON} GEAR, o simplemente\n{POKE}GEAR.\nEs básico para ser un buen ENTRENADOR.\p¡Ah! Falta el día de la semana.\n¡No olvides ponerlo!"
+		_: "{POKEMON} GEAR, or just {POKE}GEAR.\n"
+                   "It's essential if you want to be\l"
+                   "a good TRAINER.\p"
+                   "Oh, the day of the week isn't set.\n"
+                   "You mustn't forget that!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ComeHomeToAdjust {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Vuelve a casa para cambiar de hora\nel reloj.\pPor cierto… ¿Sabes cómo usar\nel TELÉFONO?"
+		_: "Come home to adjust your clock for\n"
+                   "Daylight Saving Time.\p"
+                   "By the way, do you know how to\n"
+                   "use the PHONE?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_ILlReadThe {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Te leeré las instrucciones.\pEnciende el {POKE}GEAR y elige\nel TELÉFONO.\pLos números están en la memoria.\nElige el nombre que quieras.\p¿No te parece estupendo?"
+		_: "I'll read the instructions.\p"
+                   "“Turn the {POKE}GEAR on and select\n"
+                   "the PHONE icon by scrolling to it.\p"
+                   "“Phone numbers are stored in memory.\n"
+                   "Just choose who you want to call.”\p"
+                   "Gee, isn't that convenient?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomEncounter_DonTYouJust {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Recuerdas que hay que encender el\n{POKE}GEAR y elegir el TELÉFONO?\pLos números están en la memoria.\nElige el nombre que quieras.\p¿No te parece estupendo?"
+		_: "Don't you just turn the {POKE}GEAR on\n"
+                   "and select the PHONE icon?\p"
+                   "“Phone numbers are stored in memory.\n"
+                   "Just choose who you want to call.”\p"
+                   "Gee, isn't that convenient?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek_WhatDayIsIt {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Qué día es hoy?"
+		_: "What day is it?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek_STR_VAR_1IsIt {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿{STR_VAR_1}, verdad?"
+		_: "{STR_VAR_1}, is it?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_IsItDaylightSaving {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Es horario de verano ahora?"
+		_: "Is it Daylight Saving Time now?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_STR_VAR_1IsThatCorrect {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿{STR_VAR_1}, es correcto?"
+		_: "{STR_VAR_1}, is that correct?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomDaylightSaving_STR_VAR_1DSTIsThat {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿{STR_VAR_1} (horario de verano), es correcto?"
+		_: "{STR_VAR_1} DST, is that correct?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMDoItI {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MAMÁ: ¡{PLAYER}, hazlo!\n¡Te apoyo con todo mi corazón!"
+		_: "MOM: {PLAYER}, do it!\n"
+                   "I'm behind you all the way!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMHiWelcomeHome {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MAMÁ: ¡Hola! ¡Bienvenid{KUN} a casa!\nVeo que lo estás intentando mucho.\pHe mantenido tu habitación ordenada…\n¿O es por tu dinero?"
+		_: "MOM: Hi! Welcome home!\n"
+                   "You're trying very hard, I see.\p"
+                   "I've kept your room tidy…\n"
+                   "Or is this about your money?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_IsDaylightSavingTime {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Ha terminado el horario de verano?"
+		_: "Is Daylight Saving Time over?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_IPutTheClock {
+	poryswitch(LANGUAGE) {
+		SPANISH: "He atrasado el reloj una hora."
+		_: "I put the clock back one hour."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_DoYouWantTo {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Quieres cambiar al horario\nde verano?"
+		_: "Do you want to switch to Daylight\n"
+                   "Saving Time?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_ISetTheClock {
+	poryswitch(LANGUAGE) {
+		SPANISH: "He adelantado el reloj una hora."
+		_: "I set the clock forward by one hour."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMWowThatS {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MAMÁ: Vaya, ¡qué {POKEMON} tan mono!\n¿De dónde lo has sacado?\p…\pAsí que te vas de aventuras…\p¡Está bien! Yo también te ayudaré.\nPero, ¿qué puedo hacer por ti?\p¡Ya lo sé!\n¡Guardaré dinero para ti!\pEn un viaje tan largo, el dinero\nes muy importante.\p¿Quieres que te guarde el dinero?"
+		_: "MOM: Wow, that's a cute {POKEMON}.\n"
+                   "Where did you get it?\p"
+                   "…\p"
+                   "So, you're leaving on an adventure…\p"
+                   "Okay! I'll help too.\n"
+                   "But what can I do for you?\p"
+                   "I know!\n"
+                   "I'll save money for you.\p"
+                   "On a long journey, money is very\n"
+                   "important.\p"
+                   "Do you want me to save your money?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_OkayILlTake {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Vale, me encargo de tu dinero.\n………………"
+		_: "Okay, I'll take care of your money.\n"
+                   "………………"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_BeCarefulPPokemon {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Ten cuidado.\pLos {POKEMON} son tus amigos.\nTenéis que trabajar en equipo.\p¡Ahora, adelante!"
+		_: "Be careful.\p"
+                   "{POKEMON} are your friends.\n"
+                   "You need to work as a team.\p"
+                   "Now, go on!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMSoWhatWas {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MAMÁ: Entonces, ¿cuál era el encargo\ndel PROF. ELM?\p…\nParece muy difícil.\pDeberías sentirte orgullos{KUN}\nde que la gente confíe en ti."
+		_: "MOM: So, what was PROF. ELM's\n"
+                   "errand?\p"
+                   "…\n"
+                   "That does sound challenging.\p"
+                   "But, you should be proud that\n"
+                   "people rely on you."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_MomTalk_MOMPROFELMIs {
+	poryswitch(LANGUAGE) {
+		SPANISH: "MAMÁ: El PROF. ELM te está esperando.\n¡Date prisa!"
+		_: "MOM: PROF. ELM is waiting for you.\n"
+                   "Hurry up, baby!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomBank_WhatDoYouWant {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Qué quieres hacer?"
+		_: "What do you want to do?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomBank_DoYouWantTo {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Quieres que te guarde dinero?"
+		_: "Do you want to save some money?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomBank_OkayILlSave {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Vale, guardaré tu dinero.\n¡Confía en mí!\p¡{PLAYER}, no te rindas!"
+		_: "Okay, I'll save your money.\n"
+                   "Trust me!\p"
+                   "{PLAYER}, stick with it!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_DonTGiveUp {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡{PLAYER}, no te rindas!"
+		_: "{PLAYER}, don't give up!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_YouHavenTSaved {
+	poryswitch(LANGUAGE) {
+		SPANISH: "No has ahorrado tanto."
+		_: "You haven't saved that much."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomBankWithdraw_YouCanTTake {
+	poryswitch(LANGUAGE) {
+		SPANISH: "No puedes retirar tanto."
+		_: "You can't take that much."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YourMoneySSafe {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Tu dinero está a salvo aquí!\n¡Adelante!"
+		_: "Your money's safe here!\n"
+                   "Get going!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YouDonTHave {
+	poryswitch(LANGUAGE) {
+		SPANISH: "No tienes tanto."
+		_: "You don't have that much."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomBankDeposit_YouCanTSave {
+	poryswitch(LANGUAGE) {
+		SPANISH: "No puedes ahorrar tanto."
+		_: "You can't save that much."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_DoYouWantTo {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿Quieres ajustar el reloj para el\nhorario de verano?"
+		_: "Do you want to adjust your clock for\n"
+                   "Daylight Saving Time?"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet_IThinkILost {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Creo que he perdido el manual\nde instrucciones del {POKE}GEAR…\pTengo que ir a buscarlo.\nVuelve dentro de un rato."
+		_: "I think I lost the instruction\n"
+                   "booklet for the {POKE}GEAR…\p"
+                   "I need to go look for it.\n"
+                   "Come back again in a while."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_GoodMorningIM {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Buenos días, {PLAYER}!\n¡Estoy de visita!\p"
+		_: "Good morning, {PLAYER}!\n"
+                   "I'm visiting!\p"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_HelloIMVisiting {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Hola, {PLAYER}!\n¡Estoy de visita!\p"
+		_: "Hello, {PLAYER}!\n"
+                   "I'm visiting!\p"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_GoodEveningIM {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Buenas tardes, {PLAYER}!\n¡Estoy de visita!\p"
+		_: "Good evening, {PLAYER}!\n"
+                   "I'm visiting!\p"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_NeighborTalk_HaveYouHeardP {
+	poryswitch(LANGUAGE) {
+		SPANISH: "{PLAYER}, ¿has oído?\pMi hija está empeñada en ser\nayudante del PROF. ELM.\l¡Le encantan los {POKEMON}!"
+		_: "{PLAYER}, have you heard?\p"
+                   "My daughter is adamant about\n"
+                   "becoming PROF. ELM's assistant.\l"
+                   "She really loves {POKEMON}!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_TV_ThereSAMovie {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Hay una película en TV.\n"
+                   "Dos chicos montan en un tren bajo\l"
+                   "el cielo estrellado…\p"
+                   "¡Será mejor que me ponga en marcha también!"
+		_: "There's a movie on TV.\n"
+                   "Stars dot the sky as two boys\l"
+                   "ride on a train…\p"
+                   "I'd better get rolling too!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Stove_AADEPTARRANGINGFOR {
+	poryswitch(LANGUAGE) {
+		SPANISH: "UN ANUNCIO PUBLICITARIO PARA MAMÁ\nVOLCANO BAKEMEAT."
+		_: "A ADEPT ARRANGING FOR MOTHER\n"
+                   "VOLCANO BAKEMEAT."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Stove_ItSMomS {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡La especialidad de mi madre!\n¡HAMBURGUESA VOLCÁN CANELA!"
+		_: "It's Mom's specialty, the\n"
+                   "CINNABAR VOLCANO BURGER!"
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Sink_TheSinkIsSpotless {
+	poryswitch(LANGUAGE) {
+		SPANISH: "El fregadero está impecable.\nA mamá le gusta mantenerlo limpio."
+		_: "The sink is spotless.\n"
+                   "Mom likes to keep it clean."
+	}
+}
+
+text NewBarkTown_PlayersHouse_1F_Text_NewBarkTown_PlayersHouse_1F_Fridge_LetSSeeWhat {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Veamos qué hay en la nevera…\p¡AGUA FRESCA y una sabrosa\nLIMONADA!"
+		_: "Let's see what's in the fridge…\p"
+                   "FRESH WATER and tasty LEMONADE!"
+	}
 }

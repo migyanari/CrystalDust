@@ -256,7 +256,7 @@ text CherrygroveCity_Text_GuideGent_Intro {
 
 text CherrygroveCity_Text_GuideGent_Declined {
 	poryswitch(LANGUAGE) {
-		SPANISH: "¡Oh…!\nDisfruto haciéndolo…\pBueno.\nVuelve a verme cuando quieras."
+		SPANISH: "¡Oh…!\nCon lo que disfruto haciéndolo…\pBueno.\nVuelve a verme cuando quieras."
 		_: "Oh…\nIt's something I enjoy doing…\pFine. Come see me when you like."
 	}
 }
@@ -277,7 +277,7 @@ text CherrygroveCity_Text_GuideGent_PokemonCenter {
 
 text CherrygroveCity_Text_GuideGent_Mart {
 	poryswitch(LANGUAGE) {
-		SPANISH: "Esto es una TIENDA {POKEMON}.\pHay {POKE} BALLS para capturar\n{POKEMON} salvajes y otras muchas cosas."
+		SPANISH: "Esto es una TIENDA {POKEMON}.\pHay {POKE} BALLS para capturar\n{POKEMON} salvajes y otras muchas\pcosas."
 		_: "This is a {POKEMON} MART.\pThey sell {POKE} BALLS for catching\nwild {POKEMON} and other useful items."
 	}
 }
@@ -312,7 +312,7 @@ text CherrygroveCity_Text_GuideGent_ReceivedMapCard {
 
 text CherrygroveCity_Text_GuideGent_PokegearHasMap {
 	poryswitch(LANGUAGE) {
-		SPANISH: "¡El {POKE}GEAR de {PLAYER}\nya tiene un MAPA!"
+		SPANISH: "¡El {POKE}GEAR de {PLAYER}\nahora tiene un MAPA!"
 		_: "{PLAYER}'s {POKE}GEAR now has a MAP!"
 	}
 }

@@ -3,20 +3,33 @@ mapscripts Route30_BerryMansHouse_MapScripts{}
 script Route30_BerryMansHouse_EventScript_Man{
 	lock
 	faceplayer
-    if(!flag(FLAG_ROUTE_30_RECEIVED_BERRY_MAN))
-    {
-        msgbox("You know, {POKEMON} eat BERRIES.\pWell, my {POKEMON} got healthier by\neating a BERRY.\pHere, I'll share one with you!", MSGBOX_DEFAULT)
-        giveitem(ITEM_ORAN_BERRY, 1)
-        if(!var(VAR_RESULT))
-        {
-            call(Common_EventScript_ShowBagIsFull)
-            release
-            end
-        }
-        setflag(FLAG_ROUTE_30_RECEIVED_BERRY_MAN)
-    }
-    msgbox("Check trees for BERRIES.\nThey just drop right off.", MSGBOX_DEFAULT)
-    release
-    end
+	if(!flag(FLAG_ROUTE_30_RECEIVED_BERRY_MAN))
+	{
+		msgbox(Route30_BerryMansHouse_Text_Man_GiveBerry, MSGBOX_DEFAULT)
+		giveitem(ITEM_ORAN_BERRY, 1)
+		if(!var(VAR_RESULT))
+		{
+			call(Common_EventScript_ShowBagIsFull)
+			release
+			end
+		}
+		setflag(FLAG_ROUTE_30_RECEIVED_BERRY_MAN)
+	}
+	msgbox(Route30_BerryMansHouse_Text_Man_CheckTrees, MSGBOX_DEFAULT)
+	release
+	end
 }
 
+text Route30_BerryMansHouse_Text_Man_GiveBerry {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Los {POKEMON} comen BAYAS.\pMi {POKEMON} se curó\ncomiendo una BAYA.\p¡Te daré una!"
+		_: "You know, {POKEMON} eat BERRIES.\pWell, my {POKEMON} got healthier by\neating a BERRY.\pHere, I'll share one with you!"
+	}
+}
+
+text Route30_BerryMansHouse_Text_Man_CheckTrees {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Busca BAYAS en los árboles.\nSon muy fáciles de encontrar."
+		_: "Check trees for BERRIES.\nThey just drop right off."
+	}
+}

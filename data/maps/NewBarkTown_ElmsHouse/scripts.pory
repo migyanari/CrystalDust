@@ -1,25 +1,50 @@
-mapscripts NewBarkTown_ElmsHouse_MapScripts{}
-
-script NewBarkTown_ElmsHouse_EventScript_ElmsWife{
-	poryswitch(LANGUAGE) {
-		SPANISH: msgbox("Hola, {PLAYER}. Mi marido está\nsiempre tan ocupado… Espero que\lesté bien.\pCuando se mete en sus investigaciones\nsobre {POKEMON}, hasta se olvida de comer.", MSGBOX_NPC)
-		_: msgbox("Hi, {PLAYER}! My husband's always\nso busy--I hope he's okay.\pWhen he's caught up in his {POKEMON}\nresearch, he even forgets to eat.", MSGBOX_NPC)
-	}
-	end
-}
-
-script NewBarkTown_ElmsHouse_EventScript_ElmsSon{
-	poryswitch(LANGUAGE) {
-		SPANISH: msgbox("¡Cuando sea mayor, voy a ayudar\na mi papá!\p¡Voy a ser un gran PROFESOR\n{POKEMON}!", MSGBOX_NPC)
-		_: msgbox("When I grow up, I'm going to\nhelp my dad!\pI'm going to be a great {POKEMON}\nPROFESSOR!", MSGBOX_NPC)
-	}
-	end
-}
-
-script NewBarkTown_ElmsHouse_EventScript_ResearchPaper{
-	poryswitch(LANGUAGE) {
-		SPANISH: msgbox("¿{POKEMON}? ¿De dónde vienen?\n¿Adónde van?\p¿Por qué nadie ha presenciado\nel nacimiento de un {POKEMON}?\p¡Quiero saberlo! ¡Dedicaré mi vida\nal estudio de los {POKEMON}!\p…\pForma parte de los informes de\ninvestigación del PROF. ELM.", MSGBOX_SIGN)
-		_: msgbox("{POKEMON}. Where do they come from?\nWhere are they going?\pWhy has no one ever witnessed a\n{POKEMON}'s birth?\pI want to know! I will dedicate my\nlife to the study of {POKEMON}!\p…\pIt's a part of PROF. ELM's research\npapers.", MSGBOX_SIGN)
-	}
-	end
-}
+mapscripts NewBarkTown_ElmsHouse_MapScripts{}
+
+script NewBarkTown_ElmsHouse_EventScript_ElmsWife{
+
+		msgbox(NewBarkTown_ElmsHouse_Text_ElmsWife_HiMyHusbandS, MSGBOX_NPC)
+
+	end
+
+}
+
+script NewBarkTown_ElmsHouse_EventScript_ElmsSon{
+
+		msgbox(NewBarkTown_ElmsHouse_Text_ElmsSon_WhenIGrowUp, MSGBOX_NPC)
+
+	end
+
+}
+
+script NewBarkTown_ElmsHouse_EventScript_ResearchPaper{
+
+		msgbox(NewBarkTown_ElmsHouse_Text_ResearchPaper_PokemonWhereDoThey, MSGBOX_SIGN)
+
+	end
+
+}
+
+// ---------------------------------------------------------------------------
+// Texts
+// ---------------------------------------------------------------------------
+
+text NewBarkTown_ElmsHouse_Text_ElmsWife_HiMyHusbandS {
+	poryswitch(LANGUAGE) {
+		SPANISH: "Hola, {PLAYER}. Mi marido está\nsiempre tan ocupado… Espero que\lesté bien.\pCuando se mete en sus investigaciones\nsobre {POKEMON}, hasta se olvida\pde comer."
+		_: "Hi, {PLAYER}! My husband's always\nso busy--I hope he's okay.\pWhen he's caught up in his {POKEMON}\nresearch, he even forgets to eat."
+	}
+}
+
+text NewBarkTown_ElmsHouse_Text_ElmsSon_WhenIGrowUp {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¡Cuando sea mayor, voy a ayudar\na mi papá!\p¡Voy a ser un gran PROFESOR\n{POKEMON}!"
+		_: "When I grow up, I'm going to\nhelp my dad!\pI'm going to be a great {POKEMON}\nPROFESSOR!"
+	}
+}
+
+text NewBarkTown_ElmsHouse_Text_ResearchPaper_PokemonWhereDoThey {
+	poryswitch(LANGUAGE) {
+		SPANISH: "¿{POKEMON}? ¿De dónde vienen?\n¿Adónde van?\p¿Por qué nadie ha presenciado\nel nacimiento de un {POKEMON}?\p¡Quiero saberlo! ¡Dedicaré mi vida\nal estudio de los {POKEMON}!\p…\pForma parte de los informes de\ninvestigación del PROF. ELM."
+		_: "{POKEMON}. Where do they come from?\nWhere are they going?\pWhy has no one ever witnessed a\n{POKEMON}'s birth?\pI want to know! I will dedicate my\nlife to the study of {POKEMON}!\p…\pIt's a part of PROF. ELM's research\npapers."
+	}
+}
