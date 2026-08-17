@@ -947,13 +947,6 @@ static const u32 * const sPageTilemaps[] =
     gSummaryScreenPageContestMovesTilemap,
 };
 
-const u8 sText_PP[] = _("PP");
-const u8 sText_TitlePageCancel[] = _("{DPAD_RIGHT}PAGE {A_BUTTON}CANCEL");
-const u8 sText_TitlePage[] = _("{DPAD_LEFTRIGHT}PAGE");
-const u8 sText_TitlePageDetailL[] = _("{DPAD_LEFT}PAGE {A_BUTTON}DETAIL");
-const u8 sText_TitlePageDetailLR[] = _("{DPAD_LEFTRIGHT}PAGE {A_BUTTON}DETAIL");
-const u8 sText_TitlePickSwitch[] = _("{DPAD_UPDOWN}PICK {A_BUTTON}SWITCH");
-
 // code
 void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
 {
@@ -2857,14 +2850,14 @@ static void PrintMoveNameAndPP(u8 moveIndex)
                 break;
         }
 
-        PrintTextOnWindowSmall(WINDOW_ARR_ID_MOVES_WINDOW_TOP_FOUR_MOVES, sText_PP, 36, moveIndex * 28 + 16, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+        PrintTextOnWindowSmall(WINDOW_ARR_ID_MOVES_WINDOW_TOP_FOUR_MOVES, gText_PokeSum_PP, 36, moveIndex * 28 + 16, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
         PrintTextOnWindow(WINDOW_ARR_ID_MOVES_WINDOW_TOP_FOUR_MOVES, gStringVar1, 46, moveIndex * 28 + 16, 0, color);
     }
     else
     {
         PrintTextOnWindow(WINDOW_ARR_ID_MOVES_WINDOW_TOP_FOUR_MOVES, gText_OneDash, 3, moveIndex * 28 + 5, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
 
-        PrintTextOnWindowSmall(WINDOW_ARR_ID_MOVES_WINDOW_TOP_FOUR_MOVES, sText_PP, 36, moveIndex * 28 + 16, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+        PrintTextOnWindowSmall(WINDOW_ARR_ID_MOVES_WINDOW_TOP_FOUR_MOVES, gText_PokeSum_PP, 36, moveIndex * 28 + 16, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
         PrintTextOnWindow(WINDOW_ARR_ID_MOVES_WINDOW_TOP_FOUR_MOVES, gText_TwoDashes, 46, moveIndex * 28 + 16, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
     }
 }
@@ -2976,7 +2969,7 @@ static void PrintNewMoveDetailsOrCancelText(void)
         ConvertIntToDecimalStringN(gStringVar2, pp, STR_CONV_MODE_RIGHT_ALIGN, 2);
         StringAppend(gStringVar1, gText_Slash);
         StringAppend(gStringVar1, gStringVar2);
-        PrintTextOnWindowSmall(WINDOW_ARR_ID_MOVES_WINDOW_LAST_MOVE, sText_PP, 36, 16, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+        PrintTextOnWindowSmall(WINDOW_ARR_ID_MOVES_WINDOW_LAST_MOVE, gText_PokeSum_PP, 36, 16, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
         PrintTextOnWindow(WINDOW_ARR_ID_MOVES_WINDOW_LAST_MOVE, gStringVar1, 46, 16, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
     }
     else
@@ -3738,27 +3731,27 @@ static void PrintTitleBar(u8 pageIndex, bool8 detailsShown)
             if (sMonSummaryScreen->summary.isEgg)
                 StringCopy(gStringVar2, gText_ACancel);
             else
-                StringCopy(gStringVar2, sText_TitlePageCancel);
+                StringCopy(gStringVar2, gText_PokeSum_Controls_PageCancel);
             break;
         case PSS_PAGE_SKILLS:
             StringCopy(gStringVar1, gText_PkmnSkills);
-            StringCopy(gStringVar2, sText_TitlePage);
+            StringCopy(gStringVar2, gText_PokeSum_Controls_Page);
             break;
         case PSS_PAGE_BATTLE_MOVES:
             StringCopy(gStringVar1, gText_BattleMoves);
             if (detailsShown)
-                StringCopy(gStringVar2, sText_TitlePickSwitch);
+                StringCopy(gStringVar2, gText_PokeSum_Controls_PickSwitch);
             else if (CONFIG_CONTEST_MOVES_ENABLED)
-                StringCopy(gStringVar2, sText_TitlePageDetailLR);
+                StringCopy(gStringVar2, gText_PokeSum_Controls_PageDetailLR);
             else
-                StringCopy(gStringVar2, sText_TitlePageDetailL);
+                StringCopy(gStringVar2, gText_PokeSum_Controls_PageDetail);
             break;
         case PSS_PAGE_CONTEST_MOVES:
             StringCopy(gStringVar1, gText_ContestMoves);
             if (detailsShown)
-                StringCopy(gStringVar2, sText_TitlePickSwitch);
+                StringCopy(gStringVar2, gText_PokeSum_Controls_PickSwitch);
             else
-                StringCopy(gStringVar2, sText_TitlePageDetailL);
+                StringCopy(gStringVar2, gText_PokeSum_Controls_PageDetail);
             break;
     }
 

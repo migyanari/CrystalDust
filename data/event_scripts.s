@@ -543,7 +543,11 @@ Common_EventScript_PlayerHandedOverTheItem::
 .else
 	.include "data/text/mart_clerk.inc"
 .endif
+.if GAME_LANGUAGE == LANGUAGE_SPANISH
+	.include "data/text/spanish/obtain_item.inc"
+.else
 	.include "data/text/obtain_item.inc"
+.endif
 
 @ The below and surf.inc could be split into some text/notices.inc
 gText_PokemartSign::
