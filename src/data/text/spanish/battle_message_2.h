@@ -5,7 +5,7 @@ const u8 gText_CongratsPkmnEvolved[] = _("¡Enhorabuena! ¡Tu {STR_VAR_1}\nse ha
 const u8 gText_PkmnStoppedEvolving[] = _("¿Eh? ¡La evolución de\n{STR_VAR_1} se ha detenido!\p");
 const u8 gText_EllipsisQuestionMark[] = _("… …?\p");
 const u8 gText_WhatWillPkmnDo[] = _("¿Qué debería hacer\n{B_ACTIVE_NAME_WITH_PREFIX}?");
-const u8 gText_WhatWillPkmnDo2[] = _("¿Qué hará\n{B_PLAYER_NAME}?");
+const u8 gText_WhatWillPkmnDo2[] = _("¿Qué debería hacer\n{B_PLAYER_NAME}?");
 const u8 gText_WhatWillTheDudeDo[] = _("¿Qué hará el\nseñor mayor?");
 const u8 gText_LinkStandby[] = _("{PAUSE 16}Esperando conexión…");
 const u8 gText_BattleMenu[] = _("LUCHA{CLEAR_TO 56}MOCHILA\nPOKéMON{CLEAR_TO 56}HUIDA");
@@ -15,7 +15,7 @@ const u8 gText_MoveInterfacePP[] = _("PP ");
 const u8 gText_MoveInterfaceType[] = _("TIPO/");
 const u8 gText_MoveInterfacePpType[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}PP\nTIPO/");
 const u8 gText_MoveInterfaceDynamicColors[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}");
-const u8 gText_WhichMoveToForget4[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}¿Qué movimiento\nse debe olvidar?");
+const u8 gText_WhichMoveToForget4[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}¿Qué movimiento debería\nolvidar?");
 const u8 gText_BattleYesNoChoice[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}Sí\nNo");
 const u8 gText_BattleSwitchWhich[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}¿Cuál\ncambias?");
 const u8 gText_BattleSwitchWhich2[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}");
@@ -50,15 +50,15 @@ const u8 gText_CommaSpace[] = _(", ");
 const u8 gText_Space2[] = _(" ");
 const u8 gText_LineBreak[] = _("\l");
 const u8 gText_NewLine[] = _("\n");
-const u8 gText_Are[] = _("son");
-const u8 gText_Are2[] = _("son");
+const u8 gText_Are[] = _("no pueden");
+const u8 gText_Are2[] = _("no pueden");
 const u8 gText_BadEgg[] = _("HUEVO malo");
 const u8 gText_BattleWallyName[] = _("WALLY");
 const u8 gText_Win[] = _("{HIGHLIGHT TRANSPARENT}Victoria");
 const u8 gText_Loss[] = _("{HIGHLIGHT TRANSPARENT}Derrota");
 const u8 gText_Draw[] = _("{HIGHLIGHT TRANSPARENT}Empate");
 static const u8 sText_SpaceIs[] = _(" es");
-static const u8 sText_ApostropheS[] = _("'s");
+static const u8 sText_ApostropheS[] = _("de");
 
 // For displaying names of invalid moves
 static const u8 sATypeMove_Table[NUMBER_OF_MON_TYPES][17] =
@@ -84,8 +84,8 @@ static const u8 sATypeMove_Table[NUMBER_OF_MON_TYPES][17] =
 };
 
 const u8 gText_BattleTourney[] = _("TORNEO DE COMBATE");
-static const u8 sText_Round1[] = _("Ronda 1");
-static const u8 sText_Round2[] = _("Ronda 2");
+static const u8 sText_Round1[] = _("1ª. Ronda");
+static const u8 sText_Round2[] = _("2ª. Ronda");
 static const u8 sText_Semifinal[] = _("Semifinal");
 static const u8 sText_Final[] = _("Final");
 
@@ -108,4 +108,4 @@ const u8 gText_OpponentMon1Name[] = _("{B_OPPONENT_MON1_NAME}");
 const u8 gText_Mind[] = _("Mente");
 const u8 gText_Skill[] = _("Habilidad");
 const u8 gText_Body[] = _("Cuerpo");
-const u8 gText_Judgement[] = _("{B_BUFF1}{CLEAR 13}JUEZ{CLEAR 13}{B_BUFF2}");
+const u8 gText_Judgement[] = _("{B_BUFF1}{CLEAR 13}JUICIO{CLEAR 13}{B_BUFF2}");

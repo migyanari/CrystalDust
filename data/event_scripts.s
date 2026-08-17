@@ -799,7 +799,11 @@ Common_EventScript_FindItem::
 	.include "data/scripts/trainer_hill.inc"
 	.include "data/scripts/test_signpost.inc"
 	.include "data/text/frontier_brain.inc"
+.if GAME_LANGUAGE == LANGUAGE_SPANISH
+	.include "data/text/spanish/save.inc"
+.else
 	.include "data/text/save.inc"
+.endif
 .if GAME_LANGUAGE == LANGUAGE_SPANISH
 	.include "data/text/spanish/oak_speech.inc"
 .else
