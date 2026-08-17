@@ -528,9 +528,21 @@ Common_EventScript_PlayerHandedOverTheItem::
 	.include "data/scripts/movement.inc"
 	.include "data/scripts/check_furniture.inc"
 	.include "data/text/record_mix.inc"
+.if GAME_LANGUAGE == LANGUAGE_SPANISH
+	.include "data/text/spanish/pc.inc"
+.else
 	.include "data/text/pc.inc"
+.endif
+.if GAME_LANGUAGE == LANGUAGE_SPANISH
+	.include "data/text/spanish/pkmn_center_nurse.inc"
+.else
 	.include "data/text/pkmn_center_nurse.inc"
+.endif
+.if GAME_LANGUAGE == LANGUAGE_SPANISH
+	.include "data/text/spanish/mart_clerk.inc"
+.else
 	.include "data/text/mart_clerk.inc"
+.endif
 	.include "data/text/obtain_item.inc"
 
 @ The below and surf.inc could be split into some text/notices.inc
@@ -677,7 +689,11 @@ gText_Sudowoodo_Attacked::
 gText_LegendaryFlewAway::
 	.string "The {STR_VAR_1} flew away!$"
 
+.if GAME_LANGUAGE == LANGUAGE_SPANISH
+	.include "data/text/spanish/pc_transfer.inc"
+.else
 	.include "data/text/pc_transfer.inc"
+.endif
 	.include "data/text/mevent.inc"
 	.include "data/text/abnormal_weather.inc"
 
