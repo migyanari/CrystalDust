@@ -225,21 +225,21 @@ text Route30_MrPokemonsHouse_Text_DependingOnYou {
 
 text Route30_MrPokemonsHouse_Text_RedScaleTrade {
 	poryswitch(LANGUAGE) {
-		SPANISH: "¿Eh? ¡Esa ESCAMA!\n¿Qué es eso? ¿Un GYARADOS rojo?\p¡Qué raro!\nLa quiero…\p{PLAYER}, ¿me la cambias?\pTe ofrezco este REPARTIR EXP. que me\ndió el PROF. OAK."
+		SPANISH: "¿Mmm? ¡Esa ESCAMA!\n¿Qué es eso? ¿Un GYARADOS rojo?\p¡Qué raro!\nLa quiero…\p{PLAYER}, ¿quieres intercambiarla?\pPuedo ofrecerte este REPARTIR EXP.\nque me dió el PROF. OAK."
 		_: "Hm? That SCALE!\nWhat's that? A red GYARADOS?\pThat's rare!\nI, I want it…\p{PLAYER}, would you care to\ntrade it?\pI can offer this EXP. SHARE I got\nfrom PROF. OAK."
 	}
 }
 
 text Route30_MrPokemonsHouse_Text_RedScaleDecline {
 	poryswitch(LANGUAGE) {
-		SPANISH: "Qué pena.\nEs algo muy raro."
+		SPANISH: "Es una pena.\nEs algo muy raro."
 		_: "That's disappointing.\nThat happens to be very rare."
 	}
 }
 
 text Route30_MrPokemonsHouse_Text_LifeDelightful {
 	poryswitch(LANGUAGE) {
-		SPANISH: "¡Qué maravillosa es la vida!\n¡Siempre hay nuevos descubrimientos!"
+		SPANISH: "¡Qué maravillosa es la vida!\n¡Siempre quedan cosas por descubrir!"
 		_: "Life is delightful!\nAlways, new discoveries to be made!"
 	}
 }
