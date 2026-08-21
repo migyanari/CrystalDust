@@ -1,18 +1,34 @@
 mapscripts Route32_Gatehouse_MapScripts { }
 
 script Route32_Gatehouse_Officer {
-    msgbox("RUINS OF ALPH: a look-and-touch\n"
-           "tourist site.\p"
-           "Try the sliding stone panels!", MSGBOX_NPC)
+    msgbox(Route32_Gatehouse_Text_Officer, MSGBOX_NPC)
 }
 
 script Route32_Gatehouse_Man {
-    msgbox("You're studying the RUINS?\n"
-           "I see a scientist in the making.", MSGBOX_NPC)
+    msgbox(Route32_Gatehouse_Text_Man, MSGBOX_NPC)
 }
 
 script Route32_Gatehouse_Boy {
-    msgbox("There are drawings on stone panels.\n"
-           "I tried moving them.\l"
-           "I wonder what they are.", MSGBOX_NPC)
+    msgbox(Route32_Gatehouse_Text_Boy, MSGBOX_NPC)
+}
+
+text Route32_Gatehouse_Text_Officer {
+    poryswitch(LANGUAGE) {
+        SPANISH: "RUINAS ALFA\nLugar turístico para observar y tocar.\p¡Intenta mover los paneles de piedra!"
+        _: "RUINS OF ALPH: a look-and-touch\ntourist site.\pTry the sliding stone panels!"
+    }
+}
+
+text Route32_Gatehouse_Text_Man {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¿Estás estudiando las RUINAS?\nPodrías dedicarte a la ciencia."
+        _: "You're studying the RUINS?\nI see a scientist in the making."
+    }
+}
+
+text Route32_Gatehouse_Text_Boy {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Hay dibujos en los paneles de piedra.\nIntenté moverlos.\lMe pregunto qué serán."
+        _: "There are drawings on stone panels.\nI tried moving them.\lI wonder what they are."
+    }
 }

@@ -33,7 +33,7 @@ script Route32_EventScript_RoadblockManTrigger_All {
     applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
     waitmovement(0)
     textcolor(MSG_COLOR_BLUE)
-    msgbox("Wait up!\nWhat's the hurry?")
+    msgbox(Route32_Text_RoadblockMan_WhatsTheHurry)
     closemessage
 
     if (var (VAR_TEMP_1) == 0) {
@@ -71,10 +71,10 @@ script Route32_EventScript_RoadblockMan_Common {
         call(Route32_EventScript_RoadblockMan_AfterItem)
     }
     elif(!flag(FLAG_BADGE01_GET)) {
-        msgbox("Have you gone to the {POKEMON}\nGYM in VIOLET yet?\pYou can test your {POKEMON} and\nyourself there.\pIt's a rite of passage for all\nTRAINERS!")
+        msgbox(Route32_Text_RoadblockMan_VioletGym)
     }
     elif(flag(FLAG_GOT_ELMS_EGG)) {
-        msgbox("Looks like you have some good\n{POKEMON} there.\pIt must be from the training you\ngave them around VIOLET CITY.\pThe training at the GYM must have\nbeen especially helpful.\pAs a souvenir of VIOLET CITY,\ntake this.\pIt increases the power of GRASS-\ntype moves.")
+        msgbox(Route32_Text_RoadblockMan_HaveThisSeed)
         giveitem(ITEM_MIRACLE_SEED)
         if (!var(VAR_RESULT)) {
             goto(Common_EventScript_ShowBagIsFull)
@@ -84,12 +84,12 @@ script Route32_EventScript_RoadblockMan_Common {
         }
     }
     else {
-        msgbox("{PLAYER}, right?\nSome guy wearing glasses was\llooking for you.\pGo see for yourself. He's waiting\nfor you at the {POKEMON} CENTER.")
+        msgbox(Route32_Text_RoadblockMan_AideIsWaiting)
     }
 }
 
 script Route32_EventScript_RoadblockMan_AfterItem {
-    msgbox("Your experiences in VIOLET CITY\nshould be useful for your journey.")
+    msgbox(Route32_Text_RoadblockMan_ExperiencesShouldBeUseful)
 }
 
 movement Route32_Movement_RoadblockMan_NoticePlayer {
@@ -149,8 +149,7 @@ script Route32_EventScript_SlowpokeTailManTrigger_All {
     waitmovement(0)
     applymovement(SLOWPOKETAIL_MAN, Common_Movement_Delay48)
     waitmovement(0)
-    msgbox("Hey, kid!\n"
-    "Hold on a sec!")
+    msgbox(Route32_Text_SlowpokeTailMan_HeyKid)
     if (var (VAR_TEMP_1) == 0) {
         applymovement(OBJ_EVENT_ID_PLAYER, Route32_Movement_FaceUp)
         waitmovement(0)
@@ -181,12 +180,12 @@ script Route32_EventScript_SlowpokeTailMan {
 script Route32_EventScript_SlowpokeTailMan_Common {
     setvar(VAR_ROUTE32_STATE, 2)
     showmoneybox(0, 0, 0)
-    msgbox("How would you like to have this\ntasty, nutritious SLOWPOKETAIL?\pFor you right now, it costs just\n¥1,000,000!\pYou'll want this!", MSGBOX_YESNO)
+    msgbox(Route32_Text_SlowpokeTailMan_MillionDollarSlowpokeTail, MSGBOX_YESNO)
     hidemoneybox
     if (var (VAR_RESULT) == YES) {
-        msgbox("Tch! And here I thought kids these\ndays were loaded…")
+        msgbox(Route32_Text_SlowpokeTailMan_ThoughtKidsWereLoaded)
     } else {
-        msgbox("You don't want it? You're sure?\nThen scram. Shoo!")
+        msgbox(Route32_Text_SlowpokeTailMan_RefusedToBuySlowpokeTail)
     }
 }
 
@@ -194,7 +193,7 @@ script Route32_EventScript_RoarTMGuy {
     lock
     faceplayer
     if (!flag(FLAG_RECEIVED_TM05_ROAR)) {
-        msgbox("WROOOOAR!\pPEOPLE RUN WHEN I ROAR!\nBUT YOU CAME LOOKING!\pTHAT PLEASES ME!\nNOW TAKE THIS!")
+        msgbox(Route32_Text_RoarTMGuy_Intro)
         giveitem(ITEM_TM05)
         if (!var (VAR_RESULT)) {
             goto(Common_EventScript_ShowBagIsFull)
@@ -202,7 +201,7 @@ script Route32_EventScript_RoarTMGuy {
             setflag(FLAG_RECEIVED_TM05_ROAR)
         }
     }
-    msgbox("WROOOAR!\nIT'S ROAR!\pEVEN {POKEMON} WILL RUN FROM A\nGOOD ROAR!")
+    msgbox(Route32_Text_RoarTMGuy_Outro)
     release
 }
 
@@ -214,14 +213,15 @@ script Route32_EventScript_Frieda {
         gettime
         if (var (VAR_0x8003) == DAY_FRIDAY)
         {
+            bufferstring(0, Route32_Text_Frieda_GivesGift)
             if (!flag(FLAG_MET_FRIEDA_OF_FRIDAY))
             {
-                msgbox("FRIEDA: Yahoo!\nIt's FRIDAY!\pI'm FRIEDA of FRIDAY!\nNice to meet you!\pHere's a POISON BARB for you!")
+                msgbox(Route32_Text_Frieda_Meet)
                 setflag(FLAG_MET_FRIEDA_OF_FRIDAY)
             }
             else
             {
-                msgbox("FRIEDA:Here's a POISON BARB\nfor you!")
+                msgbox(Route32_Text_Frieda_RetryGift)
             }
             giveitem(ITEM_POISON_BARB)
             if (!var(VAR_RESULT))
@@ -229,143 +229,502 @@ script Route32_EventScript_Frieda {
                 goto(Common_EventScript_ShowBagIsFull)
             }
             setflag(FLAG_RECEIVED_POISON_BARB_FROM_FRIEDA)
-            msgbox("FRIEDA: Give it to a {POKEMON} that\nhas POISON-type moves.\pOh!\nIt's wicked!\pYou'll be shocked how good it makes\nPOISON-type moves!")
+            msgbox(Route32_Text_Frieda_GaveGift)
         }
         else
         {
-            msgbox("FRIEDA: Isn't it FRIDAY today?\n"
-            "It's so boring when it's not!")
+            msgbox(Route32_Text_Frieda_NotFriday)
         }
     }
     else
     {
-        msgbox("FRIEDA: Hiya!\nWhat day do you like?\pI love FRIDAY.\nThere's no doubt about it!\pDon't you think it's great too?")
+        msgbox(Route32_Text_Frieda_Friday)
     }
     release
 }
 
 script Route32_EventScript_Albert {
-    trainerbattle_single(TRAINER_ALBERT, "I haven't seen you around before.\nSo you think you're pretty tough?", "You're stronger than you look!")
-    msgbox("I'm going to try to be the best\nwith my favorites.\pI'm not using the same tough\n{POKEMON} as everyone else.", MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ALBERT, Route32_Text_Trainer_Albert_Seen, Route32_Text_Trainer_Albert_Lost)
+    msgbox(Route32_Text_Trainer_Albert_AfterBeaten, MSGBOX_DEFAULT)
     release
 }
 
 script Route32_EventScript_Liz {
-    trainerbattle_single(TRAINER_LIZ_1, "Uh-huh.\nYeah, and you know…\pPardon? You want to battle?\nI'm on the phone.\pOh, all right.\nBut let's make this fast.", Route32_Text_Trainer_LizLost)
+    trainerbattle_single(TRAINER_LIZ_1, Route32_Text_Trainer_Liz_Seen, Route32_Text_Trainer_Liz_Lost)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if(var(VAR_RESULT) == TRUE)
     {
-        trainerbattle_rematch(TRAINER_LIZ_1, "You're late!\nLet's get started now!", Route32_Text_Trainer_LizLost)
+        trainerbattle_rematch(TRAINER_LIZ_1, Route32_Text_Trainer_Liz_Rematch, Route32_Text_Trainer_Liz_Lost)
     }
     if (!flag(FLAG_PHONE_CARD_PICNICKER_LIZ))
     {
+        bufferstring(0, Route32_Text_Trainer_Liz_AskForNumberEnd)
         if (!flag(FLAG_PICNICKER_LIZ_OFFERED_NUMBER))
         {
-            bufferstring(0, Route32_Text_Liz_AskForNumberEnd)
-            msgbox("I was having a nice chat, too.\pOh? You're on a big journey to see\nthe sights?\pNeat! Let's be friends!\nCan I have your {STR_VAR_1}", MSGBOX_YESNO)
+            msgbox(Route32_Text_Trainer_Liz_AskNumber, MSGBOX_YESNO)
             setflag(FLAG_PICNICKER_LIZ_OFFERED_NUMBER)
         }
         else
         {
-            bufferstring(0, Route32_Text_Liz_AskForNumberEnd)
-            msgbox("Let's be friends! Can I have your\n{STR_VAR_1}", MSGBOX_YESNO)
+            msgbox(Route32_Text_Trainer_Liz_AskNumberAgain, MSGBOX_YESNO)
         }
         if (var (VAR_RESULT) == YES)
         {
             registerphonecontact(FLAG_PHONE_CARD_PICNICKER_LIZ) 
-            msgbox(Route31_Text_Trainer_LizAfterRegistered, MSGBOX_AUTOCLOSE)
+            msgbox(Route32_Text_Trainer_Liz_AfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
-            msgbox("Aww… You won't be my friend?", MSGBOX_AUTOCLOSE)
+            msgbox(Route32_Text_Trainer_Liz_AfterDeclined, MSGBOX_AUTOCLOSE)
         }
         end
     }
-    msgbox(Route31_Text_Trainer_LizAfterRegistered, MSGBOX_DEFAULT)
+    msgbox(Route32_Text_Trainer_Liz_AfterRegistered, MSGBOX_DEFAULT)
     release
-}text(local) Route32_Text_Trainer_LizLost {
-    "Oh!\nI've got to relieve my anger!"
-}text(local) Route32_Text_Liz_AskForNumberEnd{
-    "phone number?\pI want to hear about everything\nyou've seen!"
-}text(local) Route31_Text_Trainer_LizAfterRegistered{
-    "I'll telephone you if I hear\nanything interesting."
 }
 
 script Route32_EventScript_Roland {
-    trainerbattle_single(TRAINER_ROLAND, "That glance…\nIt's intriguing.", "Hmmm.\nThis is disappointing.")
-    msgbox("If you don't want to battle, just\navoid eye contact.", MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ROLAND, Route32_Text_Trainer_Roland_Seen, Route32_Text_Trainer_Roland_Lost)
+    msgbox(Route32_Text_Trainer_Roland_AfterBeaten, MSGBOX_DEFAULT)
     release
 }
 
 script Route32_EventScript_Henry {
-    trainerbattle_single(TRAINER_HENRY, "My {POKEMON}?\nThey're freshly caught!", "SPLASH?")
-    msgbox("Freshly caught {POKEMON} are no\nmatch for properly raised ones.", MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_HENRY, Route32_Text_Trainer_Henry_Seen, Route32_Text_Trainer_Henry_Lost)
+    msgbox(Route32_Text_Trainer_Henry_AfterBeaten, MSGBOX_DEFAULT)
     release
 }
 
 script Route32_EventScript_Justin {
-    trainerbattle_single(TRAINER_JUSTIN, "Whoa!\nYou made me lose that big fish!", "Sploosh!")
-    msgbox("Calm, collected…\nThe essence of fishing and {POKEMON}\lis the same.", MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_JUSTIN, Route32_Text_Trainer_Justin_Seen, Route32_Text_Trainer_Justin_Lost)
+    msgbox(Route32_Text_Trainer_Justin_AfterBeaten, MSGBOX_DEFAULT)
     release
 }
 
 script Route32_EventScript_Ralph {
-    trainerbattle_single(TRAINER_RALPH_1, "I'm really good at both fishing\nand {POKEMON}.\pI'm not about to lose to any kid!", Route32_Text_Trainer_RalphLost)
+    trainerbattle_single(TRAINER_RALPH_1, Route32_Text_Trainer_Ralph_Seen, Route32_Text_Trainer_Ralph_Lost)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if(var(VAR_RESULT) == TRUE)
     {
-        trainerbattle_rematch(TRAINER_RALPH_1, "Hey kid!\nNo losing for me this day!", Route32_Text_Trainer_RalphLost)
+        trainerbattle_rematch(TRAINER_RALPH_1, Route32_Text_Trainer_Ralph_Rematch, Route32_Text_Trainer_Ralph_Lost)
     }
     if (!flag(FLAG_PHONE_CARD_FISHER_RALPH))
     {
         if (!flag(FLAG_FISHER_RALPH_OFFERED_NUMBER))
         {
-            msgbox("Fishing is a lifelong passion.\n{POKEMON} are lifelong friends!\pDon't young people fish anymore?\pI've seen rare {POKEMON} while I've\nbeen fishing…\lYou young people like that, right?\pWant to trade phone numbers?\nI'll let you know if I see anything.", MSGBOX_YESNO) 
+            msgbox(Route32_Text_Trainer_Ralph_AskNumber, MSGBOX_YESNO) 
             setflag(FLAG_FISHER_RALPH_OFFERED_NUMBER)
         }
         else
         {
-            msgbox("Hm? So you do want me to phone if\nI see rare {POKEMON}?", MSGBOX_YESNO)
+            msgbox(Route32_Text_Trainer_Ralph_AskNumberAgain, MSGBOX_YESNO)
         }
         if (var (VAR_RESULT) == YES)
         {
             registerphonecontact(FLAG_PHONE_CARD_FISHER_RALPH) 
-            msgbox(Route31_Text_Trainer_RalphAfterRegistered, MSGBOX_AUTOCLOSE)
+            msgbox(Route32_Text_Trainer_Ralph_AfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
-            msgbox("Oh… My own kids won't even give\nme their phone numbers…\lIs that how young people are today?", MSGBOX_AUTOCLOSE)
+            msgbox(Route32_Text_Trainer_Ralph_AfterDeclined, MSGBOX_AUTOCLOSE)
         }
         end
     }
-    msgbox(Route31_Text_Trainer_RalphAfterRegistered, MSGBOX_DEFAULT)
+    msgbox(Route32_Text_Trainer_Ralph_AfterRegistered, MSGBOX_DEFAULT)
     release
-}text(local) Route32_Text_Trainer_RalphLost {
-    "Tch!\nI tried to rush things…"
-}text(local) Route31_Text_Trainer_RalphAfterRegistered{
-    "Yep, phone if I see rare {POKEMON}.\nDon't worry, I won't forget!"
 }
 
 script Route32_EventScript_Gordon {
-    trainerbattle_single(TRAINER_GORDON, "I found some good {POKEMON} in the\ngrass around here!\pI think they'll do it for me!", "Darn.\nI thought I could win.")
-    msgbox("The grass is full of clingy things.", MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_GORDON, Route32_Text_Trainer_Gordon_Seen, Route32_Text_Trainer_Gordon_Lost)
+    msgbox(Route32_Text_Trainer_Gordon_AfterBeaten, MSGBOX_DEFAULT)
     release
 }
 
 script Route32_EventScript_Peter {
-    trainerbattle_single(TRAINER_PETER, "That BADGE!\nIt's from VIOLET CITY's GYM!\pYou beat FALKNER?", "I know what my weaknesses are.")
-    msgbox("I should train again at the GYM\nin VIOLET CITY.", MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_PETER, Route32_Text_Trainer_Peter_Seen, Route32_Text_Trainer_Peter_Lost)
+    msgbox(Route32_Text_Trainer_Peter_AfterBeaten, MSGBOX_DEFAULT)
     release
 }
 
 script Route32_EventScript_RuinsOfAlphSign {
-    msgbox("RUINS OF ALPH\nEAST ENTRANCE", MSGBOX_SIGN)
+    msgbox(Route32_Text_RuinsOfAlphSign, MSGBOX_SIGN)
 }
 
 script Route32_EventScript_DirectionsSign {
-    msgbox("ROUTE 32\nVIOLET CITY - AZALEA TOWN", MSGBOX_SIGN)
+    msgbox(Route32_Text_DirectionsSign, MSGBOX_SIGN)
 }
 
 script Route32_EventScript_UnionCaveSign {
-    msgbox("UNION CAVE AHEAD", MSGBOX_SIGN)
+    msgbox(Route32_Text_UnionCaveSign, MSGBOX_SIGN)
+}
+
+text Route32_Text_RoadblockMan_WhatsTheHurry {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Espera!\n¿Por qué corres?"
+        _: "Wait up!\nWhat's the hurry?"
+    }
+}
+
+text Route32_Text_RoadblockMan_ExperiencesShouldBeUseful {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Tu experiencia en CIUDAD MALVA\ndebería ayudarte en tu viaje."
+        _: "Your experiences in VIOLET CITY\nshould be useful for your journey."
+    }
+}
+
+text Route32_Text_RoadblockMan_VioletGym {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¿Has ido al GIMNASIO {POKEMON}?\nAllí puedes probar a tus {POKEMON} y\la ti mismo.\p¡Es un rito para todos los\nentrenadores!"
+        _: "Have you gone to the {POKEMON}\nGYM in VIOLET yet?\pYou can test your {POKEMON} and\nyourself there.\pIt's a rite of passage for all\nTRAINERS!"
+    }
+}
+
+text Route32_Text_RoadblockMan_HaveThisSeed {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Tienes {POKEMON} muy buenos.\pSeguro que es por haberlos entrenado\nen los alrededores de CIUDAD MALVA.\pEl entrenamiento en el GIMNASIO ha\ndebido de ser de gran ayuda.\pToma esto como recuerdo de\nCIUDAD MALVA.\pAumenta el poder de los movimientos\nde tipo PLANTA."
+        _: "Looks like you have some good\n{POKEMON} there.\pIt must be from the training you\ngave them around VIOLET CITY.\pThe training at the GYM must have\nbeen especially helpful.\pAs a souvenir of VIOLET CITY,\ntake this.\pIt increases the power of GRASS-\ntype moves."
+    }
+}
+
+text Route32_Text_RoadblockMan_AideIsWaiting {
+    poryswitch(LANGUAGE) {
+        SPANISH: "{PLAYER}, ¿verdad?\nUn tipo con gafas te buscaba.\pCompruébalo. Te está esperando en\nel CENTRO {POKEMON}."
+        _: "{PLAYER}, right?\nSome guy wearing glasses was\llooking for you.\pGo see for yourself. He's waiting\nfor you at the {POKEMON} CENTER."
+    }
+}
+
+text Route32_Text_SlowpokeTailMan_HeyKid {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Eh, chico!\n¡Espera un momento!"
+        _: "Hey, kid!\nHold on a sec!"
+    }
+}
+
+text Route32_Text_SlowpokeTailMan_MillionDollarSlowpokeTail {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¿Te gustaría tener esta sabrosa y\nnutritiva COLASLOWPOKE?\p¡Sólo te costará 1.000.000¥!\p¡Te gustará!"
+        _: "How would you like to have this\ntasty, nutritious SLOWPOKETAIL?\pFor you right now, it costs just\n¥1,000,000!\pYou'll want this!"
+    }
+}
+
+text Route32_Text_SlowpokeTailMan_ThoughtKidsWereLoaded {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Vaya! Pensaba que los niños de hoy\nen día estaban forrados…"
+        _: "Tch! And here I thought kids these\ndays were loaded…"
+    }
+}
+
+text Route32_Text_SlowpokeTailMan_RefusedToBuySlowpokeTail {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¿No la quieres? Pues lárgate."
+        _: "You don't want it? You're sure?\nThen scram. Shoo!"
+    }
+}
+
+text Route32_Text_RoarTMGuy_Intro {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡GRRRRRR!\p¡TODOS HUYEN CUANDO RUJO!\n¡PERO TÚ HAS VENIDO!\p¡ESO ME GUSTA!\n¡TOMA ESTO!"
+        _: "WROOOOAR!\pPEOPLE RUN WHEN I ROAR!\nBUT YOU CAME LOOKING!\pTHAT PLEASES ME!\nNOW TAKE THIS!"
+    }
+}
+
+text Route32_Text_RoarTMGuy_Outro {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡GRRRRRR!\n¡ES RUGIDO!\pHASTA LOS {POKEMON} HUYEN CON UN RUGIDO."
+        _: "WROOOAR!\nIT'S ROAR!\pEVEN {POKEMON} WILL RUN FROM A\nGOOD ROAR!"
+    }
+}
+
+text Route32_Text_Frieda_GivesGift {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Toma una FLECHA VENENOSA!"
+        _: "Here's a POISON BARB for you!"
+    }
+}
+
+text Route32_Text_Frieda_Meet {
+    poryswitch(LANGUAGE) {
+        SPANISH: "VICKI: ¡Yuju!\n¡Es viernes!\pSoy VICKI, por viernes.\n¡Mucho gusto!\p{STR_VAR_1}"
+        _: "FRIEDA: Yahoo!\nIt's FRIDAY!\pI'm FRIEDA of FRIDAY!\nNice to meet you!\p{STR_VAR_1}"
+    }
+}
+
+text Route32_Text_Frieda_RetryGift {
+    poryswitch(LANGUAGE) {
+        SPANISH: "VICKI: {STR_VAR_1}"
+        _: "FRIEDA: {STR_VAR_1}"
+    }
+}
+
+text Route32_Text_Frieda_GaveGift {
+    poryswitch(LANGUAGE) {
+        SPANISH: "VICKI: Dásela a un {POKEMON}\nde tipo VENENO.\p¡Oh!\n¡Es brutal!\p¡Te sorprenderá ver cómo mejoran\nlos movimientos de tipo VENENO!"
+        _: "FRIEDA: Give it to a {POKEMON} that\nhas POISON-type moves.\pOh!\nIt's wicked!\pYou'll be shocked how good it makes\nPOISON-type moves!"
+    }
+}
+
+text Route32_Text_Frieda_NotFriday {
+    poryswitch(LANGUAGE) {
+        SPANISH: "VICKI: ¿Hoy no es viernes?\n¡Me aburro cuando no lo es!"
+        _: "FRIEDA: Isn't it FRIDAY today?\nIt's so boring when it's not!"
+    }
+}
+
+text Route32_Text_Frieda_Friday {
+    poryswitch(LANGUAGE) {
+        SPANISH: "VICKI: ¡Hola!\n¿Qué día prefieres?\pA mí me gusta el viernes,\nsin duda.\p¿No crees que es genial?"
+        _: "FRIEDA: Hiya!\nWhat day do you like?\pI love FRIDAY.\nThere's no doubt about it!\pDon't you think it's great too?"
+    }
+}
+
+text Route32_Text_Trainer_Albert_Seen {
+    poryswitch(LANGUAGE) {
+        SPANISH: "No te había visto antes.\n¿Te crees muy fuerte?"
+        _: "I haven't seen you around before.\nSo you think you're pretty tough?"
+    }
+}
+
+text Route32_Text_Trainer_Albert_Lost {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Eres fuerte!"
+        _: "You're stronger than you look!"
+    }
+}
+
+text Route32_Text_Trainer_Albert_AfterBeaten {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Intentaré ser el mejor con mis\nfavoritos.\pNo uso los mismos {POKEMON} que\ntodo el mundo."
+        _: "I'm going to try to be the best\nwith my favorites.\pI'm not using the same tough\n{POKEMON} as everyone else."
+    }
+}
+
+text Route32_Text_Trainer_Liz_Seen {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Sí.\nY sabes que…\p¿Luchar? ¡Estoy al teléfono!\pVale.\nPero que sea rápido."
+        _: "Uh-huh.\nYeah, and you know…\pPardon? You want to battle?\nI'm on the phone.\pOh, all right.\nBut let's make this fast."
+    }
+}
+
+text Route32_Text_Trainer_Liz_Lost {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Oh! ¡Tengo que aliviar mi enfado!"
+        _: "Oh!\nI've got to relieve my anger!"
+    }
+}
+
+text Route32_Text_Trainer_Liz_Rematch {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Llegas tarde!\n¡Comencemos!"
+        _: "You're late!\nLet's get started now!"
+    }
+}
+
+text Route32_Text_Trainer_Liz_AskForNumberEnd {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Estemos en contacto!\n¿Me das tu número de teléfono?\p¡Quiero enterarme de todo lo que\nvas viendo!"
+        _: "phone number?\pI want to hear about everything\nyou've seen!"
+    }
+}
+
+text Route32_Text_Trainer_Liz_AskNumber {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Yo también estaba charlando.\p¿Eh? ¿Estás recorriéndote todo\nel mundo?\p{STR_VAR_1}"
+        _: "I was having a nice chat, too.\pOh? You're on a big journey to see\nthe sights?\pNeat! Let's be friends!\nCan I have your {STR_VAR_1}"
+    }
+}
+
+text Route32_Text_Trainer_Liz_AskNumberAgain {
+    poryswitch(LANGUAGE) {
+        SPANISH: "{STR_VAR_1}"
+        _: "Let's be friends! Can I have your\n{STR_VAR_1}"
+    }
+}
+
+text Route32_Text_Trainer_Liz_AfterRegistered {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Te telefonearé si oigo algo\ninteresante."
+        _: "I'll telephone you if I hear\nanything interesting."
+    }
+}
+
+text Route32_Text_Trainer_Liz_AfterDeclined {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Eh… ¿No quieres dármelo?"
+        _: "Aww… You won't be my friend?"
+    }
+}
+
+text Route32_Text_Trainer_Roland_Seen {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Esa mirada…\nMe intriga."
+        _: "That glance…\nIt's intriguing."
+    }
+}
+
+text Route32_Text_Trainer_Roland_Lost {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Mmmm!\n¡Qué decepción!"
+        _: "Hmmm.\nThis is disappointing."
+    }
+}
+
+text Route32_Text_Trainer_Roland_AfterBeaten {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Si no quieres luchar, evita el\ncontacto visual."
+        _: "If you don't want to battle, just\navoid eye contact."
+    }
+}
+
+text Route32_Text_Trainer_Henry_Seen {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¿Mi {POKEMON}?\n¡Recién pescado!"
+        _: "My {POKEMON}?\nThey're freshly caught!"
+    }
+}
+
+text Route32_Text_Trainer_Henry_Lost {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Splash!"
+        _: "SPLASH?"
+    }
+}
+
+text Route32_Text_Trainer_Henry_AfterBeaten {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Los {POKEMON} recién atrapados\nno son comparables con los criados."
+        _: "Freshly caught {POKEMON} are no\nmatch for properly raised ones."
+    }
+}
+
+text Route32_Text_Trainer_Justin_Seen {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Vaya!\n¡Se me escapó ese pez por tu culpa!"
+        _: "Whoa!\nYou made me lose that big fish!"
+    }
+}
+
+text Route32_Text_Trainer_Justin_Lost {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Splash!"
+        _: "Sploosh!"
+    }
+}
+
+text Route32_Text_Trainer_Justin_AfterBeaten {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Paciencia…\nLa base de la pesca y de los {POKEMON}\les la misma."
+        _: "Calm, collected…\nThe essence of fishing and {POKEMON}\lis the same."
+    }
+}
+
+text Route32_Text_Trainer_Ralph_Seen {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Soy muy bueno, tanto pescando\ncomo con los {POKEMON}.\p¡No voy a perder con alguien tan\njoven!"
+        _: "I'm really good at both fishing\nand {POKEMON}.\pI'm not about to lose to any kid!"
+    }
+}
+
+text Route32_Text_Trainer_Ralph_Lost {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Intenté acelerar las cosas…"
+        _: "Tch!\nI tried to rush things…"
+    }
+}
+
+text Route32_Text_Trainer_Ralph_Rematch {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Eh, joven!\n¡Hoy no pienso perder!"
+        _: "Hey kid!\nNo losing for me this day!"
+    }
+}
+
+text Route32_Text_Trainer_Ralph_AskNumber {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Pescar es una pasión eterna y los\n{POKEMON} son amigos eternos!\p¿La gente joven ya no pesca?\pHe visto {POKEMON} raros mientras\npescaba…\pA la gente joven os gustan\nlos {POKEMON} raros…\p¿Quieres mi número de teléfono?\nTe haré saber si veo alguno."
+        _: "Fishing is a lifelong passion.\n{POKEMON} are lifelong friends!\pDon't young people fish anymore?\pI've seen rare {POKEMON} while I've\nbeen fishing…\lYou young people like that, right?\pWant to trade phone numbers?\nI'll let you know if I see anything."
+    }
+}
+
+text Route32_Text_Trainer_Ralph_AskNumberAgain {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Así que quieres mi teléfono por si\nveo {POKEMON} raros…"
+        _: "Hm? So you do want me to phone if\nI see rare {POKEMON}?"
+    }
+}
+
+text Route32_Text_Trainer_Ralph_AfterRegistered {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Sí, te llamaré si veo {POKEMON} raros.\nNo te preocupes. ¡No me olvidaré!"
+        _: "Yep, phone if I see rare {POKEMON}.\nDon't worry, I won't forget!"
+    }
+}
+
+text Route32_Text_Trainer_Ralph_AfterDeclined {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Oh… Ni siquiera mis propios hijos\nme dan sus números de teléfono…\l¿Es así la gente joven hoy en día?"
+        _: "Oh… My own kids won't even give\nme their phone numbers…\lIs that how young people are today?"
+    }
+}
+
+text Route32_Text_Trainer_Gordon_Seen {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡He encontrado {POKEMON} muy buenos\nen la hierba!\p¡Creo que me servirán!"
+        _: "I found some good {POKEMON} in the\ngrass around here!\pI think they'll do it for me!"
+    }
+}
+
+text Route32_Text_Trainer_Gordon_Lost {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Maldición!\nCreía que podía ganar."
+        _: "Darn.\nI thought I could win."
+    }
+}
+
+text Route32_Text_Trainer_Gordon_AfterBeaten {
+    poryswitch(LANGUAGE) {
+        SPANISH: "En la hierba hay cosas pegajosas."
+        _: "The grass is full of clingy things."
+    }
+}
+
+text Route32_Text_Trainer_Peter_Seen {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Esa MEDALLA!\n¡Es de CIUDAD MALVA!\p¿Ganaste a PEGASO?"
+        _: "That BADGE!\nIt's from VIOLET CITY's GYM!\pYou beat FALKNER?"
+    }
+}
+
+text Route32_Text_Trainer_Peter_Lost {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Conozco mis debilidades."
+        _: "I know what my weaknesses are."
+    }
+}
+
+text Route32_Text_Trainer_Peter_AfterBeaten {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Debería volver a entrenarme en el\nGIMNASIO de CIUDAD MALVA."
+        _: "I should train again at the GYM\nin VIOLET CITY."
+    }
+}
+
+text Route32_Text_RuinsOfAlphSign {
+    poryswitch(LANGUAGE) {
+        SPANISH: "RUINAS ALFA\nENTRADA ESTE"
+        _: "RUINS OF ALPH\nEAST ENTRANCE"
+    }
+}
+
+text Route32_Text_DirectionsSign {
+    poryswitch(LANGUAGE) {
+        SPANISH: "RUTA 32\nCIUDAD MALVA - PUEBLO AZALEA"
+        _: "ROUTE 32\nVIOLET CITY - AZALEA TOWN"
+    }
+}
+
+text Route32_Text_UnionCaveSign {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Hacia la CUEVA UNIÓN"
+        _: "UNION CAVE AHEAD"
+    }
 }

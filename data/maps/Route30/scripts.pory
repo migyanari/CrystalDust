@@ -16,8 +16,7 @@ script Route30_EventScript_MrPokemonsHouseAhead {
 }
 
 script Route30_EventScript_MrPokemonsHouse {
-    bufferstring(0, Route30_Text_MrPokemonsHouse)
-    msgbox("{STR_VAR_1}", MSGBOX_SIGN)
+    msgbox(Route30_Text_MrPokemonsHouse, MSGBOX_SIGN)
     end
 }
 

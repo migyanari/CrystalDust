@@ -1,50 +1,113 @@
 mapscripts Route33_MapScripts {}
 
 script Route33_EventScript_Girl {
-    msgbox("Pant, pant…\nI finally got through that cave.\pIt was so much bigger than I'd\nexpected.\pI got too tired to explore the whole\nthing, so I came outside.", MSGBOX_NPC)
+    msgbox(Route33_Text_Girl, MSGBOX_NPC)
 }
 
 script Route33_EventScript_Anthony {
-    trainerbattle_single(TRAINER_ANTHONY_1, "I came through the tunnel, but I\nstill have plenty of energy left!", Route33_Text_Trainer_AnthonyLost)
+    trainerbattle_single(TRAINER_ANTHONY_1, Route33_Text_Trainer_Anthony_Seen, Route33_Text_Trainer_Anthony_Lost)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
-    if(var(VAR_RESULT) == 1)
+    if(var(VAR_RESULT) == TRUE)
     {
-        trainerbattle_rematch(TRAINER_ANTHONY_1, "All righty, then!\nMy {POKEMON} and I are raring to go!", Route33_Text_Trainer_AnthonyLost)
-    }		  
+        trainerbattle_rematch(TRAINER_ANTHONY_1, Route33_Text_Trainer_Anthony_Rematch, Route33_Text_Trainer_Anthony_Lost)
+    }
     if (!flag(FLAG_PHONE_CARD_HIKER_ANTHONY))
     {
+        bufferstring(0, Route33_Text_Trainer_Anthony_AskForNumberEnd)
         if (!flag(FLAG_HIKER_ANTHONY_OFFERED_NUMBER))
         {
-            bufferstring(0, Route33_Text_Trainer_Anthony_AskForNumberEnd)
-            msgbox("We HIKERS are at our best in\nthe mountains.\pBy the way, I'm a HIKER, so\nI often go to mountains and caves.\lI occasionally see rare {POKEMON}.\pI could call you the next time\nI see one{STR_VAR_1}", MSGBOX_YESNO)
+            msgbox(Route33_Text_Trainer_Anthony_AskNumber, MSGBOX_YESNO)
             setflag(FLAG_HIKER_ANTHONY_OFFERED_NUMBER)
         }
         else
         {
-            bufferstring(0, Route33_Text_Trainer_Anthony_AskForNumberEnd)
-            msgbox("I could call you when I see some\nrare {POKEMON}{STR_VAR_1}", MSGBOX_YESNO)
+            msgbox(Route33_Text_Trainer_Anthony_AskNumberAgain, MSGBOX_YESNO)
         }
-        if (var (VAR_RESULT) == 1)
+        if (var (VAR_RESULT) == YES)
         {
             registerphonecontact(FLAG_PHONE_CARD_HIKER_ANTHONY)
-            msgbox(Route33_Text_Trainer_AnthonyAfterRegistered, MSGBOX_AUTOCLOSE)
+            msgbox(Route33_Text_Trainer_Anthony_AfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
-            msgbox("You're cold. I may as well head to\nthe mountains…", MSGBOX_AUTOCLOSE)
+            msgbox(Route33_Text_Trainer_Anthony_AfterDeclined, MSGBOX_AUTOCLOSE)
         }
         end
     }
-    msgbox(Route33_Text_Trainer_AnthonyAfterRegistered)
+    msgbox(Route33_Text_Trainer_Anthony_AfterRegistered, MSGBOX_DEFAULT)
     release
-}text(local) Route33_Text_Trainer_AnthonyLost {
-    "Whoa!\nYou've got more zip than me!"
-}text(local) Route33_Text_Trainer_Anthony_AskForNumberEnd {
-    ".\pFeel like swapping phone numbers?"
-}text(local) Route33_Text_Trainer_AnthonyAfterRegistered{
-    "Be patient. I'll find some rare\n{POKEMON} for you!"
 }
 
 script Route33_EventScript_DirectionsSign {
-    msgbox("ROUTE 33", MSGBOX_SIGN)
+    msgbox(Route33_Text_DirectionsSign, MSGBOX_SIGN)
+}
+
+text Route33_Text_Girl {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Uff, uff…\nPor fin he atravesado esa cueva.\pEra más grande de lo que esperaba.\pEstaba tan cansada de explorarla,\nque he salido fuera."
+        _: "Pant, pant…\nI finally got through that cave.\pIt was so much bigger than I'd\nexpected.\pI got too tired to explore the whole\nthing, so I came outside."
+    }
+}
+
+text Route33_Text_Trainer_Anthony_Seen {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Crucé el túnel y todavía me queda\nmucha energía."
+        _: "I came through the tunnel, but I\nstill have plenty of energy left!"
+    }
+}
+
+text Route33_Text_Trainer_Anthony_Lost {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Guau!\n¡Tienes más fuerza que yo!"
+        _: "Whoa!\nYou've got more zip than me!"
+    }
+}
+
+text Route33_Text_Trainer_Anthony_Rematch {
+    poryswitch(LANGUAGE) {
+        SPANISH: "¡Vale, de acuerdo! ¡Mis {POKEMON} y yo\nestamos deseando empezar!"
+        _: "All righty, then!\nMy {POKEMON} and I are raring to go!"
+    }
+}
+
+text Route33_Text_Trainer_Anthony_AskForNumberEnd {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Puedo llamarte la próxima vez que vea\nuno.\p¿Quieres intercambiar números\nde teléfono?"
+        _: ".\pFeel like swapping phone numbers?"
+    }
+}
+
+text Route33_Text_Trainer_Anthony_AskNumber {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Los MONTAÑEROS somos felices\nen las montañas.\pPor cierto, soy un MONTAÑERO, así que\nsuelo ir a cuevas y montañas.\lDe vez en cuando veo {POKEMON} raros.\p{STR_VAR_1}"
+        _: "We HIKERS are at our best in\nthe mountains.\pBy the way, I'm a HIKER, so\nI often go to mountains and caves.\lI occasionally see rare {POKEMON}.\pI could call you the next time\nI see one{STR_VAR_1}"
+    }
+}
+
+text Route33_Text_Trainer_Anthony_AskNumberAgain {
+    poryswitch(LANGUAGE) {
+        SPANISH: "{STR_VAR_1}"
+        _: "I could call you when I see some\nrare {POKEMON}{STR_VAR_1}"
+    }
+}
+
+text Route33_Text_Trainer_Anthony_AfterRegistered {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Ten paciencia. ¡Te buscaré {POKEMON}\nraros!"
+        _: "Be patient. I'll find some rare\n{POKEMON} for you!"
+    }
+}
+
+text Route33_Text_Trainer_Anthony_AfterDeclined {
+    poryswitch(LANGUAGE) {
+        SPANISH: "Yo también debo encaminarme hacia\nlas montañas…"
+        _: "You're cold. I may as well head to\nthe mountains…"
+    }
+}
+
+text Route33_Text_DirectionsSign {
+    poryswitch(LANGUAGE) {
+        SPANISH: "RUTA 33"
+        _: "ROUTE 33"
+    }
 }
