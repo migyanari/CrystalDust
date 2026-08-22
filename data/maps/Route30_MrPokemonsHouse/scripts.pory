@@ -176,7 +176,7 @@ text Route30_MrPokemonsHouse_Text_Intro_GiveEgg {
 
 text Route30_MrPokemonsHouse_Text_Intro_EggStory {
 	poryswitch(LANGUAGE) {
-		SPANISH: "Conozco a una pareja que tiene una\nGUARDERÍA POKÉMON. Ellos me dieron\nese HUEVO.\pComo me intrigaba, le mandé una\ncarta al PROF. ELM.\pEl PROF. ELM es la máxima autoridad\nen evolución de los {POKEMON}."
+		SPANISH: "Conozco a una pareja que tiene una\nGUARDERÍA POKÉMON. Ellos me dieron\lese HUEVO.\pComo me intrigaba, le mandé una\ncarta al PROF. ELM.\pEl PROF. ELM es la máxima autoridad\nen evolución de los {POKEMON}."
 		_: "I know a couple who run a DAY CARE\nservice. They gave me that EGG.\pI was intrigued, so I sent mail to\nPROF. ELM.\pFor {POKEMON} evolution, PROF. ELM is\nthe authority."
 	}
 }
@@ -197,21 +197,21 @@ text Route30_MrPokemonsHouse_Text_Intro_ElmWillKnow {
 
 text Route30_MrPokemonsHouse_Text_OakIntro {
 	poryswitch(LANGUAGE) {
-		SPANISH: "OAK: ¡Ajá!\n¡Así que eres {PLAYER}!\p¡Soy el PROF. OAK! Investigo a los\n{POKEMON}.\pEstaba visitando a mi viejo amigo,\nel SR. {POKEMON}.\pOí que estabas haciendo un recado\npara el PROF. ELM, así que te\nesperé aquí.\p¡Oh! ¿Qué es esto?\n¡Un {POKEMON} raro!\pVeamos…\pMmm…\p¡Ya veo!\pYa entiendo por qué el PROF. ELM te\ndió un {POKEMON} para este recado.\pLos investigadores como el PROF. ELM\ny yo somos amigos de los {POKEMON}.\pSe dio cuenta de que cuidarías a tu\n{POKEMON} con amor y cariño.\p¡Ah…!\pPareces ser muy responsable.\n¿Querrías ayudarme?\p¿Ves? Ésta es la última versión de\nla {POKEDEX}.\pGuarda automáticamente datos de los\n{POKEMON} que hayas visto o\lcapturado.\p¡Es una enciclopedia de alta\ntecnología!"
+		SPANISH: "OAK: ¡Ajá!\n¡Así que eres {PLAYER}!\p¡Soy el PROF. OAK! Investigo a los\n{POKEMON}.\pEstaba visitando a mi viejo amigo,\nel SR. {POKEMON}.\pOí que estabas haciendo un recado\npara el PROF. ELM, así que te\lesperé aquí.\p¡Oh! ¿Qué es esto?\n¡Un {POKEMON} raro!\pVeamos…\pMmm…\p¡Ya veo!\pYa entiendo por qué el PROF. ELM te\ndió un {POKEMON} para este recado.\pLos investigadores como el PROF. ELM\ny yo somos amigos de los {POKEMON}.\pSe dio cuenta de que cuidarías a tu\n{POKEMON} con amor y cariño.\p¡Ah…!\pPareces ser muy responsable.\n¿Querrías ayudarme?\p¿Ves? Ésta es la última versión de\nla {POKEDEX}.\pGuarda automáticamente datos de los\n{POKEMON} que hayas visto o capturado.\p¡Es una enciclopedia de alta\ntecnología!"
 		_: "OAK: Aha!\nSo you're {PLAYER}!\pI'm PROF. OAK, a {POKEMON} researcher\nfrom the KANTO region.\pI was just visiting my old friend,\nMR. {POKEMON}.\pI heard you were running an errand\nfor PROF. ELM, so I waited here.\p…Oh! What's this?\nYou have a rare {POKEMON} with you!\pLet's see…\pHm, I see!\pI understand why PROF. ELM gave you\na {POKEMON} for this errand.\pTo researchers like PROF. ELM and I,\n{POKEMON} are our friends.\pHe saw that you would treat your\n{POKEMON} with love and care.\p…Ah!\pYou seem to be dependable.\nHow would you like to help me out?\pSee? This is the latest version of\nthe {POKEDEX}.\pIt automatically records data on\n{POKEMON} you've seen or caught.\pIt's a high-tech encyclopedia!"
 	}
 }
 
 text Route30_MrPokemonsHouse_Text_OakFarewell {
 	poryswitch(LANGUAGE) {
-		SPANISH: "OAK: Ve a conocer todos los {POKEMON}\nque puedas y completa esa {POKEDEX}!\pLlevo demasiado tiempo aquí.\nTengo que ir a CIUDAD TRIGAL por\lmi programa de radio.\p¡{PLAYER}, cuento contigo!"
+		SPANISH: "OAK: ¡Ve a conocer todos los\n{POKEMON} que puedas y completa esa\l{POKEDEX}!\pLlevo demasiado tiempo aquí.\nTengo que ir a CIUDAD TRIGAL por\lmi programa de radio.\p¡{PLAYER}, cuento contigo!"
 		_: "OAK: Go meet many kinds of {POKEMON}\nand complete that {POKEDEX}!\pBut, I've stayed too long.\nI have to get to GOLDENROD for my\lusual radio show.\p{PLAYER}, I'm counting on you!"
 	}
 }
 
 text Route30_MrPokemonsHouse_Text_Intro_HealParty {
 	poryswitch(LANGUAGE) {
-		SPANISH: "¿Vas a ir a ver al PROF. ELM?\pToma.\nTus {POKEMON} deberían descansar\nun poco."
+		SPANISH: "¿Vas a ir a ver al PROF. ELM?\pToma. Tus {POKEMON} deberían descansar\nun poco."
 		_: "You are returning to PROF. ELM?\pHere.\nYour {POKEMON} should have some rest."
 	}
 }
