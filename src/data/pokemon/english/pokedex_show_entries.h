@@ -268,7 +268,7 @@ const u8 gMisdreavusPokedexShowText[] = _("It loves to watch people it's\nscared
 
 const u8 gMoltresPokedexShowText[] = _("Legendary bird POKéMON. It is\nsaid to migrate from the south\nalong with the spring.");
 
-const u8 gMrMimePokedexShowText[] = _("It uses the mysterious power it\nhas in its fingers to solidify\nair into an invisible wall.");
+const u8 gMrmimePokedexShowText[] = _("It uses the mysterious power it\nhas in its fingers to solidify\nair into an invisible wall.");
 
 const u8 gMukPokedexShowText[] = _("As it moves, a very strong poison\nleaks from it, making the ground\nthere barren for three years.");
 
