@@ -761,8 +761,7 @@ const u8 gMewPokedexText[] = _(
 const u8 gChikoritaPokedexText[] = _(
     "Its pleasantly aromatic leaf has the\n"
     "ability to check the humidity and\n"
-    "temperature."
-);
+    "temperature.");
 
 const u8 gBayleefPokedexText[] = _(
     "A spicy aroma emanates from around its\n"
