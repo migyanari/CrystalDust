@@ -109,7 +109,7 @@ const u8 gText_CryOf[] = _("GRITO DE");
 const u8 gText_EmptyPokedexInfo2[] = _(""); // Unused
 const u8 gText_SizeComparedTo[] = _("TAMAÑO COMPARADO CON ");
 const u8 gText_PokedexRegistration[] = _("Registro de POKéDEX completo.");
-const u8 gText_PokedexInfo[] = _("INFORMACIÓN DEL POKéMON");
+const u8 gText_PokedexInfo[] = _("INFO. DEL POKéMON");
 const u8 gText_HTHeight[] = _("ALTURA");
 const u8 gText_WTWeight[] = _("PESO");
 const u8 gText_SearchingPleaseWait[] = _("Buscando…\nEspera un instante.");
@@ -1878,7 +1878,7 @@ const u8 gText_Ok2[] = _("OK");
 const u8 gText_Quiz[] = _("QUIZ");
 const u8 gText_Answer[] = _("ANSWER");
 const u8 gText_PokeBalls[] = _("BALLS");
-const u8 gText_Berry[] = _("BAYA ");
+const u8 gText_Berry[] = _("BAYA");
 const u8 gText_Berries[] = _("BAYAS");
 
 // Day of week

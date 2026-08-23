@@ -117,9 +117,15 @@ u8 *GetBerryCountString(u8 *dst, const u8 *berryName, u32 quantity)
     else
         berryString = gText_Berries;
 
-    txtPtr = StringCopy(dst, berryName);
-    *txtPtr = CHAR_SPACE;
-    return StringCopy(txtPtr + 1, berryString);
+    #if GAME_LANGUAGE == LANGUAGE_SPANISH
+        txtPtr = StringCopy(dst, berryString);
+        *txtPtr = CHAR_SPACE;
+        return StringCopy(txtPtr + 1, berryName);
+    #else
+        txtPtr = StringCopy(dst, berryName);
+        *txtPtr = CHAR_SPACE;
+        return StringCopy(txtPtr + 1, berryString);
+    #endif
 }
 
 bool8 IsBagPocketNonEmpty(u8 pocket)
