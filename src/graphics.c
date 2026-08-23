@@ -1306,7 +1306,11 @@ const u16 gPokedexCaughtScreenJohto_Pal[] = INCBIN_U16("graphics/pokedex/caught_
 const u16 gPokedexCaughtScreenNational_Pal[] = INCBIN_U16("graphics/pokedex/caught_screen_national.gbapal");
 const u16 gPokedexSearchResults_Pal[] = INCBIN_U16("graphics/pokedex/search_results_bg.gbapal");
 const u32 gPokedexMenu_Gfx[] = INCBIN_U32("graphics/pokedex/menu.4bpp.lz");
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+const u32 gPokedexInterface_Gfx[] = INCBIN_U32("graphics/pokedex/interface_es.4bpp.lz");
+#else
 const u32 gPokedexInterface_Gfx[] = INCBIN_U32("graphics/pokedex/interface.4bpp.lz");
+#endif // GAME_LANGUAGE
 const u32 gUnused_PokedexNoBall[] = INCBIN_U32("graphics/pokedex/noball_unused.4bpp.lz");
 const u32 gPokedexStartMenuMain_Tilemap[] = INCBIN_U32("graphics/pokedex/start_menu_main.bin.lz");
 const u32 gPokedexStartMenuSearchResults_Tilemap[] = INCBIN_U32("graphics/pokedex/start_menu_search_results.bin.lz");
@@ -1319,7 +1323,11 @@ const u32 gPokedexScreenSelectBarSubmenu_Tilemap[] = INCBIN_U32("graphics/pokede
 const u32 gPokedexInfoScreen_Tilemap[] = INCBIN_U32("graphics/pokedex/info_screen.bin.lz");
 const u32 gPokedexCryScreen_Tilemap[] = INCBIN_U32("graphics/pokedex/cry_screen.bin.lz");
 const u16 gPokedexSearchMenu_Pal[] = INCBIN_U16("graphics/pokedex/search_menu.gbapal");
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+const u32 gPokedexSearchMenu_Gfx[] = INCBIN_U32("graphics/pokedex/search_menu_es.4bpp.lz");
+#else
 const u32 gPokedexSearchMenu_Gfx[] = INCBIN_U32("graphics/pokedex/search_menu.4bpp.lz");
+#endif // GAME_LANGUAGE
 const u32 gPokedexSearchMenuJohto_Tilemap[] = INCBIN_U32("graphics/pokedex/search_menu_hoenn.bin.lz");
 const u32 gPokedexSearchMenuNational_Tilemap[] = INCBIN_U32("graphics/pokedex/search_menu_national.bin.lz");
 

@@ -3986,17 +3986,22 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
 static void PrintMonHeight(u16 height, u8 left, u8 top)
 {
     u8 buffer[16];
+
+#if GAME_LANGUAGE == LANGUAGE_ENGLISH
+
     u32 inches, feet;
     u8 i = 0;
 
     inches = (height * 10000) / 254;
     if (inches % 10 >= 5)
         inches += 10;
+
     feet = inches / 120;
     inches = (inches - (feet * 120)) / 10;
 
     buffer[i++] = EXT_CTRL_CODE_BEGIN;
     buffer[i++] = EXT_CTRL_CODE_CLEAR_TO;
+
     if (feet / 10 == 0)
     {
         buffer[i++] = 18;
@@ -4008,23 +4013,52 @@ static void PrintMonHeight(u16 height, u8 left, u8 top)
         buffer[i++] = feet / 10 + CHAR_0;
         buffer[i++] = (feet % 10) + CHAR_0;
     }
+
     buffer[i++] = CHAR_SGL_QUOT_RIGHT;
     buffer[i++] = (inches / 10) + CHAR_0;
     buffer[i++] = (inches % 10) + CHAR_0;
     buffer[i++] = CHAR_DBL_QUOT_RIGHT;
     buffer[i++] = EOS;
+
+#else
+
+    // La altura se almacena en decímetros.
+    // Ejemplo: 21 -> 2,1 m
+    u8 i = 0;
+    u32 meters = height / 10;
+    u32 decimeters = height % 10;
+
+    if (meters >= 10)
+        buffer[i++] = (meters / 10) + CHAR_0;
+
+    buffer[i++] = (meters % 10) + CHAR_0;
+
+    buffer[i++] = CHAR_COMMA;
+    buffer[i++] = decimeters + CHAR_0;
+
+    buffer[i++] = CHAR_SPACE;
+    buffer[i++] = CHAR_m;
+
+    buffer[i++] = EOS;
+
+#endif
+
     PrintInfoScreenText(buffer, left, top);
 }
 
 static void PrintMonWeight(u16 weight, u8 left, u8 top)
 {
     u8 buffer[16];
+
+#if GAME_LANGUAGE == LANGUAGE_ENGLISH
+
     bool8 output;
     u8 i;
     u32 lbs = (weight * 100000) / 4536;
 
     if (lbs % 10u >= 5)
         lbs += 10;
+
     i = 0;
     output = FALSE;
 
@@ -4062,15 +4096,50 @@ static void PrintMonWeight(u16 weight, u8 left, u8 top)
 
     lbs %= 1000;
     buffer[i++] = (lbs / 100) + CHAR_0;
+
     lbs %= 100;
     buffer[i++] = CHAR_PERIOD;
     buffer[i++] = (lbs / 10) + CHAR_0;
+
     buffer[i++] = CHAR_SPACE;
     buffer[i++] = CHAR_l;
     buffer[i++] = CHAR_b;
     buffer[i++] = CHAR_s;
     buffer[i++] = CHAR_PERIOD;
     buffer[i++] = EOS;
+
+#else
+
+    // El peso se almacena en hectogramos (0,1 kg).
+    // Ejemplo: 1 -> 0,1 kg
+    //          123 -> 12,3 kg
+    u8 i = 0;
+    u32 kilograms = weight / 10;
+    u32 hectograms = weight % 10;
+
+    // Parte entera: admite hasta 4 cifras.
+    if (kilograms >= 1000)
+        buffer[i++] = (kilograms / 1000) + CHAR_0;
+
+    if (kilograms >= 100)
+        buffer[i++] = ((kilograms / 100) % 10) + CHAR_0;
+
+    if (kilograms >= 10)
+        buffer[i++] = ((kilograms / 10) % 10) + CHAR_0;
+
+    buffer[i++] = (kilograms % 10) + CHAR_0;
+
+    buffer[i++] = CHAR_COMMA;
+    buffer[i++] = hectograms + CHAR_0;
+
+    buffer[i++] = CHAR_SPACE;
+    buffer[i++] = CHAR_k;
+    buffer[i++] = CHAR_g;
+
+    buffer[i++] = EOS;
+
+#endif
+
     PrintInfoScreenText(buffer, left, top);
 }
 
