@@ -2232,14 +2232,19 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     }
 }
 
-static void PrintMonDexNumAndName(u8 windowId, u8 fontId, const u8* str, u8 left, u8 top)
+static void PrintMonDexNumAndName(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top)
 {
     u8 color[3];
 
     color[0] = TEXT_COLOR_TRANSPARENT;
     color[1] = 1;
     color[2] = 4;
+
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+    AddTextPrinterParameterized4(windowId, fontId, (left * 8) - 1, (top * 8) + 1, 0, 0, color, -1, str);
+#else
     AddTextPrinterParameterized4(windowId, fontId, left * 8, (top * 8) + 1, 0, 0, color, -1, str);
+#endif
 }
 
 // u16 ignored is passed but never used
@@ -2332,16 +2337,34 @@ static void CreateMonListEntry(u8 position, u16 b, u16 ignored)
 
 static void CreateMonDexNum(u16 entryNum, u8 left, u8 top, u16 unused)
 {
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+    u8 text[7];
+#else
     u8 text[6];
+#endif
     u16 dexNum;
 
-    memcpy(text, sText_No000, ARRAY_COUNT(text));
+    memcpy(text, sText_No000, ARRAY_COUNT(sText_No000));
+
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+    text[2] = CHAR_SPACE;
+#endif
+
     dexNum = sPokedexView->pokedexList[entryNum].dexNum;
     if (sPokedexView->dexMode == DEX_MODE_JOHTO)
         dexNum = NationalToJohtoOrder(dexNum);
+
+#if GAME_LANGUAGE == LANGUAGE_SPANISH
+    text[3] = CHAR_0 + dexNum / 100;
+    text[4] = CHAR_0 + (dexNum % 100) / 10;
+    text[5] = CHAR_0 + (dexNum % 100) % 10;
+    text[6] = EOS;
+#else
     text[2] = CHAR_0 + dexNum / 100;
     text[3] = CHAR_0 + (dexNum % 100) / 10;
     text[4] = CHAR_0 + (dexNum % 100) % 10;
+#endif
+
     PrintMonDexNumAndName(0, 0, text, left, top);
 }
 
