@@ -7,16 +7,17 @@ gText_NurseIntro_Day::
 	.string "Bienvenid{KUN} a nuestro CENTRO {POKEMON}.\p$"
 
 gText_NurseIntro_Night::
-	.string "¡Buenas tardes! Ya es tarde.\n"
+	.string "¡Buenas noches! Ya es tarde.\n"
 	.string "Bienvenid{KUN} a nuestro CENTRO {POKEMON}.\p$"
 
 gText_NurseIntro_Common::
-	.string "Podemos curar a tus {POKEMON} y\l"
+	.string "Podemos curar a tus {POKEMON} y\n"
 	.string "dejarlos en plena forma.\p"
 	.string "¿Quieres que curemos a tus {POKEMON}?$"
 
 gText_IllTakeYourPkmn::
-	.string "De acuerdo, ¿me enseñas tus {POKEMON}?$"
+	.string "Muy bien. Ten un poco de\n"
+	.string "paciencia. Será solo un momento.$"
 
 gText_RestoredPkmnToFullHealth::
 	.string "Gracias por esperar.\n"
@@ -28,7 +29,7 @@ gText_WeHopeToSeeYouAgain::
 gText_WelcomeCutShort::
 	.string "¡Hola!\n"
 	.string "Bienvenid{KUN} a nuestro CENTRO {POKEMON}.\p"
-	.string "Podemos curar a tus {POKEMON} y\l"
+	.string "Podemos curar a tus {POKEMON} y\n"
 	.string "dejarlos en plena forma.\p"
 	.string "¿Quieres que…$"
 

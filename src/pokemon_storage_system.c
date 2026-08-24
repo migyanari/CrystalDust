@@ -7002,7 +7002,10 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
         *(txtPtr++) = CHAR_SPACE;
         *(txtPtr++) = CHAR_EXTRA_SYMBOL;
         *(txtPtr++) = CHAR_LV_2;
-
+        if (GAME_LANGUAGE == LANGUAGE_SPANISH) {
+            *(txtPtr++) = CHAR_SPACE;
+        }
+        
         txtPtr = ConvertIntToDecimalStringN(txtPtr, sStorage->displayMonLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
         txtPtr[0] = CHAR_SPACE;
         txtPtr[1] = EOS;

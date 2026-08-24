@@ -3946,7 +3946,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     else
         value = num;
     PrintInfoScreenText(gText_PokedexInfo, GetStringCenterAlignXOffset(2, gText_PokedexInfo, 0xF0), 0);
-    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 3);
+    ConvertIntToDecimalStringN(StringAppend(StringCopy(str, gText_NumberClear01), gText_Space), value, STR_CONV_MODE_LEADING_ZEROS, 3);
     PrintInfoScreenTextSmall(str, 0x1E, 0x49);
     natNum = NationalPokedexNumToSpecies(num);
     if (natNum)

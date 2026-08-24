@@ -121,16 +121,31 @@ $(TILESETGFXDIR)/secondary/secret_base/red_cave/unused_tiles.4bpp: $(TILESETGFXD
 $(FONTGFXDIR)/font0.latfont: $(FONTGFXDIR)/font0_latin.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/spanish/latin_small.latfont: $(FONTGFXDIR)/spanish/latin_small.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/font1.latfont: $(FONTGFXDIR)/font1_latin.png
+	$(GFX) $< $@
+
+$(FONTGFXDIR)/spanish/latin_normal.latfont: $(FONTGFXDIR)/spanish/latin_normal.png
 	$(GFX) $< $@
 
 $(FONTGFXDIR)/font2.latfont: $(FONTGFXDIR)/font2_latin.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/spanish/latin_short.latfont: $(FONTGFXDIR)/spanish/latin_short.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/font7.latfont: $(FONTGFXDIR)/font7_latin.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/spanish/latin_narrow.latfont: $(FONTGFXDIR)/spanish/latin_narrow.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/font8.latfont: $(FONTGFXDIR)/font8_latin.png
+	$(GFX) $< $@
+
+$(FONTGFXDIR)/spanish/latin_small_narrow.latfont: $(FONTGFXDIR)/spanish/latin_small_narrow.png
 	$(GFX) $< $@
 
 $(FONTGFXDIR)/font0.hwjpnfont: $(FONTGFXDIR)/font0_japanese.png

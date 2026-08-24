@@ -2369,7 +2369,7 @@ static void PrintMonInfo(bool8 smallWindow)
 
     if (!smallWindow)
     {
-        StringCopy(gStringVar1, gText_LevelSymbol);
+        StringCopy(gStringVar1, gText_Lv);
         ConvertIntToDecimalStringN(gStringVar2, summary->level, STR_CONV_MODE_LEFT_ALIGN, 3);
         StringAppend(gStringVar1, gStringVar2);
         PrintTextOnWindow(WINDOW_ARR_ID_LVL_NICK_GENDER, gStringVar1, 4, 2, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
